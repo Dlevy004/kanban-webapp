@@ -28,3 +28,23 @@ A felhasználói élményt egy modern, letisztult design és gördülékeny inte
 - **Mesterséges intelligencia integráció** - AI-asszisztens segíti a feladatkezelést és a munkaszervezést: figyelmeztet, ha egy határidő közeleg, javaslatokat ad a következő lépésekre (pl.: „Ezek a feladatok régóta In Progress státuszban vannak – szeretnéd lezárni őket?”). Ezen kívül a rendszer képes rövid statisztikai összefoglalókat és elemzéseket generálni a projekt előrehaladásáról.
 
 - **Felhasználói élmény és design** - Modern, reszponzív UI, amely sötét/világos módot is tartalmaz. A feladatok státusza színek és ikonok segítségével könnyen átlátható. Az animációk, tooltippek és modális ablakok segítik a könnyű navigációt.
+
+## Jelenlegi üzleti folyamatok modellje
+
+A jelenlegi feladatkezelési folyamatok sok esetben még mindig elavult, széttagolt és manuális megoldásokra épülnek. Számos csapat és vállalkozás táblázatokat, e-mailt, csevegőprogramokat vagy egyszerű jegyzeteket használ a projektek nyomon követésére. Ezek a módszerek bár alapvetően működőképesek, hosszú távon nehezen kezelhetők, átláthatatlanok és nem alkalmasak a valós idejű együttműködésre.
+
+A legtöbb kisebb vállalkozás, cég, vagy iskolai projektcsoport  a következő módon dolgozik: a feladatokat egy közös Excel-táblázatban vezetik, amelyben oszlopok jelzik a státuszokat (pl. „Feladat neve”, „Felelős”, „Határidő”, „Állapot”). Ez a megoldás azonban nem teszi lehetővé a hatékony kommunikációt és az azonnali visszajelzést. Ha egy feladat állapota megváltozik, a csapattagoknak manuálisan kell frissíteniük a táblázatot, és külön e-mailben értesíteniük egymást. Ez gyakran hibákhoz, elfelejtett határidőkhöz vagy duplikált munkához vezet.
+
+Egy másik elterjedt, de szintén nehézkes módszer az, amikor a csapatok különböző chat-alkalmazásokban (például Messenger, Discord, MS Teams) egyeztetnek a feladatokról. Bár ezek a platformok gyors kommunikációt tesznek lehetővé, a feladatok és információk hamar elvesznek a beszélgetésekben. Ilyen környezetben nincs lehetőség rendszerezett nyomon követésre, a határidők követése pedig a felhasználók memóriájára van bízva.
+
+A nagyobb szervezeteknél ugyan előfordulhat valamilyen projektmenedzsment szoftver használata (pl. Trello), azonban ezek gyakran bonyolultak, túl sok funkcióval rendelkeznek, vagy fizetős modellekre épülnek, ami korlátozza a kisebb csapatok hozzáférését. Sok felhasználó számára ezek a rendszerek túlbonyolítottak, így nem használják ki a bennük rejlő lehetőségeket. Ennek következtében a feladatkezelés és együttműködés továbbra is nehézkes marad, és a csapatok sok időt veszítenek adminisztrációval a tényleges munka helyett.
+
+### A hagyományos módszerek jellemző problémái:
+- **Korlátozott átláthatóság** -  Nehéz egy pillantással megállapítani, hol tart egy projekt, ki mivel foglalkozik.
+
+- **Hiányzik a határidők kezelése** - Nincs automatikus emlékeztető vagy figyelmeztetés, ha valami közeleg vagy elmarad.
+
+- **Nehezen skálázható** - A táblázatos és manuális módszerek nem alkalmasak nagyobb csapatok vagy összetettebb projektek kezelésére.
+
+Mindezek miatt a jelenlegi folyamat időigényes, széttagolt és hibalehetőségekkel teli.
+A hatékonyság növeléséhez szükség van egy központi, vizuális és valós idejű platformra, amely egy helyen gyűjti össze az összes feladatot, információt és kommunikációt.
