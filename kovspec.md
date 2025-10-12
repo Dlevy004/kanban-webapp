@@ -15,3 +15,9 @@ A vágyálom rendszer célja egy olyan modern, webalapú Kanban alkalmazás megv
 Az alkalmazás lehetővé teszi projektek és csapatok létrehozását, a feladatok különböző állapotok közti mozgatását, valamint a feladatokhoz kapcsolódó információk – például határidők, felelősök, leírások és címkék – kezelését. A felhasználók közötti együttműködést valós idejű frissítések, kommentelési lehetőség és értesítések segítik. A rendszer képes a feladatok és projektek adataiból statisztikákat készíteni, ezzel támogatva a hatékonyság növelését és az átlátható munkaszervezést.
 
 Az ideális Kanban rendszer mesterséges intelligenciával is kiegészül: javaslatokat ad, figyelmeztet a közelgő határidőkre, és elemzéseket készít a projekt előrehaladásáról. A felhasználói élményt modern, letisztult design, sötét/világos mód, valamint kényelmes, drag & drop alapú feladatkezelés biztosítja. A cél egy olyan intelligens, interaktív és inspiráló munkafelület létrehozása, amely egyszerre szolgálja az egyéni hatékonyságot és a csapatmunkát.
+
+## Jelenlegi üzleti folyamatok modellje
+
+Jelenleg a csapatok és kisebb szervezetek feladatkezelése többnyire elavult, manuális módszerekre épül. A feladatokat gyakran táblázatokban, e-mailekben vagy chat-alkalmazásokban vezetik, amelyek nem biztosítanak valós idejű frissítést és átlátható nyomon követést. A változások manuális rögzítése, a kommunikáció széttagoltsága és a határidők figyelmen kívül hagyása gyakran hibákhoz és késésekhez vezet.
+
+A jelenlegi folyamat így időigényes, nehezen kezelhető és nem támogatja a hatékony csapatmunkát. Ezért van szükség egy korszerű, webalapú Kanban rendszerre, amely egyesíti a feladatkezelést, az együttműködést és az átlátható projektkövetést egyetlen, központi platformon.
