@@ -17,6 +17,10 @@ A felhasználói felület minimalista megjelenést kap, amely a funkcionalitást
 A projekt végső célja egy intelligens, skálázható és inspiráló munkafelület létrehozása, amely nemcsak egy egyszerű Kanban-tábla, hanem egy komplex, együttműködés-központú, döntéstámogató rendszer.
 A Kanban Webapp így hozzájárul ahhoz, hogy a csapatok digitálisan érettebbé váljanak, csökkenjen az információvesztés, és a munkafolyamatok a lehető leghatékonyabb formában működjenek.
 
+## Üzleti folyamatok modellje
+
+![user-actions](./rendszerterv%20ábrák/user-actions.png)
+
 ## Követelmények
 
 ### Funkcionális követelmények
