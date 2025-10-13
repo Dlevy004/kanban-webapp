@@ -164,3 +164,35 @@ A projekt már létezik, és a felhasználó jogosult tagok kezelésére.
 
 **Eredmény:**  
 A csapathoz új tag csatlakozik, aki a kijelölt jogosultságokkal fér hozzá a projekthez.
+
+
+
+## Fogalomtár
+
+Az alábbi táblázat a rendszerben és a dokumentumban előforduló kifejezéseket tartalmazza magyarázattal.  
+Célja, hogy a technikai és felhasználói fogalmak mindenki számára egyértelműek legyenek.
+
+| **Fogalom** | **Magyarázat** |
+|--------------|----------------|
+| **Kanban tábla** | Vizuális felület, amely oszlopokba (To Do, In Progress, Done) rendezi a feladatokat, a munkafolyamat átláthatósága érdekében. |
+| **Feladatkártya** | Egy adott feladat vizuális megjelenítése a táblán, amely leírást, határidőt, címkéket és felelőst tartalmaz. |
+| **Oszlop** | A feladat státuszát jelző kategória, például: „Teendő”, „Folyamatban”, „Kész”. |
+| **Projekt** | Egy feladatcsoportot összefogó egység, amely egy adott cél vagy téma köré épül. |
+| **Felelős (Assignee)** | Az a személy, aki egy feladat végrehajtásáért felelős. |
+| **Drag & Drop** | Egérrel történő húzás és elengedés funkció, amellyel a feladatkártyák mozgathatók az oszlopok között. |
+| **Címke (Tag)** | Olyan kulcsszó, amellyel a feladatokat kategorizálni és szűrni lehet. |
+| **AI-asszisztens** | Mesterséges intelligencia alapú modul, amely javaslatokat tesz és figyelmeztet határidőkre, terhelésre. |
+| **Értesítés** | Automatikus rendszerüzenet, amely egy változásról, határidőről vagy új hozzárendelésről tájékoztat. |
+| **Reszponzív design** | A webes felület automatikusan alkalmazkodik az eszköz kijelzőméretéhez (mobil, tablet, asztali). |
+| **Frontend** | A rendszer azon része, amellyel a felhasználó közvetlenül interakcióba lép (React keretrendszer). |
+| **Backend** | A rendszer szerveroldali része, amely az adatok kezeléséért és üzleti logikáért felel (Node.js + Express). |
+| **MongoDB** | Dokumentumalapú (NoSQL) adatbázis, amely JSON-szerű formátumban tárol adatokat. |
+| **Express.js** | Backend keretrendszer Node.js környezethez, REST API-k készítéséhez. |
+| **React** | JavaScript-alapú frontend keretrendszer, komponensalapú webes felületek fejlesztéséhez. |
+| **REST API** | Olyan adatátviteli interfész, amelyen keresztül a frontend és a backend kommunikál egymással. |
+| **JWT (JSON Web Token)** | Biztonságos hitelesítési token a bejelentkezett felhasználók azonosításához. |
+| **Valós idejű frissítés** | A funkció, amely lehetővé teszi, hogy a módosítások azonnal láthatók legyenek minden felhasználónál. |
+| **Sötét / Világos mód** | Kétféle megjelenési téma, amely közül a felhasználó választhat. |
+| **Határidő (Deadline)** | A feladat befejezésének előírt ideje, amelyről a rendszer figyelmeztetést küld. |
+| **Statisztika** | Összesített adatok a projekt előrehaladásáról, feladatok számáról, teljesítményről. |
+| **Valós idejű együttműködés** | Több felhasználó egyidejű munkája ugyanazon projekten, azonnali frissítésekkel. |
