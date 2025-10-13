@@ -70,3 +70,97 @@ A projekt célja, hogy a csapatok és egyéni felhasználók számára egyszerű
 | Felhasználói felület |  K11 | Sötét / Világos mód       | 1.0 | A felhasználó választhat a sötét és világos megjelenés között. A választás elmentésre kerül, és automatikusan érvényes bejelentkezés után.|
 | Felhasználói felület |  K12 | Reszponzív design         | 1.0 | Az alkalmazás bármilyen eszközről elérhető, és automatikusan alkalmazkodik a kijelző méretéhez (mobil, tablet, asztali nézet).|
 | Extra funkció        |  K13 | AI javaslatok             | 1.0 | A rendszer mesterséges intelligencia segítségével elemzi a feladatokat és javaslatokat tesz a priorizálásra, határidők kezelésére, valamint figyelmeztet a túlterheltségre.|
+
+
+
+
+
+
+## Forgatókönyv
+
+A forgatókönyvek bemutatják a rendszer tipikus használati eseteit, vagyis hogyan működik a Kanban Webapp a felhasználó szemszögéből.  
+Ezek segítenek megérteni a fő folyamatokat és a funkciók összefüggéseit.
+
+---
+
+### **Forgatókönyv 1 – Bejelentkezés és projekt létrehozása**
+
+**Szereplők:**  
+Felhasználó, Webalkalmazás, Szerver, Adatbázis  
+
+**Előfeltétel:**  
+A felhasználó regisztrált és rendelkezik érvényes bejelentkezési adatokkal.  
+
+**Lépések:**
+1. A felhasználó megnyitja a Kanban Webapp webes felületét.  
+2. A bejelentkezési űrlapon megadja az e-mail címét és jelszavát.  
+3. A rendszer ellenőrzi az adatokat az adatbázisban.  
+4. Sikeres bejelentkezés után a felhasználó a főoldalra kerül, ahol megjelennek a projektjei.  
+5. A „+ Új projekt” gombra kattintva megadja a projekt nevét és leírását.  
+6. A rendszer létrehozza a projektet és hozzáadja az alapértelmezett oszlopokat (*To Do*, *In Progress*, *Done*).  
+
+**Eredmény:**  
+A felhasználó létrehozott egy új projektet, amely készen áll a feladatok hozzáadására.
+
+---
+
+### **Forgatókönyv 2 – Feladat létrehozása és mozgatása**
+
+**Szereplők:**  
+Felhasználó, Webalkalmazás, Backend rendszer  
+
+**Előfeltétel:**  
+A felhasználó be van jelentkezve és egy meglévő projektet megnyitott.  
+
+**Lépések:**
+1. A felhasználó az „To Do” oszlopban rákattint az „Új feladat” gombra.  
+2. Megadja a feladat címét, leírását, határidejét és a felelőst.  
+3. A rendszer elmenti a feladatot az adatbázisba.  
+4. A feladat azonnal megjelenik a „To Do” oszlopban.  
+5. A felhasználó drag & drop módszerrel áthúzza a feladatkártyát az „In Progress” oszlopba.  
+6. A módosítás automatikusan frissül minden csapattag képernyőjén valós időben.  
+
+**Eredmény:**  
+A feladat státusza megváltozik, és minden csapattag látja az aktuális állapotot.
+
+---
+
+### **Forgatókönyv 3 – AI javaslat és határidő előtti értesítés**
+
+**Szereplők:**  
+Felhasználó, AI-asszisztens modul, Webalkalmazás  
+
+**Előfeltétel:**  
+Legalább egy feladat közeledő határidővel rendelkezik.  
+
+**Lépések:**
+1. Az AI-modul elemzi a feladatok státuszát és határidejét.  
+2. Észleli, hogy egy feladat határideje 24 órán belül lejár.  
+3. A rendszer értesítést küld:  
+   *„A ‘Frontend UI fejlesztés’ feladat határideje holnap lejár.”*  
+4. Az AI javaslatot küld:  
+   *„Szeretnéd ezt a feladatot priorizálni vagy későbbre halasztani?”*  
+5. A felhasználó dönthet: elfogadja, elutasítja vagy figyelmen kívül hagyja a javaslatot.  
+
+**Eredmény:**  
+A rendszer segíti a határidők betartását és a munka hatékony szervezését.
+
+---
+
+### **Forgatókönyv 4 – Csapattag hozzáadása a projekthez**
+
+**Szereplők:**  
+Projektvezető, Webalkalmazás, Szerver  
+
+**Előfeltétel:**  
+A projekt már létezik, és a felhasználó jogosult tagok kezelésére.  
+
+**Lépések:**
+1. A projektvezető megnyitja a projekt beállításait.  
+2. Kiválasztja a „Csapattagok kezelése” opciót.  
+3. Megadja az új tag e-mail címét és szerepkörét (pl. szerkesztő, megfigyelő).  
+4. A rendszer meghívót küld az új tagnak.  
+5. A tag elfogadja a meghívást, és megjelenik a projekt csapattagjai között.  
+
+**Eredmény:**  
+A csapathoz új tag csatlakozik, aki a kijelölt jogosultságokkal fér hozzá a projekthez.
