@@ -111,16 +111,15 @@ A rendszer segíti a határidők kezelését és a munka optimalizálását.
 
 
 ## Fogalomtár
-### Fogalom                  Meghatározás:
-#### Kanban tábla:              Olyan vizuális felület, amely oszlopokban (To Do, In Progress, Done) jeleníti meg a feladatok állapotát. 
-#### Feladatkártya:             Egy adott feladatot megjelenítő kártya, amelyet az oszlopok között lehet mozgatni. 
-#### Oszlop:                    A feladat státuszát jelző kategória (pl. Teendő, Folyamatban, Kész). 
-#### Drag & Drop:               Egérrel történő húzás és elengedés funkció, amellyel a feladatkártyák mozgathatók. 
-#### Projekt:                   Egy konkrét munkafolyamatot tartalmazó egység, amely több feladatot foglal magába. 
-#### Felelős (Assignee):        A feladathoz rendelt személy, aki annak elvégzéséért felelős. 
-#### AI-asszisztens:            Mesterséges intelligencia alapú modul, amely javaslatokat és figyelmeztetéseket ad a határidők és terhelés alapján. 
-#### Reszponzív design:	        A felület automatikusan igazodik az eszköz képernyőméretéhez (mobil, tablet, asztali). 
-#### Értesítés:	                Automatikus üzenet, amely tájékoztatja a felhasználót egy változásról vagy határidőről.
-#### MongoDB:	                  Dokumentum-alapú adatbázis, amely JSON-szerű objektumokat tárol.
-#### Express.js:	              Backend keretrendszer Node.js alapokon, REST API-k fejlesztéséhez. 
-#### React:                     Frontend keretrendszer komponensalapú webes felületek készítéséhez.
+### Kanban tábla:              Olyan vizuális felület, amely oszlopokban (To Do, In Progress, Done) jeleníti meg a feladatok állapotát. 
+### Feladatkártya:             Egy adott feladatot megjelenítő kártya, amelyet az oszlopok között lehet mozgatni. 
+### Oszlop:                    A feladat státuszát jelző kategória (pl. Teendő, Folyamatban, Kész). 
+### Drag & Drop:               Egérrel történő húzás és elengedés funkció, amellyel a feladatkártyák mozgathatók. 
+### Projekt:                   Egy konkrét munkafolyamatot tartalmazó egység, amely több feladatot foglal magába. 
+### Felelős (Assignee):        A feladathoz rendelt személy, aki annak elvégzéséért felelős. 
+### AI-asszisztens:            Mesterséges intelligencia alapú modul, amely javaslatokat és figyelmeztetéseket ad a határidők és terhelés alapján. 
+### Reszponzív design:	        A felület automatikusan igazodik az eszköz képernyőméretéhez (mobil, tablet, asztali). 
+### Értesítés:	                Automatikus üzenet, amely tájékoztatja a felhasználót egy változásról vagy határidőről.
+### MongoDB:	                  Dokumentum-alapú adatbázis, amely JSON-szerű objektumokat tárol.
+### Express.js:	              Backend keretrendszer Node.js alapokon, REST API-k fejlesztéséhez. 
+### React:                     Frontend keretrendszer komponensalapú webes felületek készítéséhez.
