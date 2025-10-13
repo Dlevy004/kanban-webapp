@@ -21,6 +21,8 @@ A Kanban Webapp így hozzájárul ahhoz, hogy a csapatok digitálisan érettebb�
 
 ![user-actions](./rendszerterv%20ábrák/user-actions.png)
 
+![project-roles](./rendszerterv%20ábrák/project-roles.png)
+
 ## Követelmények
 
 ### Funkcionális követelmények
