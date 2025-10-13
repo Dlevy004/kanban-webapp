@@ -27,3 +27,22 @@ A jelenlegi folyamat így időigényes, nehezen kezelhető és nem támogatja a 
 A felhasználó a főoldalon keresztül szeretne bejelentkezni (felhasználónév, jelszó) vagy új fiókot regisztrálni (felhasználónév, e-mail, jelszó). A sikeres bejelentkezést követően a felhasználó hozzáférést kap a saját projektjeihez és csapataihoz.
 Az alkalmazás fő felülete egy Kanban-tábla, ahol a feladatok az ‘To Do – In Progress – Done’ oszlopok között mozgathatók drag & drop módszerrel. A felhasználó létrehozhat új projektet, amelyhez meghívhat más csapattagokat, és létrehozhat külön feladatokat leírással, határidővel, felelőssel és címkékkel. A feladatok módosíthatók, áthelyezhetők és archiválhatók. A rendszer valós idejű frissítéseket biztosít: ha egy csapattag módosít egy feladatot, az azonnal megjelenik minden érintett felhasználó számára.
 Az alkalmazás értesítéseket küld a közelgő határidőkről, a hozzárendelt új feladatokról és a projektállapot változásairól. Az alkalmazás további funkciója az adatelemzés és a mesterséges intelligencia által generált javaslatok: figyelmeztet a túlterhelt tagokra, ajánl feladatprioritásokat, és vizualizálja a projekt előrehaladását. A cél, hogy a jelenlegi manuális, táblázatos vagy papíralapú feladatkezelést egy modern, webalapú, átlátható és automatizált folyamattal váltsuk ki, amely támogatja a hatékony együttműködést és növeli a produktivitást.
+
+## Követelménylista
+
+| Modul                |  ID  | Név                       |  v. | Kifejtés |
+|----------------------|------|---------------------------|-----|----------|
+| Jogosultság          |  K1  | Bejelentkezési felület    | 1.0 | A felhasználó e-mail címe és jelszava megadásával beléphet az alkalmazásba.|
+| Jogosultság          |  K2  | Regisztráció              | 1.0 | A felhasználó új fiókot hozhat létre, e-mail, felhasználónév és jelszó megadásával.|
+| Feladatkezelés       |  K3  | Feladat létrehozása       | 1.0 | A felhasználó új feladatot hozhat létre egy projekten belül.|
+| Feladatkezelés       |  K4  | Feladat módosítása        | 1.0 | A felhasználó módosíthatja egy meglévő feladat adatait.|
+| Feladatkezelés       |  K5  | Feladat törlése           | 1.0 | A felhasználó törölhet egy meglévő feladatot a projektből.|
+| Projektkezelés       |  K6  | Projekt létrehozása       | 1.0 | A felhasználó (vagy csapatvezető) új projektet hozhat létre név és leírás megadásával.|
+| Projektkezelés       |  K7  | Csapattagok kezelése      | 1.0 | Tagok meghívása, eltávolítása, szerepkörök módoítása|
+| Kommunikáció         |  K8  | Kommentelés               | 1.0 | A felhasználók feladatokhoz megjegyzéseket fűzhetnek.|
+| Kommunikáció         |  K9  | Értesítések               | 1.0 | A rendszer értesítéseket küld.|
+| Felhasználói felület |  K10 | Drag & Drop kezelőfelület | 1.0 | A Kanban-tábla interaktív módon használható.|
+| Felhasználói felület |  K11 | Sötét / Világos mód       | 1.0 | A felhasználó választhat megjelenési módot.|
+| Felhasználói felület |  K12 | Reszponzív design         | 1.0 | Az alkalmazás minden eszközről kényelmesen használható.|
+| Extra funkció        |  K13 | AI javaslatok             | 1.0 | A rendszer mesterséges intelligencia segítségével javaslatokat ad.|
+
