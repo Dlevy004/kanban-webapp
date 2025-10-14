@@ -261,4 +261,34 @@ A főág (`main`) stabil kiadásokat tartalmaz, a fejlesztések `feature/*` ága
 Minden kiadáshoz kötelező:  
 - Verziószám (`v1.2.0` formátumban)  
 - Changelog (módosítások rövid leírása)  
-- Tesztelési jegyzőkönyv vagy QA dokumentum  
+- Tesztelési jegyzőkönyv vagy QA dokumentum
+- 
+
+
+
+## Telepítési terv
+
+A Kanban Webapp egy webes alkalmazás, így külön telepítést a felhasználói oldalon nem igényel.  
+A rendszer egy modern böngészőn keresztül érhető el, és a szerveroldali futtatásról az üzemeltető gondoskodik.
+
+### Webes alkalmazás esetén
+
+- A szoftver használatához nincs szükség külön telepítésre.  
+- A felhasználónak elegendő egy ajánlott, naprakész böngésző telepítése, például:  
+  **Google Chrome**, **Mozilla Firefox**, **Microsoft Edge**, **Opera** vagy **Safari**.  
+- A webes felület a szerverről tölthető be egy egyszerű URL megadásával, például:  
+  `https://kanban-webapp.hu`  
+- A kliens (felhasználói gép) közvetlenül a webszerverhez kapcsolódik az interneten keresztül.  
+- Az alkalmazás automatikusan betöltődik, a felhasználó bejelentkezés után azonnal használhatja.  
+
+### Fejlesztői és szerveroldali telepítés (belső használatra)
+
+- A forráskód a projekt GitHub repozitóriumából érhető el.  
+- A fejlesztők Node.js és MongoDB környezetben futtatják a rendszert.  
+- A projekt futtatásához elegendő az alábbi lépések végrehajtása:
+  ```bash
+  git clone https://github.com/<org>/kanban-webapp.git
+  cd kanban-webapp
+  npm install
+  npm start
+
