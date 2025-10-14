@@ -228,14 +228,14 @@ Ezek külön fejlesztési sprintekben, verziókövetett módon kerülnek bevezet
 
 ### 8.2 Karbantartási folyamat
 
-| **Tevékenység** | **Leírás** | **Felelős** | **Gyakoriság** |
-|------------------|-------------|--------------|----------------|
-| Rendszer- és szervermonitorozás | CPU, memória, hálózati terhelés és hibák figyelése. | DevOps mérnök | Folyamatos |
-| Biztonsági frissítések | Függőségek, Node.js és MongoDB verziók frissítése. | Backend fejlesztő | Havonta |
-| Mentések ellenőrzése | Adatbázis-mentések és visszaállítási tesztek ellenőrzése. | Rendszergazda | Hetente |
-| Log elemzés | Hibanaplók és audit trail vizsgálata. | DevOps / Backend fejlesztő | Hetente |
-| Felhasználói visszajelzések feldolgozása | Support csatornákon beérkező hibák és igények elemzése. | Projektmenedzser | Folyamatos |
-| Verziófrissítés dokumentálása | Changelog és release notes készítése. | Fejlesztőcsapat | Minden kiadáskor |
+| **Tevékenység** | **Leírás** | **Gyakoriság** |
+|------------------|-------------|----------------|
+| Rendszer- és szervermonitorozás | CPU, memória, hálózati terhelés és hibák figyelése. | Folyamatos |
+| Biztonsági frissítések | Függőségek, Node.js és MongoDB verziók frissítése. | Havonta |
+| Mentések ellenőrzése | Adatbázis-mentések és visszaállítási tesztek ellenőrzése. | Hetente |
+| Log elemzés | Hibanaplók és audit trail vizsgálata. | Hetente |
+| Felhasználói visszajelzések feldolgozása | Support csatornákon beérkező hibák és igények elemzése. | Folyamatos |
+| Verziófrissítés dokumentálása | Changelog és release notes készítése. | Minden kiadáskor |
 
 ---
 
