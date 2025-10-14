@@ -1,0 +1,130 @@
+```mermaid
+erDiagram
+
+    users ||--o{ project_members : "is member of"
+    projects ||--o{ project_members : "has members"
+
+    projects ||--o{ boards : "has"
+    boards ||--o{ columns : "has"
+    columns ||--o{ tasks : "contains"
+
+    users ||--o{ tasks : "assigned/created"
+    tasks ||--o{ comments : "has"
+    tasks ||--o{ attachments : "has"
+    tasks ||--o{ time_entries : "has"
+    tasks }o--o{ labels : "tagged with"
+
+    projects ||--o{ activities : "audited by"
+    users ||--o{ activities : "acts in"
+    users ||--o{ notifications : "receives"
+    projects ||--o{ notifications : "may reference"
+    tasks ||--o{ notifications : "may reference"
+
+    users {
+      ObjectId _id
+      string email
+      string username
+      string passwordHash
+      string name
+    }
+
+    projects {
+      ObjectId _id
+      string name
+      string description
+      ObjectId ownerId
+      date createdAt
+    }
+
+    project_members {
+      ObjectId _id
+      ObjectId projectId
+      ObjectId userId
+      string role
+      date invitedAt
+      date acceptedAt
+    }
+
+    boards {
+      ObjectId _id
+      ObjectId projectId
+      string name
+    }
+
+    columns {
+      ObjectId _id
+      ObjectId projectId
+      ObjectId boardId
+      string name
+      number position
+      number wipLimit
+    }
+
+    tasks {
+      ObjectId _id
+      ObjectId projectId
+      ObjectId boardId
+      ObjectId columnId
+      string title
+      string description
+      ObjectId assigneeId
+      ObjectId creatorId
+      date dueDate
+      string status
+      number order
+    }
+
+    labels {
+      ObjectId _id
+      ObjectId projectId
+      string name
+      string color
+    }
+
+    comments {
+      ObjectId _id
+      ObjectId projectId
+      ObjectId taskId
+      ObjectId authorId
+      string body
+      date createdAt
+    }
+
+    attachments {
+      ObjectId _id
+      ObjectId projectId
+      ObjectId taskId
+      ObjectId uploaderId
+      string fileName
+      string storageKey
+      number size
+      date createdAt
+    }
+
+    activities {
+      ObjectId _id
+      ObjectId projectId
+      ObjectId actorId
+      string type
+      string entityType
+      ObjectId entityId
+      date createdAt
+    }
+
+    notifications {
+      ObjectId _id
+      ObjectId userId
+      ObjectId projectId
+      ObjectId taskId
+      string type
+      date readAt
+      date createdAt
+    }
+
+    time_entries {
+      ObjectId _id
+      ObjectId taskId
+      ObjectId userId
+      date startedAt
+      number durationSec
+    }
