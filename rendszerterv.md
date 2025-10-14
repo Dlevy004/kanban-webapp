@@ -200,12 +200,12 @@ A fejlesztés és üzemeltetés során az alábbi jogszabályoknak és iparági 
 
 
 
-## 8. Karbantartási terv
+## Karbantartási terv
 
 A Kanban Webapp rendszer karbantartása biztosítja a hosszú távú megbízható működést, az adatok integritását és a biztonsági előírások betartását.  
 A karbantartás célja, hogy a rendszer folyamatosan megfeleljen a felhasználói igényeknek, a technológiai fejlődésnek és a jogi előírásoknak.
 
-### 8.1 Karbantartás típusai
+### Karbantartás típusai
 
 **1. Hibajavító karbantartás**  
 Célja a fejlesztés során vagy a használat közben felmerülő hibák (bugok, működési rendellenességek) javítása.  
@@ -226,7 +226,7 @@ Ezek külön fejlesztési sprintekben, verziókövetett módon kerülnek bevezet
 
 ---
 
-### 8.2 Karbantartási folyamat
+### Karbantartási folyamat
 
 | **Tevékenység** | **Leírás** | **Gyakoriság** |
 |------------------|-------------|----------------|
@@ -239,7 +239,7 @@ Ezek külön fejlesztési sprintekben, verziókövetett módon kerülnek bevezet
 
 ---
 
-### 8.3 Mentési és visszaállítási terv
+### Mentési és visszaállítási terv
 
 - **Adatbázis-mentés:** Automatikus, napi mentés a MongoDB adatbázisról (pl. `mongodump`), verziózott formában.  
 - **Mentési stratégia:**  
@@ -254,7 +254,7 @@ Ezek külön fejlesztési sprintekben, verziókövetett módon kerülnek bevezet
 
 ---
 
-### 8.4 Verziókezelés és dokumentáció
+### Verziókezelés és dokumentáció
 
 A rendszer forráskódja **Git** alapú verziókezelésben van (GitHub).  
 A főág (`main`) stabil kiadásokat tartalmaz, a fejlesztések `feature/*` ágakon zajlanak.  
