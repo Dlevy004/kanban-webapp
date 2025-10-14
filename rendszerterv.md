@@ -196,3 +196,69 @@ A fejlesztés és üzemeltetés során az alábbi jogszabályoknak és iparági 
 
 - Felelősség és moderáció
     - Felhasználók által feltöltött tartalmaknál feltételek és moderációs szabályok (pl. jogsértő tartalom eltávolítása).
+    - 
+
+
+
+## 8. Karbantartási terv
+
+A Kanban Webapp rendszer karbantartása biztosítja a hosszú távú megbízható működést, az adatok integritását és a biztonsági előírások betartását.  
+A karbantartás célja, hogy a rendszer folyamatosan megfeleljen a felhasználói igényeknek, a technológiai fejlődésnek és a jogi előírásoknak.
+
+### 8.1 Karbantartás típusai
+
+**1. Hibajavító karbantartás**  
+Célja a fejlesztés során vagy a használat közben felmerülő hibák (bugok, működési rendellenességek) javítása.  
+A hibákat a felhasználók visszajelzései, logok, monitoring eszközök alapján azonosítja a fejlesztői csapat.  
+A javításokat verziókezeléssel dokumentálni kell (pl. Git issue és commit hivatkozás).
+
+**2. Adaptív karbantartás**  
+A rendszer frissítése új környezeti feltételekhez, például új böngészőverziókhoz, szerverfrissítésekhez vagy API-változásokhoz.  
+Ide tartozik a Node.js, MongoDB és frontend függőségek (npm packages) frissítése is.
+
+**3. Tökéletesítő (preventív) karbantartás**  
+A teljesítmény, biztonság és felhasználói élmény növelését szolgáló fejlesztések.  
+Például gyorsabb betöltési idők, optimalizált adatbázis-lekérdezések, caching és UI fejlesztések.
+
+**4. Fejlesztő (evolúciós) karbantartás**  
+Új funkciók hozzáadása a felhasználói igények alapján (pl. új AI-funkciók, integrációk, riportok).  
+Ezek külön fejlesztési sprintekben, verziókövetett módon kerülnek bevezetésre.
+
+---
+
+### 8.2 Karbantartási folyamat
+
+| **Tevékenység** | **Leírás** | **Felelős** | **Gyakoriság** |
+|------------------|-------------|--------------|----------------|
+| Rendszer- és szervermonitorozás | CPU, memória, hálózati terhelés és hibák figyelése. | DevOps mérnök | Folyamatos |
+| Biztonsági frissítések | Függőségek, Node.js és MongoDB verziók frissítése. | Backend fejlesztő | Havonta |
+| Mentések ellenőrzése | Adatbázis-mentések és visszaállítási tesztek ellenőrzése. | Rendszergazda | Hetente |
+| Log elemzés | Hibanaplók és audit trail vizsgálata. | DevOps / Backend fejlesztő | Hetente |
+| Felhasználói visszajelzések feldolgozása | Support csatornákon beérkező hibák és igények elemzése. | Projektmenedzser | Folyamatos |
+| Verziófrissítés dokumentálása | Changelog és release notes készítése. | Fejlesztőcsapat | Minden kiadáskor |
+
+---
+
+### 8.3 Mentési és visszaállítási terv
+
+- **Adatbázis-mentés:** Automatikus, napi mentés a MongoDB adatbázisról (pl. `mongodump`), verziózott formában.  
+- **Mentési stratégia:**  
+  - Napi inkrementális mentés  
+  - Heti teljes mentés  
+  - 30–90 napos retention idő  
+- **Visszaállítási teszt:** Havonta legalább egyszer tesztelni kell az adatvisszaállítást fejlesztői környezetben.  
+- **Mentések helye:** Külön, titkosított tárhely (pl. AWS S3, Google Cloud Storage).  
+- **Kritikus esemény esetén:**  
+  - Incidensnapló nyitása  
+  - Adat-helyreállítás 24 órán belül  
+
+---
+
+### 8.4 Verziókezelés és dokumentáció
+
+A rendszer forráskódja **Git** alapú verziókezelésben van (GitHub).  
+A főág (`main`) stabil kiadásokat tartalmaz, a fejlesztések `feature/*` ágakon zajlanak.  
+Minden kiadáshoz kötelező:  
+- Verziószám (`v1.2.0` formátumban)  
+- Changelog (módosítások rövid leírása)  
+- Tesztelési jegyzőkönyv vagy QA dokumentum  
