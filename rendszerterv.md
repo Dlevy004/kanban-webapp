@@ -307,6 +307,8 @@ A adatokat MongoDB adatbázisban tároljuk, amely dokumentum-orientált felépí
 
 A fejlesztés során modern webes környezetet és verziókövetési rendszert használunk annak érdekében, hogy a csapatmunka átlátható és hatékony legyen. A forráskód kezelése Git alapú verziókövetéssel történik, amely lehetővé teszi a változtatások nyomon követését és a hibák egyszerű visszafejtését. A fejlesztés folyamata maga is Kanban szemléletet követ, így a projekt megvalósítása tükrözi az alkalmazás működését: a feladatok vizuális táblán követhetők, státuszuk bármikor látható, és a csapattagok valós időben dolgozhatnak ugyanazon a projekten. A fejlesztés célja, hogy a rendszer hosszú távon bővíthető, karbantartható és stabil alapokon működjön, miközben a felhasználók számára gyors, megbízható és könnyen kezelhető élményt nyújtson.
 
+![Implementation-plan](./rendszerterv%20ábrák/Implementation-plan.png)
+
 # Tesztterv
 
 A tesztelés célja annak biztosítása, hogy a Kanban Webapp minden funkciója megfelelően működjön, a rendszer stabil legyen, és megfeleljen a funkcionális specifikációban leírt követelményeknek. A tesztelés során ellenőrizzük, hogy a felhasználói felület, a backend szolgáltatások és az adatbázis közötti kommunikáció hibamentesen és összhangban működik-e.
@@ -331,3 +333,6 @@ A backend service működését elsősorban a feladatkezelés, a projektlétreho
 ## Elvárt eredmények
 
 A tesztelés sikeres befejezése után a rendszer minden funkciója hibamentesen működik, a felhasználói műveletek valós időben frissülnek, és az alkalmazás különböző eszközökön is megfelelően használható. A rendszer stabilitása, sebessége és kompatibilitása eléri a kívánt szintet, az AI-modul pedig pontosan és konzisztensen ad javaslatokat a feladatkezelés optimalizálására. Amennyiben a tesztelés során hibát vagy rendellenes működést tapasztalunk, a fejlesztők naplózzák az eseményt, és a javításokat követően újratesztelést végeznek. A tesztelés lezárása akkor történik meg, ha minden kritikus hibát kijavítottunk, és a rendszer minden funkciója megfelel a funkcionális követelményeknek.
+
+![Test-plan](./rendszerterv%20ábrák/Test-plan.png)
+
