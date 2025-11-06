@@ -5,10 +5,52 @@
 A projekt célja egy modern, webalapú Kanban rendszer fejlesztése, amely megkönnyíti a feladatok szervezését és a csapaton belüli együttműködést. Az alkalmazás lehetőséget biztosít a felhasználóknak regisztrációra, bejelentkezésre, projektek létrehozására, valamint ezekhez feladatok hozzáadására. A feladatok különböző oszlopokba sorolhatók (például „Teendő”, „Folyamatban”, „Kész”), amelyek a munkafolyamat aktuális állapotát jelképezik. A feladatok könnyen mozgathatók ezek között az oszlopok között, így a felhasználók valós időben követhetik a projekt előrehaladását.
 A rendszer célja egy letisztult, átlátható és könnyen kezelhető felület biztosítása, amely támogatja a hatékony időgazdálkodást és feladatkezelést. A fejlesztés során modern technológiákat alkalmazunk: a frontend Reacttel, a backend Node.js és Express keretrendszerrel készül, míg az adatok tárolását MongoDB biztosítja. Az alkalmazás reszponzív lesz, így asztali gépen, tableten és mobilon is kényelmesen használható.
 
+---
+
 ## Jelenlegi helyzet
 
 A megrendelő jelenleg hagyományos, elavult módszerekkel követi nyomon a feladatokat, például táblázatok vagy papíralapú listák formájában. Ezek a megoldások nehezen átláthatók, nem támogatják a valós idejű együttműködést, és különösen több résztvevős projektek esetén lassítják a munkafolyamatot. A feladatok státuszának nyomon követése, a határidők kezelése és a felelősök kijelölése gyakran nehézkes, ami a csapat teljesítményének csökkenéséhez vezet.
 A XXI. századi digitális elvárások mellett szükség van egy olyan korszerű, webalapú megoldásra, amely egyszerre átlátható, hatékony és könnyen kezelhető. A megrendelő ezért igényelt egy saját, testre szabott Kanban rendszert, amely lehetővé teszi a feladatok dinamikus kezelését, a csapattagok közötti együttműködés javítását, valamint a projektek hatékonyabb lebonyolítását.
+
+---
+
+## Követelménylista
+
+| Modul                |  ID  | Név                       |  v. | Kifejtés |
+|----------------------|------|---------------------------|-----|----------|
+| Jogosultság          |  K1  | Bejelentkezési felület    | 1.0 | A felhasználó az e-mail címe és jelszava megadásával bejelentkezhet. A rendszer ellenőrzi az adatokat. Hibás adat esetén hibaüzenetet kap.|
+| Jogosultság          |  K2  | Regisztráció              | 1.0 | A felhasználó e-mail, felhasználónév és jelszó megadásával új fiókot hozhat létre. A rendszer ellenőrzi az e-mail egyediségét, és sikeres regisztráció után a felhasználó bejelentkezhet.|
+| Feladatkezelés       |  K3  | Feladat létrehozása       | 1.0 | A felhasználó új feladatot hozhat létre egy projekten belül. A feladat megadható címmel, leírással, határidővel, felelőssel és címkékkel.|
+| Feladatkezelés       |  K4  | Feladat módosítása        | 1.0 | A felhasználó szerkesztheti a feladat adatait, módosíthatja az állapotát, valamint drag & drop módszerrel áthelyezheti azt másik oszlopba.|
+| Feladatkezelés       |  K5  | Feladat törlése           | 1.0 | A felhasználó törölhet egy meglévő feladatot a projektből. A törlés előtt megerősítés szükséges.|
+| Projektkezelés       |  K6  | Projekt létrehozása       | 1.0 | A felhasználó új projektet hozhat létre név és leírás megadásával. A projekthez feladatokat és csapattagokat lehet rendelni.|
+| Projektkezelés       |  K7  | Csapattagok kezelése      | 1.0 | Tagok meghívása, eltávolítása, szerepkörök módosítása|
+| Kommunikáció         |  K8  | Kommentelés               | 1.0 | A felhasználók kommentet írhatnak a feladatokhoz, hogy megosszák a megjegyzéseiket, visszajelzéseiket. A hozzászólások valós időben frissülnek.|
+| Kommunikáció         |  K9  | Értesítések               | 1.0 | A rendszer automatikus értesítést küld, ha új feladatot rendelnek a felhasználóhoz, ha módosítás történt, vagy ha közeleg a határidő.|
+| Felhasználói felület |  K10 | Drag & Drop kezelőfelület | 1.0 | A feladatokat a Kanban-táblán belül egérrel mozgathatjuk az oszlopok között (To Do → In Progress → Done). A változások valós időben mentődnek.|
+| Felhasználói felület |  K11 | Sötét / Világos mód       | 1.0 | A felhasználó választhat a sötét és világos megjelenés között. A választás elmentésre kerül, és automatikusan érvényes bejelentkezés után.|
+| Felhasználói felület |  K12 | Reszponzív design         | 1.0 | Az alkalmazás bármilyen eszközről elérhető, és automatikusan alkalmazkodik a kijelző méretéhez (mobil, tablet, asztali nézet).|
+| Extra funkció        |  K13 | AI javaslatok             | 1.0 | A rendszer mesterséges intelligencia segítségével elemzi a feladatokat és javaslatokat tesz a priorizálásra, határidők kezelésére, valamint figyelmeztet a túlterheltségre.|
+
+---
+
+## Jelenlegi üzleti folyamatok modellje
+
+A jelenlegi feladatkezelési folyamatok sok esetben még mindig elavult, széttagolt és manuális megoldásokra épülnek. Számos csapat és vállalkozás táblázatokat, e-mailt, csevegőprogramokat vagy egyszerű jegyzeteket használ a projektek nyomon követésére. Ezek a módszerek bár alapvetően működőképesek, hosszú távon nehezen kezelhetők, átláthatatlanok és nem alkalmasak a valós idejű együttműködésre.
+
+A legtöbb kisebb vállalkozás, cég, vagy iskolai projektcsoport  a következő módon dolgozik: a feladatokat egy közös Excel-táblázatban vezetik, amelyben oszlopok jelzik a státuszokat (pl. „Feladat neve”, „Felelős”, „Határidő”, „Állapot”). Ez a megoldás azonban nem teszi lehetővé a hatékony kommunikációt és az azonnali visszajelzést. Ha egy feladat állapota megváltozik, a csapattagoknak manuálisan kell frissíteniük a táblázatot, és külön e-mailben értesíteniük egymást. Ez gyakran hibákhoz, elfelejtett határidőkhöz vagy duplikált munkához vezet.
+
+Egy másik elterjedt, de szintén nehézkes módszer az, amikor a csapatok különböző chat-alkalmazásokban (például Messenger, Discord, MS Teams) egyeztetnek a feladatokról. Bár ezek a platformok gyors kommunikációt tesznek lehetővé, a feladatok és információk hamar elvesznek a beszélgetésekben. Ilyen környezetben nincs lehetőség rendszerezett nyomon követésre, a határidők követése pedig a felhasználók memóriájára van bízva.
+
+A nagyobb szervezeteknél ugyan előfordulhat valamilyen projektmenedzsment szoftver használata (pl. Trello), azonban ezek gyakran bonyolultak, túl sok funkcióval rendelkeznek, vagy fizetős modellekre épülnek, ami korlátozza a kisebb csapatok hozzáférését. Sok felhasználó számára ezek a rendszerek túlbonyolítottak, így nem használják ki a bennük rejlő lehetőségeket. Ennek következtében a feladatkezelés és együttműködés továbbra is nehézkes marad, és a csapatok sok időt veszítenek adminisztrációval a tényleges munka helyett.
+
+---
+
+## Igényelt üzleti folyamatok
+
+A projekt célja, hogy a csapatok és egyéni felhasználók számára egyszerűbbé és hatékonyabbá tegye a feladatkezelést egy modern, webalapú Kanban rendszer segítségével. Az alkalmazás lehetővé teszi, hogy a felhasználók regisztráljanak vagy bejelentkezzenek, majd hozzáférjenek saját projektjeikhez és csapataikhoz. A bejelentkezés után a felhasználó egy áttekinthető, interaktív Kanban-táblán dolgozik, ahol a feladatok különböző állapotok között mozgathatók (To Do – In Progress – Done) drag & drop módszerrel. A felhasználó új projekteket hozhat létre, meghívhat más csapattagokat, valamint létrehozhat és szerkeszthet feladatokat, amelyekhez leírást, határidőt, felelőst és címkéket rendelhet. A rendszer valós idejű frissítést biztosít, így ha egy csapattag módosít egy feladatot vagy annak állapotát, az azonnal láthatóvá válik minden érintett felhasználó számára. Ezáltal megszűnik a manuális adatfrissítés igénye, és a csapat mindig naprakész információkkal dolgozhat. Az alkalmazás automatikus értesítéseket küld a közelgő határidőkről, új feladat-hozzárendelésekről és a projektek állapotváltozásairól, így a felhasználók könnyen követhetik a munkafolyamatokat. A beépített statisztikai és elemző funkciók segítségével a rendszer képes grafikonokat és riportokat készíteni a feladatok előrehaladásáról, a csapatteljesítményről és a projekt állapotáról. A mesterséges intelligencia további támogatást nyújt azáltal, hogy figyelmeztet a túlterhelt csapattagokra, javaslatokat tesz a feladatprioritások átrendezésére, valamint elemzi a munkafolyamatokat a hatékonyság növelése érdekében. A digitális Kanban rendszer bevezetésével a jelenlegi, manuális és nehezen átlátható feladatkezelés helyét egy automatizált, központosított és valós idejű megoldás veszi át. Ennek eredményeképpen csökken az adminisztrációs teher, javul az együttműködés, és nő a csapatok produktivitása. A felhasználók számára a rendszer egyszerűen kezelhető, reszponzív felületet biztosít, ahol gyorsan hozzáférhetnek a feladataikhoz, áttekinthetik a projekt aktuális állapotát, és azonnali visszajelzést kapnak a munkájukról. A cél, hogy a feladatkezelés ne legyen többé időrabló adminisztráció, hanem hatékony, átlátható és motiváló folyamat.
+
+---
 
 ## Vágyálom rendszer
 
@@ -29,17 +71,10 @@ A felhasználói élményt egy modern, letisztult design és gördülékeny inte
 
 - **Felhasználói élmény és design** - Modern, reszponzív UI, amely sötét/világos módot is tartalmaz. A feladatok státusza színek és ikonok segítségével könnyen átlátható. Az animációk, tooltippek és modális ablakok segítik a könnyű navigációt.
 
-## Jelenlegi üzleti folyamatok modellje
-
-A jelenlegi feladatkezelési folyamatok sok esetben még mindig elavult, széttagolt és manuális megoldásokra épülnek. Számos csapat és vállalkozás táblázatokat, e-mailt, csevegőprogramokat vagy egyszerű jegyzeteket használ a projektek nyomon követésére. Ezek a módszerek bár alapvetően működőképesek, hosszú távon nehezen kezelhetők, átláthatatlanok és nem alkalmasak a valós idejű együttműködésre.
-
-A legtöbb kisebb vállalkozás, cég, vagy iskolai projektcsoport  a következő módon dolgozik: a feladatokat egy közös Excel-táblázatban vezetik, amelyben oszlopok jelzik a státuszokat (pl. „Feladat neve”, „Felelős”, „Határidő”, „Állapot”). Ez a megoldás azonban nem teszi lehetővé a hatékony kommunikációt és az azonnali visszajelzést. Ha egy feladat állapota megváltozik, a csapattagoknak manuálisan kell frissíteniük a táblázatot, és külön e-mailben értesíteniük egymást. Ez gyakran hibákhoz, elfelejtett határidőkhöz vagy duplikált munkához vezet.
-
-Egy másik elterjedt, de szintén nehézkes módszer az, amikor a csapatok különböző chat-alkalmazásokban (például Messenger, Discord, MS Teams) egyeztetnek a feladatokról. Bár ezek a platformok gyors kommunikációt tesznek lehetővé, a feladatok és információk hamar elvesznek a beszélgetésekben. Ilyen környezetben nincs lehetőség rendszerezett nyomon követésre, a határidők követése pedig a felhasználók memóriájára van bízva.
-
-A nagyobb szervezeteknél ugyan előfordulhat valamilyen projektmenedzsment szoftver használata (pl. Trello), azonban ezek gyakran bonyolultak, túl sok funkcióval rendelkeznek, vagy fizetős modellekre épülnek, ami korlátozza a kisebb csapatok hozzáférését. Sok felhasználó számára ezek a rendszerek túlbonyolítottak, így nem használják ki a bennük rejlő lehetőségeket. Ennek következtében a feladatkezelés és együttműködés továbbra is nehézkes marad, és a csapatok sok időt veszítenek adminisztrációval a tényleges munka helyett.
+---
 
 ### A hagyományos módszerek jellemző problémái:
+
 - **Korlátozott átláthatóság** -  Nehéz egy pillantással megállapítani, hol tart egy projekt, ki mivel foglalkozik.
 
 - **Hiányzik a határidők kezelése** - Nincs automatikus emlékeztető vagy figyelmeztetés, ha valami közeleg vagy elmarad.
@@ -49,123 +84,90 @@ A nagyobb szervezeteknél ugyan előfordulhat valamilyen projektmenedzsment szof
 Mindezek miatt a jelenlegi folyamat időigényes, széttagolt és hibalehetőségekkel teli.
 A hatékonyság növeléséhez szükség van egy központi, vizuális és valós idejű platformra, amely egy helyen gyűjti össze az összes feladatot, információt és kommunikációt.
 
-## Igényelt üzleti folyamatok
-
-A projekt célja, hogy a csapatok és egyéni felhasználók számára egyszerűbbé és hatékonyabbá tegye a feladatkezelést egy modern, webalapú Kanban rendszer segítségével. Az alkalmazás lehetővé teszi, hogy a felhasználók regisztráljanak vagy bejelentkezzenek, majd hozzáférjenek saját projektjeikhez és csapataikhoz. A bejelentkezés után a felhasználó egy áttekinthető, interaktív Kanban-táblán dolgozik, ahol a feladatok különböző állapotok között mozgathatók (To Do – In Progress – Done) drag & drop módszerrel. A felhasználó új projekteket hozhat létre, meghívhat más csapattagokat, valamint létrehozhat és szerkeszthet feladatokat, amelyekhez leírást, határidőt, felelőst és címkéket rendelhet. A rendszer valós idejű frissítést biztosít, így ha egy csapattag módosít egy feladatot vagy annak állapotát, az azonnal láthatóvá válik minden érintett felhasználó számára. Ezáltal megszűnik a manuális adatfrissítés igénye, és a csapat mindig naprakész információkkal dolgozhat. Az alkalmazás automatikus értesítéseket küld a közelgő határidőkről, új feladat-hozzárendelésekről és a projektek állapotváltozásairól, így a felhasználók könnyen követhetik a munkafolyamatokat. A beépített statisztikai és elemző funkciók segítségével a rendszer képes grafikonokat és riportokat készíteni a feladatok előrehaladásáról, a csapatteljesítményről és a projekt állapotáról. A mesterséges intelligencia további támogatást nyújt azáltal, hogy figyelmeztet a túlterhelt csapattagokra, javaslatokat tesz a feladatprioritások átrendezésére, valamint elemzi a munkafolyamatokat a hatékonyság növelése érdekében. A digitális Kanban rendszer bevezetésével a jelenlegi, manuális és nehezen átlátható feladatkezelés helyét egy automatizált, központosított és valós idejű megoldás veszi át. Ennek eredményeképpen csökken az adminisztrációs teher, javul az együttműködés, és nő a csapatok produktivitása. A felhasználók számára a rendszer egyszerűen kezelhető, reszponzív felületet biztosít, ahol gyorsan hozzáférhetnek a feladataikhoz, áttekinthetik a projekt aktuális állapotát, és azonnali visszajelzést kapnak a munkájukról. A cél, hogy a feladatkezelés ne legyen többé időrabló adminisztráció, hanem hatékony, átlátható és motiváló folyamat.
-
-## Követelménylista
-
-| Modul                |  ID  | Név                       |  v. | Kifejtés |
-|----------------------|------|---------------------------|-----|----------|
-| Jogosultság          |  K1  | Bejelentkezési felület    | 1.0 | A felhasználó az e-mail címe és jelszava megadásával bejelentkezhet. A rendszer ellenőrzi az adatokat. Hibás adat esetén hibaüzenetet kap.|
-| Jogosultság          |  K2  | Regisztráció              | 1.0 | A felhasználó e-mail, felhasználónév és jelszó megadásával új fiókot hozhat létre. A rendszer ellenőrzi az e-mail egyediségét, és sikeres regisztráció után a felhasználó bejelentkezhet.|
-| Feladatkezelés       |  K3  | Feladat létrehozása       | 1.0 | A felhasználó új feladatot hozhat létre egy projekten belül. A feladat megadható címmel, leírással, határidővel, felelőssel és címkékkel.|
-| Feladatkezelés       |  K4  | Feladat módosítása        | 1.0 | A felhasználó szerkesztheti a feladat adatait, módosíthatja az állapotát, valamint drag & drop módszerrel áthelyezheti azt másik oszlopba.|
-| Feladatkezelés       |  K5  | Feladat törlése           | 1.0 | A felhasználó törölhet egy meglévő feladatot a projektből. A törlés előtt megerősítés szükséges.|
-| Projektkezelés       |  K6  | Projekt létrehozása       | 1.0 | A felhasználó új projektet hozhat létre név és leírás megadásával. A projekthez feladatokat és csapattagokat lehet rendelni.|
-| Projektkezelés       |  K7  | Csapattagok kezelése      | 1.0 | Tagok meghívása, eltávolítása, szerepkörök módosítása|
-| Kommunikáció         |  K8  | Kommentelés               | 1.0 | A felhasználók kommentet írhatnak a feladatokhoz, hogy megosszák a megjegyzéseiket, visszajelzéseiket. A hozzászólások valós időben frissülnek.|
-| Kommunikáció         |  K9  | Értesítések               | 1.0 | A rendszer automatikus értesítést küld, ha új feladatot rendelnek a felhasználóhoz, ha módosítás történt, vagy ha közeleg a határidő.|
-| Felhasználói felület |  K10 | Drag & Drop kezelőfelület | 1.0 | A feladatokat a Kanban-táblán belül egérrel mozgathatjuk az oszlopok között (To Do → In Progress → Done). A változások valós időben mentődnek.|
-| Felhasználói felület |  K11 | Sötét / Világos mód       | 1.0 | A felhasználó választhat a sötét és világos megjelenés között. A választás elmentésre kerül, és automatikusan érvényes bejelentkezés után.|
-| Felhasználói felület |  K12 | Reszponzív design         | 1.0 | Az alkalmazás bármilyen eszközről elérhető, és automatikusan alkalmazkodik a kijelző méretéhez (mobil, tablet, asztali nézet).|
-| Extra funkció        |  K13 | AI javaslatok             | 1.0 | A rendszer mesterséges intelligencia segítségével elemzi a feladatokat és javaslatokat tesz a priorizálásra, határidők kezelésére, valamint figyelmeztet a túlterheltségre.|
-
-
-
-
-
+---
 
 ## Forgatókönyv
 
 A forgatókönyvek bemutatják a rendszer tipikus használati eseteit, vagyis hogyan működik a Kanban Webapp a felhasználó szemszögéből.  
 Ezek segítenek megérteni a fő folyamatokat és a funkciók összefüggéseit.
 
----
-
 ### **Forgatókönyv 1 – Bejelentkezés és projekt létrehozása**
 
-**Szereplők:**  
+- **Szereplők:**  
 Felhasználó, Webalkalmazás, Szerver, Adatbázis  
 
-**Előfeltétel:**  
+- **Előfeltétel:**  
 A felhasználó regisztrált és rendelkezik érvényes bejelentkezési adatokkal.  
 
-**Lépések:**
-1. A felhasználó megnyitja a Kanban Webapp webes felületét.  
-2. A bejelentkezési űrlapon megadja az e-mail címét és jelszavát.  
-3. A rendszer ellenőrzi az adatokat az adatbázisban.  
-4. Sikeres bejelentkezés után a felhasználó a főoldalra kerül, ahol megjelennek a projektjei.  
-5. A „+ Új projekt” gombra kattintva megadja a projekt nevét és leírását.  
-6. A rendszer létrehozza a projektet és hozzáadja az alapértelmezett oszlopokat (*To Do*, *In Progress*, *Done*).  
+- **Lépések:**
+   1. A felhasználó megnyitja a Kanban Webapp webes felületét.  
+   2. A bejelentkezési űrlapon megadja az e-mail címét és jelszavát.  
+   3. A rendszer ellenőrzi az adatokat az adatbázisban.  
+   4. Sikeres bejelentkezés után a felhasználó a főoldalra kerül, ahol megjelennek a projektjei.  
+   5. A „+ Új projekt” gombra kattintva megadja a projekt nevét és leírását.  
+   6. A rendszer létrehozza a projektet és hozzáadja az alapértelmezett oszlopokat (*To Do*, *In Progress*, *Done*).  
 
-**Eredmény:**  
+- **Eredmény:**  
 A felhasználó létrehozott egy új projektet, amely készen áll a feladatok hozzáadására.
-
----
 
 ### **Forgatókönyv 2 – Feladat létrehozása és mozgatása**
 
-**Szereplők:**  
+- **Szereplők:**  
 Felhasználó, Webalkalmazás, Backend rendszer  
 
-**Előfeltétel:**  
+- **Előfeltétel:**  
 A felhasználó be van jelentkezve és egy meglévő projektet megnyitott.  
 
-**Lépések:**
-1. A felhasználó az „To Do” oszlopban rákattint az „Új feladat” gombra.  
-2. Megadja a feladat címét, leírását, határidejét és a felelőst.  
-3. A rendszer elmenti a feladatot az adatbázisba.  
-4. A feladat azonnal megjelenik a „To Do” oszlopban.  
-5. A felhasználó drag & drop módszerrel áthúzza a feladatkártyát az „In Progress” oszlopba.  
-6. A módosítás automatikusan frissül minden csapattag képernyőjén valós időben.  
+- **Lépések:**
+   1. A felhasználó az „To Do” oszlopban rákattint az „Új feladat” gombra.  
+   2. Megadja a feladat címét, leírását, határidejét és a felelőst.  
+   3. A rendszer elmenti a feladatot az adatbázisba.  
+   4. A feladat azonnal megjelenik a „To Do” oszlopban.  
+   5. A felhasználó drag & drop módszerrel áthúzza a feladatkártyát az „In Progress” oszlopba.  
+   6. A módosítás automatikusan frissül minden csapattag képernyőjén valós időben.  
 
-**Eredmény:**  
+- **Eredmény:**  
 A feladat státusza megváltozik, és minden csapattag látja az aktuális állapotot.
-
----
 
 ### **Forgatókönyv 3 – AI javaslat és határidő előtti értesítés**
 
-**Szereplők:**  
+- **Szereplők:**  
 Felhasználó, AI-asszisztens modul, Webalkalmazás  
 
-**Előfeltétel:**  
+- **Előfeltétel:**  
 Legalább egy feladat közeledő határidővel rendelkezik.  
 
-**Lépések:**
-1. Az AI-modul elemzi a feladatok státuszát és határidejét.  
-2. Észleli, hogy egy feladat határideje 24 órán belül lejár.  
-3. A rendszer értesítést küld:  
-   *„A ‘Frontend UI fejlesztés’ feladat határideje holnap lejár.”*  
-4. Az AI javaslatot küld:  
-   *„Szeretnéd ezt a feladatot priorizálni vagy későbbre halasztani?”*  
-5. A felhasználó dönthet: elfogadja, elutasítja vagy figyelmen kívül hagyja a javaslatot.  
+- **Lépések:**
+   1. Az AI-modul elemzi a feladatok státuszát és határidejét.  
+   2. Észleli, hogy egy feladat határideje 24 órán belül lejár.  
+   3. A rendszer értesítést küld:  
+      *„A ‘Frontend UI fejlesztés’ feladat határideje holnap lejár.”*  
+   4. Az AI javaslatot küld:  
+      *„Szeretnéd ezt a feladatot priorizálni vagy későbbre halasztani?”*  
+   5. A felhasználó dönthet: elfogadja, elutasítja vagy figyelmen kívül hagyja a javaslatot.  
 
-**Eredmény:**  
+- **Eredmény:**  
 A rendszer segíti a határidők betartását és a munka hatékony szervezését.
-
----
 
 ### **Forgatókönyv 4 – Csapattag hozzáadása a projekthez**
 
-**Szereplők:**  
+- **Szereplők:**  
 Projektvezető, Webalkalmazás, Szerver  
 
-**Előfeltétel:**  
+- **Előfeltétel:**  
 A projekt már létezik, és a felhasználó jogosult tagok kezelésére.  
 
-**Lépések:**
-1. A projektvezető megnyitja a projekt beállításait.  
-2. Kiválasztja a „Csapattagok kezelése” opciót.  
-3. Megadja az új tag e-mail címét és szerepkörét (pl. szerkesztő, megfigyelő).  
-4. A rendszer meghívót küld az új tagnak.  
-5. A tag elfogadja a meghívást, és megjelenik a projekt csapattagjai között.  
+- **Lépések:**
+   1. A projektvezető megnyitja a projekt beállításait.  
+   2. Kiválasztja a „Csapattagok kezelése” opciót.  
+   3. Megadja az új tag e-mail címét és szerepkörét (pl. szerkesztő, megfigyelő).  
+   4. A rendszer meghívót küld az új tagnak.  
+   5. A tag elfogadja a meghívást, és megjelenik a projekt csapattagjai között.  
 
-**Eredmény:**  
+- **Eredmény:**  
 A csapathoz új tag csatlakozik, aki a kijelölt jogosultságokkal fér hozzá a projekthez.
 
-
+---
 
 ## Fogalomtár
 
