@@ -64,13 +64,14 @@ A forgatókönyvek célja, hogy bemutassák a rendszer egy-egy tipikus használa
 hogyan érik el a felhasználók a kívánt célt a Kanban Webapp használatával.
 
 ### Forgatókönyv 1 – Bejelentkezés és projekt létrehozás
-Szereplők:
+
+- **Szereplők:**
 Felhasználó, Webalkalmazás, Szerver, Adatbázis
 
-Előfeltétel:
+- **Előfeltétel:**
 A felhasználó regisztrált és rendelkezik érvényes fiókkal.
 
-Lépések:
+- **Lépések:**
 A felhasználó megnyitja a Kanban Webapp webes felületét.
 A bejelentkezési űrlapon megadja az e-mail címét és jelszavát.
 A rendszer ellenőrzi az adatokat az adatbázisban.
@@ -78,36 +79,36 @@ Sikeres bejelentkezés után a felhasználó a főoldalra kerül, ahol láthatja
 A „+ Új projekt” gombra kattintva megadja a projekt nevét és leírását.
 A rendszer létrehozza a projektet és automatikusan hozzáadja az alapértelmezett oszlopokat: To Do, In Progress, Done.
 
-Eredmény:
+- **Eredmény:**
 A felhasználó létrehozott egy új projektet, ami készen áll feladatok hozzáadására.
 
 ### Forgatókönyv 2 – Feladat létrehozása és mozgatása
 
-Szereplők:
+- **Szereplők:**
 Felhasználó, Webalkalmazás
 
-Előfeltétel:
+- **Előfeltétel:**
 A felhasználó be van jelentkezve és megnyitott egy meglévő projektet.
 
-Lépések:
+- **Lépések:**
 A felhasználó az „To Do” oszlopban rákattint az „Új feladat” gombra.
 Megadja a feladat címét, leírását, határidejét, valamint kijelöli a felelőst.
 A rendszer elmenti a feladatot és megjeleníti azt a táblán.
 Amikor a felhasználó dolgozni kezd rajta, a kártyát drag & drop módszerrel áthúzza az „In Progress” oszlopba.
 A változás valós időben megjelenik minden csapattag számára.
 
-Eredmény:
+- **Eredmény:**
 A feladat státusza megváltozik, és az állapotváltás minden résztvevőnél azonnal látható.
 
 ### Forgatókönyv 3 – AI javaslat és értesítés határidő előtt
 
-Szereplők:
+- **Szereplők:**
 Felhasználó, AI-asszisztens, Webalkalmazás
 
-Előfeltétel:
+- **Előfeltétel:**
 A projektben van legalább egy „In Progress” feladat, amelyhez közeleg a határidő.
 
-Lépések:
+- **Lépések:**
 Az AI-modul elemzi a feladatok határidejét és státuszát.
 Észleli, hogy egy feladat határideje hamarosan lejár.
 A rendszer automatikus értesítést küld a felhasználónak:
@@ -115,7 +116,7 @@ A rendszer automatikus értesítést küld a felhasználónak:
 Az AI javaslatot küld: „Szeretnéd áthelyezni a ‘Frontend integráció’ feladatot későbbre, hogy be tudd fejezni a folyamatban lévő munkát?”
 A felhasználó dönthet a javaslat elfogadásáról vagy elutasításáról.
 
-Eredmény:
+- **Eredmény:**
 A rendszer segíti a határidők kezelését és a munka optimalizálását.
 
 ---
