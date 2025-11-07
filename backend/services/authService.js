@@ -40,6 +40,34 @@ const registerUser = async (username, email, password) => {
     }
 }
 
+const loginUser = async (email, password) => {
+    const user = await User.findOne({ email }).select('+passwordHash');
+
+    if (!user) {
+        throw new Error('Invalid email or password.');
+    }
+
+    const isMatch = await user.comparePassword(password); 
+
+    if (!isMatch) {
+        throw new Error('Invalid email or password.');
+    }
+
+    const userResponse = {
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt
+    };
+
+    return {
+        user: userResponse,
+        token: generateToken(user._id)
+    };
+};
+
 module.exports = {
-    registerUser
+    registerUser,
+    loginUser
 };
