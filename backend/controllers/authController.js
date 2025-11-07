@@ -10,7 +10,7 @@ const handleRegister = async (req, res) => {
         const {user, token} = await authService.registerUser(username, email, password);
 
         res.status(201).json({
-            message: 'Registration succesful.',
+            message: 'Registration successful.',
             user: user,
             token: token
         });

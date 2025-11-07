@@ -23,8 +23,13 @@ const registerUser = async (username, email, password) => {
     })
 
     if (newUser) {
-        const userResponse = { ...newUser.toObject};
-        delete userResponse.passwordHash;
+        const userResponse = {
+            _id: newUser._id,
+            username: newUser.username,
+            email: newUser.email,
+            createdAt: newUser.createdAt,
+            updatedAt: newUser.updatedAt
+        };
 
         return {
             user: userResponse,
