@@ -265,6 +265,28 @@ A fejlesztés és üzemeltetés során az alábbi jogszabályoknak és iparági 
 - Admin felület (Admin)
 - Kijelentkezés
 
+## Fizikai környezet
+
+A Kanban Webapp webes platformra készül, és böngészőn keresztül használható.
+Teljesen platformfüggetlen, futtatható asztali számítógépen, laptopon, tableten és okostelefonon.
+
+### Engedélyezett környezetek és technológiák
+
+- Operációs rendszerek: Windows, macOS, Linux, Android, iOS
+- Böngészők: Google Chrome, Mozilla Firefox, Safari, Microsoft Edge, Opera
+- Hálózati követelmény: internetkapcsolat, HTTPS engedélyezett port (443)
+- Tűzfal aktív, csak biztonságos HTTPS-forgalom engedélyezett
+
+### Fejlesztői eszközök
+
+- Visual Studio Code – fő fejlesztői környezet
+- Node.js + npm – backend futtatás és csomagkezelés
+- MongoDB Compass / Atlas – adatbázis-kezelés
+- Postman – API tesztelés
+- Git / GitHub – verziókezelés
+- Docker (opcionális) – fejlesztői környezet konténerizálása
+- Figma / Canva – UI tervezés és prototípus készítés
+
 ## Implementációs terv
 
 ### Frontend
