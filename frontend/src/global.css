@@ -3,9 +3,10 @@
 :root {
     --primary-font-family: 'Lemon', 'sans-serif';
     --secondary-font-family: "Poppins", sans-serif;
-    --primary-color: #3533cd;
-    --secondary-color: #34c3e0;
-    --ternary-color: black;
+    --primary-color: #2c425c;
+    --secondary-color: #fb9824;
+    --ternary-color: #e3e3e3;
+    --solid-color: #f9fcff;
 }
 
 html {
@@ -17,7 +18,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--secondary-color);
+    background-color: var(--ternary-color);
     font-family: var(--secondary-font-family);   
 }
 

@@ -72,6 +72,8 @@
     padding: 0 35px;
     border: 4px solid transparent;
     font-size: 16px;
+    background-color: var(--solid-color);
+    color: black;
 }
 
 .input-field input.success {
@@ -82,21 +84,24 @@
     background-color: rgba(176, 36, 36, 0.511);
 }
 
-
-.input-field button {
+div.input-field button {
     width: 100%;
     height: 50px;
-    background-color: #fff;
-    color: var(--ternary-color);
+    background-color: var(--solid-color);
+    color: var(--primary-color);
     font-size: 17.5px;
-    font-weight: 400;
+    font-weight: bold;
     border: 2px solid transparent;
-    transition: border 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    top: 0;
+    left: 0;
+    transform: translateX(50%, 50%);
 }
 
 .input-field button:hover {
     border: 2px solid var(--ternary-color);
-    background-color: #ededed;
+    background-color: var(--secondary-color);
+    color: var(--solid-color)
 }
 
 .input-field img, .help-wrapper img {
@@ -158,7 +163,7 @@
 }
 
 .checkbox-content input {
-    accent-color: var(--ternary-color);
+    accent-color: var(--secondary-color);
     margin-right: 5px;
 }
 
@@ -226,7 +231,7 @@
     }
 
     .container.active .forms {
-        height: 620px;
+        height: 650px;
     }
 
     .container .forms {
