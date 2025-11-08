@@ -203,6 +203,68 @@ A fejlesztés és üzemeltetés során az alábbi jogszabályoknak és iparági 
 
 ---
 
+## Funkcionális terv
+
+### Rendszerszereplők
+
+- Admin
+- Project Owner
+- Member (Csapattag)
+- Observer (Megfigyelő)
+
+### Rendszerhasználati esetek és lefutásaik
+
+#### ADMIN
+
+- Teljes hozzáféréssel rendelkezik a rendszerhez.
+- Felhasználókat hozzáadhat, törölhet vagy módosíthat.
+- Projektadatokat kezelhet, jogosultságokat állíthat be.
+- Hozzáfér az audit naplóhoz és rendszerbeállításokhoz.
+- Riportokat és statisztikákat tekinthet meg.
+- Rendszerszintű karbantartást végezhet (archiválás, adatmentés).
+
+#### PROJECT OWNER
+
+- Új projekteket hozhat létre, leírással és tagok hozzáadásával.
+- Kanban-táblákat és oszlopokat kezelhet (létrehozás, átnevezés, törlés).
+- Feladatokat hozhat létre, módosíthat, törölhet vagy hozzárendelhet csapattagokhoz.
+- Határidőket és prioritásokat állíthat be.
+- Hozzáfér a projekt statisztikáihoz és AI-javaslatokhoz.
+- Kommenteket és értesítéseket kezelhet.
+
+#### MEMBER
+
+- Saját vagy hozzá rendelt feladatokat kezelhet (szerkesztés, státuszváltás, kommentelés).
+- Feladatokat drag & drop módszerrel mozgathat az oszlopok között.
+- Fájlokat tölthet fel feladatokhoz, és megjegyzéseket fűzhet hozzájuk.
+- Értesítéseket kap a feladatváltozásokról és határidőkről.
+- Megtekintheti a projekt általános előrehaladását és saját statisztikáit.
+
+#### OBSERVER
+
+- Csak olvasási jogosultsággal rendelkezik.
+- Megtekintheti a projekteket, feladatokat, kommenteket és státuszokat.
+- Nem módosíthat adatokat vagy küldhet kommentet.
+
+### Menü-hierarchia
+
+#### BEJELENTKEZÉS
+
+- Regisztráció
+- Bejelentkezés
+- Jelszó-emlékeztető
+- Segítség
+
+#### FŐMENÜ
+
+- Saját projektek
+- Új projekt létrehozása (Project Owner)
+- Kanban-tábla megnyitása
+- Statisztikák és riportok
+- Felhasználói profil / beállítások
+- Admin felület (Admin)
+- Kijelentkezés
+
 ## Implementációs terv
 
 ### Frontend
