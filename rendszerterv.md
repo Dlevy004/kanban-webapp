@@ -287,6 +287,29 @@ Teljesen platformfüggetlen, futtatható asztali számítógépen, laptopon, tab
 - Docker (opcionális) – fejlesztői környezet konténerizálása
 - Figma / Canva – UI tervezés és prototípus készítés
 
+## Architekturális terv
+
+### Backend
+
+A rendszer szerveroldali működését a Node.js futtatókörnyezet és az Express.js keretrendszer biztosítja.
+Az alkalmazás egy REST API-n keresztül kommunikál a klienssel, amely JSON formátumban továbbítja az adatokat.
+Az API végzi a felhasználók hitelesítését, jogosultságkezelését, valamint a projektekhez és feladatokhoz kapcsolódó CRUD műveleteket.
+Az adatokat a MongoDB adatbázis tárolja, amely a Node.js-sel szorosan integrált, dokumentum-orientált megoldás.
+A valós idejű funkciókat (pl. kommentek, feladatfrissítések) WebSocket technológia biztosítja, így a változások azonnal megjelennek minden felhasználónál.
+Az API token alapú hozzáférést használ (JWT – JSON Web Token), amely a bejelentkezést követően érvényes hozzáférési jogokat biztosít minden kliens számára.
+
+### Web kliens
+
+A felhasználói felület React keretrendszerrel készül, amely komponensalapú, dinamikus és reszponzív működést biztosít.
+A kliens az Express REST API-hoz kapcsolódik, és a felhasználó hitelesítése után a szervertől kapott JWT-token segítségével végzi az adatlekéréseket és módosításokat.
+A felhasználói felület Kanban-tábla alapú, drag & drop funkcióval támogatott, és valós időben frissül a WebSocket-en keresztül.
+A React alkalmazás modern JavaScript eszközöket használ (pl. React Router, Redux/Context API), és támogatja a sötét/világos módot, valamint a mobil- és tabletbarát megjelenítést.
+
+### Adatbázis
+
+A rendszer MongoDB adatbázist használ, amely NoSQL dokumentum-alapú struktúrájával rugalmasan kezeli a felhasználók, projektek, feladatok, kommentek és értesítések adatait.
+Az adatok közötti kapcsolatok referenciaalapúak (ObjectID), a teljesítményt indexeléssel és cachinggel optimalizáljuk.
+
 ## Implementációs terv
 
 ### Frontend
