@@ -1,0 +1,241 @@
+.container {
+    position: relative;
+    max-width: 450px;
+    width: 100%;
+    background-color: var(--primary-color);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.container .forms {
+    display: flex;
+    align-items: center;
+    width: 200%;
+    transition: height 0.2s ease;
+}
+
+.container .form {
+    padding: 30px;
+    width: 50%;
+    transition: margin-left 0.2s ease;
+}
+
+.container.active .login {
+    margin-left: -50%;
+    opacity: 0;
+    transition: margin-left 0.2s ease, opacity 0.1s ease;
+}
+
+.container .signup {
+    opacity: 0;
+    transition: opacity 0.1s ease;
+}
+
+.container.active .signup {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+.form > img {
+    width: 25%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    background-color: white;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.container .form .title {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    font-weight: 600;
+    margin: 0 auto;
+    padding-top: 10px;
+}
+
+.form .input-field {
+    position: relative;
+    height: 50px;
+    width: 100%;
+}
+
+.input-field input {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    padding: 0 35px;
+    border: 4px solid transparent;
+    font-size: 16px;
+}
+
+.input-field input.success {
+    background-color: rgb(36, 176, 36);
+}
+
+.input-field input.error {
+    background-color: rgba(176, 36, 36, 0.511);
+}
+
+
+.input-field button {
+    width: 100%;
+    height: 50px;
+    background-color: #fff;
+    color: var(--ternary-color);
+    font-size: 17.5px;
+    font-weight: 400;
+    border: 2px solid transparent;
+    transition: border 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.input-field button:hover {
+    border: 2px solid var(--ternary-color);
+    background-color: #ededed;
+}
+
+.input-field img, .help-wrapper img {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.input-field .icon {
+    left: 0;
+    padding-left: 5px;
+}
+
+.help-wrapper .helpIcon {
+    cursor: pointer;
+}
+
+.help-wrapper {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 30px;
+    z-index: 99;
+}
+
+.tip {
+    position: absolute;
+    right: 0;
+    background: white;
+    color: black;
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    font-size: 14px;
+    line-height: 1.3;
+    width: 230px;
+    display: none;
+}
+
+.help-wrapper:is(:hover, :focus, :active) .tip{
+    display: block;
+}
+
+.form .checkbox-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.checkbox-text .checkbox-content {
+    display: flex;
+    align-items: center;
+}
+
+#sigCheck, label[for="sigCheck"], #logCheck, label[for="logCheck"] {
+    cursor: pointer;
+}
+
+.checkbox-content input {
+    accent-color: var(--ternary-color);
+    margin-right: 5px;
+}
+
+.form a {
+    text-decoration: none;
+    color: var(--ternary-color);
+}
+
+.form a:hover {
+    text-decoration: underline;
+}
+
+.form .text {
+    color: var(--ternary-color);
+    font-size: 15px;
+    white-space: nowrap;
+}
+
+.form .button {
+    margin-top: 35px;
+}
+
+.form .login-signup {
+    margin-top: 30px;
+    text-align: center;
+}
+
+@media (min-width: 320px) {
+    .form .checkbox-text {
+        flex-direction: column;
+        align-items: start;
+    }
+
+    .form .input-field {
+        margin-top: 15px;
+    }
+
+    .container {
+        border-radius: 0;
+    }
+
+    .container .forms {
+        height: 100dvh;
+    }
+
+    .container.active .forms {
+        height: 100dvh;
+    }
+}
+
+@media (min-width: 425px) {
+    .form .checkbox-text {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+@media (min-width: 768px) {
+    .form .input-field {
+        margin-top: 20px;
+    }
+
+    .container {
+        border-radius: 10px;
+    }
+
+    .container.active .forms {
+        height: 620px;
+    }
+
+    .container .forms {
+        height: 520px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .form .input-field {
+        margin-top: 30px;
+    }
+}
