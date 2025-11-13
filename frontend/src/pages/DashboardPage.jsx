@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './DashboardPage.css';
+import KanbanLogo from '../assets/kanban-logo-wout-bg.png'; 
 
 const DashboardPage = () => {
     const [user, setUser] = useState(null);
@@ -22,47 +23,58 @@ const DashboardPage = () => {
         localStorage.removeItem('user');
         navigate('/');
     };
+    
+    const handleProfile = () => {
+        alert('A profil oldal még nem implementált.');
+    };
 
     if (!user) return <div style={{ padding: '20px', color: '#666' }}>Loading...</div>;
 
     return (
-        <div className="dashboard-container">
-            {/* Navbar */}
-            <nav className="dashboard-navbar">
-                <div className="dashboard-logo">
-                    <span>📋</span> Kanban App
-                </div>
-                <div className="dashboard-user-info">
-                    <br />
-                    <span className="dashboard-username">user: {user.username}</span>
-                    <button
-                        className="dashboard-logout-btn"
-                        onClick={handleLogout}
-                    >
-                        Logout
-                    </button>
-                </div>
-            </nav>
-
-            {/* Main content */}
-            <main className="dashboard-main-content">
-                <div className="dashboard-welcome-section">
-                    <h1 className="dashboard-title">Hi {user.username}!</h1>
-                    <p className="dashboard-subtitle">You'll find your projects here:</p>
-                </div>
-
-                {/* Boards */}
-                <div className="dashboard-boards-grid">
-                    <div
-                        className="dashboard-new-board-card"
-                        onClick={() => alert("Not implemented")}
-                    >
-                        <span className="new-board-icon">+</span>
-                        <span className="new-board-text">New board</span>
+        <div className="dashboard-page-wrapper"> 
+            <div className="dashboard-centered-content">
+                
+                <nav className="dashboard-navbar">
+                    <div className="dashboard-logo">
+                        <img src={KanbanLogo} alt="Kanban App Logo" className="kanban-logo-img" />
                     </div>
+                    <div className="dashboard-user-info">
+                        <button
+                            className="dashboard-profile-btn"
+                            onClick={handleProfile}
+                        >
+                            Profil
+                        </button>
+                        <button
+                            className="dashboard-logout-btn"
+                            onClick={handleLogout}
+                        >
+                            Kijelentkezés
+                        </button>
+                    </div>
+                </nav>
 
+                <div className="dashboard-main-container"> 
+                    <main className="dashboard-main-content">
+                        <div className="dashboard-welcome-section">
+                            <h1 className="dashboard-title">Szia {user.username}!</h1>
+                            <p className="dashboard-subtitle">Projektjeit itt találja:</p>
+                        </div>
+
+                        <div className="dashboard-boards-grid">
+                            <div
+                                className="dashboard-new-board-card"
+                                onClick={() => alert("Not implemented")}
+                            >
+                                <span className="new-board-icon">+</span>
+                                <span className="new-board-text">Új tábla</span>
+                            </div>
+
+                        </div>
+                    </main>
                 </div>
-            </main>
+
+            </div>
         </div>
     );
 };
