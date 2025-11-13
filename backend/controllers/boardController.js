@@ -57,7 +57,7 @@ const handleReadAllBoards = async (req, res) => {
     }
 }
 
-const handleUpdatedBoard = async (req, res) => {
+const handleUpdateBoard = async (req, res) => {
     try {
         const boardId = req.params.id;
         const updateData = req.body;
@@ -96,6 +96,6 @@ module.exports = {
     handleCreateBoard,
     handleReadByIdBoard,
     handleReadAllBoards,
-    handleUpdatedBoard,
+    handleUpdateBoard,
     handleDeleteBoard
 }
