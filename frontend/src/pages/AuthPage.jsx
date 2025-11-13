@@ -41,6 +41,8 @@ function AuthPage() {
 
     const [error, setError] = useState('');
 
+    const [rememberMe, setRememberMe] = useState(true);
+
     const handleLoginSubmit = async (e) => {
         e.preventDefault();
         setError('');
@@ -57,9 +59,15 @@ function AuthPage() {
 
         console.log('Sikeres bejelentkezés:', response.data);
 
-        localStorage.setItem('token', response.data.token);
+        const { token, user } = response.data;
 
-        localStorage.setItem('user', JSON.stringify(response.data.user));
+        if (rememberMe) {
+            localStorage.setItem('token', token);
+            localStorage.setItem('user', JSON.stringify(user));
+        } else {
+            sessionStorage.setItem('token', token);
+            sessionStorage.setItem('user', JSON.stringify(user));
+        }
 
         navigate('/dashboard');
 
@@ -132,7 +140,12 @@ function AuthPage() {
 
                         <div className="checkbox-text">
                             <div className="checkbox-content">
-                                <input type="checkbox" id="logCheck" />
+                                <input 
+                                    type="checkbox" 
+                                    id="logCheck" 
+                                    checked={rememberMe}
+                                    onChange={(e)=>setRememberMe(e.target.checked)}
+                                    />
                                 <label htmlFor="logCheck" className="text">Emlékezz rám</label>
                             </div>
                         </div>
