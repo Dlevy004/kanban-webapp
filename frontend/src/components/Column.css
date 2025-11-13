@@ -26,16 +26,15 @@
 
 .new-task-button {
     padding: 8px 12px;
-    background-color: var(--ternary-color);
+    background-color: var(--secondary-color);
     border: none;
     border-radius: 6px;
-    color: #555;
+    color: var(--solid-color);
     cursor: pointer;
     text-align: left;
     transition: all 0.2s ease-in-out;
 }
 
 .new-task-button:hover {
-    background-color: var(--secondary-color);
-    color: var(--solid-color)
+    background-color: var(--primary-color);
 }
