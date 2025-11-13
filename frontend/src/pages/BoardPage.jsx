@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { mockBoardData } from '../mockData';
 import Column from '../components/Column';
 import './BoardPage.css';
 
 function BoardPage() {
     const [boardData, setBoardData] = useState(mockBoardData);
+    const navigate = useNavigate();
+
+    const goToProfile = () => {
+        navigate('/profile');
+    };
 
     return (
         <div className="board-page-container">
@@ -16,7 +22,7 @@ function BoardPage() {
                     <div className="board-title">{boardData.title}</div>
                 </div>
                 
-                <button>
+                <button onClick={goToProfile}>
                     <img src="/images/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" className='navbar-profile'/>
                 </button>
             </nav>
