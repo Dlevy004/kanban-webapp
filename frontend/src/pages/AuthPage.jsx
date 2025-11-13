@@ -61,7 +61,7 @@ function AuthPage() {
 
         localStorage.setItem('user', JSON.stringify(response.data.user));
 
-        navigate('/board/testid'); // TODO: replace 'testid' with actual board id after implementing dashboard
+        navigate('/dashboard');
 
         } catch (err) {
         console.error('Bejelentkezési hiba:', err.response.data.message);
