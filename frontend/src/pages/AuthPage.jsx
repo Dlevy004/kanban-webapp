@@ -135,7 +135,6 @@ function AuthPage() {
                                 <input type="checkbox" id="logCheck" />
                                 <label htmlFor="logCheck" className="text">Emlékezz rám</label>
                             </div>
-                            <a href="#" className="text">Elfelejtettem a jelszavam</a>
                         </div>
 
                         {error && isLoginView && <div style={{ color: 'red', marginTop: '5px', textAlign: 'center' }}>{error}</div>}
