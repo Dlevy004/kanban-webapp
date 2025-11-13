@@ -1,0 +1,41 @@
+.column-container {
+    flex-shrink: 0;
+    width: 270px;
+    height: fit-content;
+    padding: 15px;
+    background-color: var(--solid-color);
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.column-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.tasks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 50px;
+}
+
+.new-task-button {
+    padding: 8px 12px;
+    background-color: var(--ternary-color);
+    border: none;
+    border-radius: 6px;
+    color: #555;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease-in-out;
+}
+
+.new-task-button:hover {
+    background-color: var(--secondary-color);
+    color: var(--solid-color)
+}

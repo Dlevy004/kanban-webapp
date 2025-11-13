@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const boardController = require('../controllers/boardController');  
-const { protect } = require('../middlewares/authMiddleware');
+const { protect } = require('../middleware/authMiddleware');
 
 router.post('/', protect, boardController.handleCreateBoard);
 router.get('/:id', protect, boardController.handleReadByIdBoard);
