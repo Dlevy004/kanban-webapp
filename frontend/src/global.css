@@ -1,41 +1,204 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lemon&family=Orbitron:wght@400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
-    --primary-font-family: 'Lemon', 'sans-serif';
-    --secondary-font-family: "Poppins", sans-serif;
-    --primary-color: #2c425c;
-    --secondary-color: #fb9824;
-    --ternary-color: #e3e3e3;
-    --solid-color: #f9fcff;
+  --primary-font-family: 'Lemon', 'sans-serif';
+  --secondary-font-family: "Poppins", sans-serif;
+  --primary-color: #2c425c;
+  --secondary-color: #fb9824;
+  --ternary-color: #e3e3e3;
+  --solid-color: #f9fcff;
+
+  /* Theme színek – világos mód */
+  --color-bg: #f9fafb;
+  --color-bg-elevated: #ffffff;
+  --color-border-subtle: #e5e7eb;
+  --color-text: #111827;
+  --color-text-muted: #6b7280;
+  --color-accent: #2563eb;
+  --color-accent-soft: #dbeafe;
+  --color-danger: #dc2626;
+
+  --radius-base: 0.75rem;
+  --radius-pill: 9999px;
+
+  --shadow-soft: 0 10px 30px rgba(15, 23, 42, 0.08);
+
+  --transition-fast: 150ms ease-out;
+  --transition-normal: 200ms ease-out;
 }
 
+/* Dark mód színek – ThemeProvider */
+:root[data-theme='dark'] {
+  --color-bg: #020617;
+  --color-bg-elevated: #020617;
+  --color-border-subtle: #1f2937;
+  --color-text: #e5e7eb;
+  --color-text-muted: #9ca3af;
+  --color-accent: #60a5fa;
+  --color-accent-soft: rgba(37, 99, 235, 0.25);
+  --color-danger: #f87171;
+
+  --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* ===== Globális reset / alapok ===== */
+
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: var(--secondary-font-family); 
-    background-color: var(--ternary-color);
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: var(--secondary-font-family);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
 }
 
 #root {
-    width: 100%;
-    min-height: 100vh;
-    flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  /* ha később flex layout kell ide, akkor:
+  display: flex;
+  flex-direction: column;
+  */
 }
 
-*, ::after, ::before {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+ul,
+ol {
+  list-style: none;
 }
 
-ul, ol {
-    list-style: none;
+button,
+a {
+  cursor: pointer;
 }
 
-button, a {
-    cursor: pointer;
+/* ===== Általános layout helper osztályok ===== */
+
+.app-shell {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, rgba(37, 99, 235, 0.1), transparent 55%);
+}
+
+.app-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+}
+
+/* ===== Kártyák ===== */
+
+.card {
+  background-color: var(--color-bg-elevated);
+  border-radius: var(--radius-base);
+  border: 1px solid var(--color-border-subtle);
+  box-shadow: var(--shadow-soft);
+  padding: 1.5rem;
+  transition:
+    background-color var(--transition-normal),
+    border-color var(--transition-normal),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.card:hover {
+  transform: translateY(-1px);
+}
+
+/* ===== Gombok ===== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  background-color: transparent;
+  color: var(--color-text);
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.btn-primary {
+  background-color: var(--color-accent);
+  color: white;
+  border-color: transparent;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.btn-outline {
+  border-color: var(--color-border-subtle);
+  background-color: rgba(148, 163, 184, 0.05);
+}
+
+.btn-outline:hover {
+  border-color: var(--color-accent);
+}
+
+/* ===== Inputok ===== */
+
+.input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-border-subtle);
+  background-color: rgba(15, 23, 42, 0.01);
+  color: var(--color-text);
+  font-size: 0.9rem;
+  outline: none;
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 1px var(--color-accent-soft);
+  background-color: rgba(37, 99, 235, 0.02);
+}
+
+/* ===== Linkek ===== */
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Helper szöveg ===== */
+
+.text-muted {
+  color: var(--color-text-muted);
 }
