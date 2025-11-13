@@ -15,6 +15,9 @@ app.use(express.json());
 const authRoutes = require('./routes/authRoutes');
 app.use('/api/auth', authRoutes);
 
+const boardRoutes = require('./routes/boardRoutes');
+app.use('/api/boards', boardRoutes);
+
 
 if (!MONGO_URI) {
     console.error('Fatal Error: MONGO_URI is not set in .env file.');
