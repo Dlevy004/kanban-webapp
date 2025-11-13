@@ -25,7 +25,7 @@ const DashboardPage = () => {
     };
     
     const handleProfile = () => {
-        alert('A profil oldal még nem implementált.');
+        navigate('/profile');
     };
 
     if (!user) return <div style={{ padding: '20px', color: '#666' }}>Loading...</div>;

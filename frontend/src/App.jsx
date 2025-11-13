@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import AuthPage from './pages/AuthPage.jsx';
 import DashboardPage from './pages/DashboardPage.jsx';
 import BoardPage from './pages/BoardPage.jsx';
+import ProfilePage from './pages/ProfilePage.jsx';
 
 function App() {
 
@@ -15,6 +16,8 @@ function App() {
         <Route path="/dashboard" element={<DashboardPage />} />
 
         <Route path="/board/:id" element={<BoardPage />} />
+
+        <Route path="/profile" element={<ProfilePage />} />
 
         <Route path="*" element={<Navigate to="/auth" />} />
       </Routes>
