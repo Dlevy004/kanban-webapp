@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const boardController = require('../controllers/boardController');
+const boardController = require('../controllers/boardController');  
+const { protect } = require('../middlewares/authMiddleware');
 
-router.post('/', boardController.handleCreateBoard);
-router.get('/:id', boardController.handleReadByIdBoard);
-router.get('/', boardController.handleReadAllBoards);
-router.put('/:id', boardController.handleUpdateBoard);
-router.delete('/:id', boardController.handleDeleteBoard);
+router.post('/', protect, boardController.handleCreateBoard);
+router.get('/:id', protect, boardController.handleReadByIdBoard);
+router.get('/', protect, boardController.handleReadAllBoards);
+router.put('/:id', protect, boardController.handleUpdateBoard);
+router.delete('/:id', protect, boardController.handleDeleteBoard);
 
 module.exports = router;
