@@ -1,7 +1,18 @@
-.dashboard-container {
-    min-height: 100vh;
-    background-color: #f5f7fa;
+
+.dashboard-page-wrapper {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard-centered-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .dashboard-navbar {
@@ -9,18 +20,27 @@
     justify-content: space-between;
     align-items: center;
     padding: 15px 30px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background-color: var(--solid-color, #fff); 
+    position: fixed;
+    width: 100%;
+    height: 10%;
 }
 
 .dashboard-logo {
-    font-size: 24px;
+    font-size: 24px; 
     font-weight: bold;
-    color: #4a90e2;
-    display: flex;
+    color: #1a1a1a; 
+    display: flex; 
     align-items: center;
-    gap: 10px;
+    gap: 10px; 
 }
+
+.kanban-logo-img {
+    height: 60px; 
+    width: auto;
+    display: block; 
+}
+
 
 .dashboard-user-info {
     display: flex;
@@ -28,50 +48,66 @@
     gap: 20px;
 }
 
-.dashboard-username {
-    font-weight: 600;
-    color: #333;
-}
-
-.dashboard-logout-btn {
+.dashboard-logout-btn,
+.dashboard-profile-btn {
     padding: 8px 16px;
-    background-color: #ff6b6b;
-    color: white;
-    border: none;
+    background-color: var(--primary-color, #43536C);
+    color: var(--solid-color, white);
+    border: 2px solid transparent;
     border-radius: 6px;
     cursor: pointer;
-    font-weight: 500;
-    transition: background-color 0.2s;
+    font-weight: bold;
+    font-size: 15px;
+    transition: all 0.2s ease-in-out;
 }
 
-.dashboard-logout-btn:hover {
-    background-color: #e74c3c;
+.dashboard-logout-btn:hover,
+.dashboard-profile-btn:hover {
+    border: 2px solid var(--ternary-color, #2c3e50);
+    background-color: var(--secondary-color, #fff);
+    color: var(--solid-color, #2c3e50);
+}
+
+.dashboard-main-container {
+    background-color: var(--primary-color, #43536C);
+    flex-grow: 1; 
+    display: flex; 
+    align-items: flex-start; 
+    justify-content: center; 
+    top: 10%;
+    height: 100%;
+    left: 0;
+    padding-top: 15%;
 }
 
 .dashboard-main-content {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 20px;
+    width: 100%; 
+
+    max-width: 900px; 
 }
 
 .dashboard-welcome-section {
     margin-bottom: 40px;
+    padding: 20px;
+    background-color: var(--solid-color, #fff); 
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .dashboard-title {
     font-size: 32px;
-    color: #2c3e50;
+    color: #1a1a1a;
     margin-bottom: 10px;
 }
 
 .dashboard-subtitle {
-    color: #7f8c8d;
+    color: #333;
     font-size: 18px;
 }
 
 .dashboard-boards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: 1fr; 
     gap: 25px;
 }
 
@@ -81,18 +117,19 @@
     justify-content: center;
     align-items: center;
     height: 150px;
-    background-color: #eef1f5;
-    border: 2px dashed #cbd5e0;
+    background-color: var(--solid-color, #fff); 
+    border: 2px dashed #999;
     border-radius: 12px;
     cursor: pointer;
     transition: all 0.2s ease;
-    color: #7f8c8d;
+    color: #555;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
 .dashboard-new-board-card:hover {
-    border-color: #4a90e2;
-    color: #4a90e2;
-    background-color: #fff;
+    background-color: var(--secondary-color, #fff); 
+    border: 2px dashed var(--ternary-color, #2c3e50); 
+    color: var(--solid-color, #2c3e50); 
 }
 
 .new-board-icon {

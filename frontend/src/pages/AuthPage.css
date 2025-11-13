@@ -1,3 +1,23 @@
+body {
+    background-color: var(--ternary-color);
+}
+
+#root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--ternary-color);
+    font-family: var(--secondary-font-family);   
+}
+
+.auth-page-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-grow: 1;
+}
+
 .container {
     position: relative;
     max-width: 450px;
@@ -244,3 +264,4 @@ div.input-field button {
         margin-top: 30px;
     }
 }
+

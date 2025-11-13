@@ -104,6 +104,7 @@ function AuthPage() {
     };
 
     return (
+        <div className="auth-page-wrapper">
         <div className={isLoginView ? 'container' : 'container active'}>
             <div className="forms">
 
@@ -228,6 +229,7 @@ function AuthPage() {
 
                 </div>
             </div>
+        </div>
         </div>
     );
 }
