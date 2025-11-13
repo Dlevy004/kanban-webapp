@@ -28,6 +28,12 @@ const DashboardPage = () => {
         navigate('/profile');
     };
 
+    //Test
+    const handleNewBoard = () => {
+        navigate('/board/testid'); // TODO: replace 'testid' with actual new board id after implementing board creation
+    };
+
+
     if (!user) return <div style={{ padding: '20px', color: '#666' }}>Loading...</div>;
 
     return (
@@ -64,7 +70,8 @@ const DashboardPage = () => {
                         <div className="dashboard-boards-grid">
                             <div
                                 className="dashboard-new-board-card"
-                                onClick={() => alert("Not implemented")}
+                                //onClick={() => alert("Not implemented")}
+                                onClick={handleNewBoard} //Test
                             >
                                 <span className="new-board-icon">+</span>
                                 <span className="new-board-text">Új tábla</span>
