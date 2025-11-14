@@ -82,7 +82,7 @@
 
 .dashboard-main-content {
     width: 100%; 
-
+    padding-bottom: 5rem;
     max-width: 900px; 
 }
 

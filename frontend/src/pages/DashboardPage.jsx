@@ -62,7 +62,7 @@ const DashboardPage = () => {
                     </div>
                 </nav>
 
-                <div className="dashboard-main-container"> 
+                <div className="dashboard-main-container">
                     <main className="dashboard-main-content">
                         <div className="dashboard-welcome-section">
                             <h1 className="dashboard-title">Szia {user.username}!</h1>
