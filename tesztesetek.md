@@ -67,4 +67,10 @@
 |Tábla Betöltése|`GET` `/api/boards/:id` hívása egy létező tábla ID-jával (Tokennel).|Státusz: `200 OK`. A válasz JSON-jában a columns és tasks tömbök fel vannak töltve adatokkal (nem csak ID-kkal).| Sikeres|
 |Tábla Törlése|`DELETE` `/api/boards/:id` hívása egy létező tábla ID-jával (Tokennel).|Státusz: `200 OK`. Válasz üzenet: `"Board deleted successfully."`| Sikeres|
 
+### Frontend: Board oldal mock adatokkal
+|Leírás|Lépések|Várt eredmény|Állapot|
+|------|-------|-------------|--------|
+|Board Oldal (Mock Adatok)|Bejelentkezés (az `AuthPage.jsx`-ben lévő átirányítás a `/board/fake-id`-ra).|A `BoardPage` betöltődik, látszik a "Board neve", az oszlop ("Column neve") és a feladatkártyák ("Első feladat").| Sikeres|
+|Board oldal frissítése|A board oldal navbarján a logora kattintás.|Az oldal frissül, a board adatai újra betöltődnek.| Sikeres|
+
 ---
