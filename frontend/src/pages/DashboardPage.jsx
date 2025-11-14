@@ -8,8 +8,8 @@ const DashboardPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const userData = localStorage.getItem('user');
-        const token = localStorage.getItem('token');
+        const userData = localStorage.getItem('user') || sessionStorage.getItem('user');
+        const token = localStorage.getItem('token') || sessionStorage.getItem('token');
 
         if (!token || !userData) {
             navigate('/');
@@ -21,7 +21,9 @@ const DashboardPage = () => {
     const handleLogout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-        navigate('/');
+        sessionStorage.removeItem('token');
+        sessionStorage.removeItem('user');
+        navigate('/auth');
     };
     
     const handleProfile = () => {
