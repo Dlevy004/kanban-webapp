@@ -11,6 +11,7 @@ const ProfilePage = () => {
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    
     const [preview, setPreview] = useState('https://via.placeholder.com/120'); 
     const [profilePictureFile, setProfilePictureFile] = useState(null);
 
@@ -47,7 +48,7 @@ const ProfilePage = () => {
         e.preventDefault();
         // TODO: API hívás a username frissítésére
         console.log("Új felhasználónév:", username);
-        alert("Felhasználónév frissítve (szimulált)!");
+        alert("Nincs implementálva a felhasználónév frissítése!");
     };
 
     const handleUpdatePassword = (e) => {
@@ -58,7 +59,7 @@ const ProfilePage = () => {
         }
         // TODO: API hívás a jelszó cseréjére
         console.log("Jelszócsere adatok:", { currentPassword, newPassword });
-        alert("Jelszó frissítve (szimulált)!");
+        alert("Nincs implementálva a jelszó cseréje!");
         setCurrentPassword('');
         setNewPassword('');
         setConfirmPassword('');
@@ -83,7 +84,7 @@ const ProfilePage = () => {
         }
         // TODO: API hívás a kép feltöltésére
         console.log("Kép feltöltése:", profilePictureFile.name);
-        alert("Profilkép frissítve (szimulált)!");
+        alert("Nincs implementálva a kép feltöltése!");
     };
 
 
@@ -92,6 +93,7 @@ const ProfilePage = () => {
     return (
         <div className="dashboard-page-wrapper"> 
             <div className="dashboard-centered-content">
+                
                 <nav className="dashboard-navbar">
                     <div className="dashboard-logo">
                         <img src={KanbanLogo} alt="Kanban App Logo" className="kanban-logo-img" />
@@ -112,17 +114,19 @@ const ProfilePage = () => {
                     </div>
                 </nav>
 
-                <div className="dashboard-main-container"> 
+                <div className="dashboard-main-container profile-main-container">
                     <main className="dashboard-main-content">
+                        
                         <h1 className="profile-title">Profil Beállítások</h1>
+
                         <div className="profile-content-grid">
-                            
+
                             {/* Profilkép Kártya */}
                             <div className="card">
                                 <h2 className="profile-card-title">Profilkép</h2>
                                 <div className="profile-picture-section">
-                                    <img src={preview} alt="Profilkép előnézet" className="profile-avatar-preview" />
-                                                                        <div className="profile-picture-controls">
+                                    <img src={preview} className="profile-avatar-preview" />
+                                    <div className="profile-picture-controls">
                                         <label htmlFor="file-upload" className="btn btn-outline">
                                             Kép cseréje
                                         </label>
@@ -133,7 +137,7 @@ const ProfilePage = () => {
                                             onChange={handlePictureChange} 
                                             style={{ display: 'none' }} 
                                         />
-                                        <button className="btn btn-primary" onClick={handlePictureUpload}>
+                                        <button className="dashboard-logout-btn" onClick={handlePictureUpload}>
                                             Feltöltés
                                         </button>
                                     </div>
@@ -154,7 +158,7 @@ const ProfilePage = () => {
                                             onChange={(e) => setUsername(e.target.value)}
                                         />
                                     </div>
-                                    <button type="submit" className="btn btn-primary">
+                                    <button type="submit" className="dashboard-logout-btn">
                                         Név mentése
                                     </button>
                                 </form>
@@ -194,7 +198,7 @@ const ProfilePage = () => {
                                             onChange={(e) => setConfirmPassword(e.target.value)}
                                         />
                                     </div>
-                                    <button type="submit" className="btn btn-primary">
+                                    <button type="submit" className="dashboard-logout-btn">
                                         Jelszó cseréje
                                     </button>
                                 </form>
