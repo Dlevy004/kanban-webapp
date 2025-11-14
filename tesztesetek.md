@@ -62,5 +62,9 @@
 |------|-------|-------------|--------|
 |Auth Middleware (Token nélkül)|`GET` `/api/boards` kérés küldése `Authorization` fejléc nélkül.|Státusz: `401 Unauthorized`. | Sikeres|
 |Auth Middleware (Rossz Token)|`GET` `/api/boards` kérés küldése (lejárt/hamis) tokennel.|Státusz: `401 Unauthorized`. | Sikeres|
+|Board létrehozása|`POST` `/api/boards` kérés küldése érvényes `Bearer` tokennel és board adatokkal.|Státusz: `201 Created`. | Sikeres|
+|Táblák Listázása (Sikeres)|`GET` `/api/boards` kérés küldése érvényes `Bearer` token|Státusz: `200 OK`.|Sikeres|
+|Tábla Betöltése|`GET` `/api/boards/:id` hívása egy létező tábla ID-jával (Tokennel).|Státusz: `200 OK`. A válasz JSON-jában a columns és tasks tömbök fel vannak töltve adatokkal (nem csak ID-kkal).| Sikeres|
+|Tábla Törlése|`DELETE` `/api/boards/:id` hívása egy létező tábla ID-jával (Tokennel).|Státusz: `200 OK`. Válasz üzenet: `"Board deleted successfully."`| Sikeres|
 
 ---
