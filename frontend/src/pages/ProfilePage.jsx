@@ -3,6 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import './ProfilePage.css';
 import KanbanLogo from '../assets/kanban-logo-wout-bg.png';
 
+function isValidPassword(password) {
+  let minLength = password.length >= 8;
+  let hasLower = /[a-z]/.test(password);
+  let hasUpper = /[A-Z]/.test(password);
+  let hasNumber = /[0-9]/.test(password);
+  let hasSpecial = /[!@#&$%_+-]/.test(password);
+  
+  return minLength && hasLower && hasUpper && hasNumber && hasSpecial;
+}
+
 const ProfilePage = () => {
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
@@ -53,11 +63,17 @@ const ProfilePage = () => {
 
     const handleUpdatePassword = (e) => {
         e.preventDefault();
+        // TODO: API hívás a jelszó cseréjére
         if (newPassword !== confirmPassword) {
             alert("Az új jelszavak nem egyeznek!");
             return;
         }
-        // TODO: API hívás a jelszó cseréjére
+
+        if (!isValidPassword(newPassword)) {
+            alert("Az új jelszó nem felel meg a követelményeknek!\n(Minimum 8 karakter, kis- és nagybetű, szám, speciális karakter)");
+            return;
+        }
+
         console.log("Jelszócsere adatok:", { currentPassword, newPassword });
         alert("Nincs implementálva a jelszó cseréje!");
         setCurrentPassword('');
@@ -127,7 +143,7 @@ const ProfilePage = () => {
                                 <div className="profile-picture-section">
                                     <img src={preview} className="profile-avatar-preview" />
                                     <div className="profile-picture-controls">
-                                        <label htmlFor="file-upload" className="btn btn-outline">
+                                        <label htmlFor="file-upload" className="dashboard-logout-btn">
                                             Kép cseréje
                                         </label>
                                         <input 
@@ -178,16 +194,32 @@ const ProfilePage = () => {
                                             onChange={(e) => setCurrentPassword(e.target.value)}
                                         />
                                     </div>
+
                                     <div className="profile-form-group">
                                         <label htmlFor="new-pass">Új jelszó</label>
-                                        <input
-                                            id="new-pass"
-                                            type="password"
-                                            className="input"
-                                            value={newPassword}
-                                            onChange={(e) => setNewPassword(e.target.value)}
-                                        />
+                                        <div className="profile-input-with-help">
+                                            <input
+                                                id="new-pass"
+                                                type="password"
+                                                className="input"
+                                                value={newPassword}
+                                                onChange={(e) => setNewPassword(e.target.value)}
+                                            />
+                                            <div className="help-wrapper">
+                                                <img className="helpIcon" src="./public/images/help_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Segítég ikon" />
+                                                <div className="tip">
+                                                    <p>
+                                                        A jelszónak tartalmaznia kell: <br />
+                                                        - legalább 8 karaktert <br />
+                                                        - kis és nagybetűt <br />
+                                                        - számot <br />
+                                                        - speciális karaktert (!@#&$%_+-)
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+
                                     <div className="profile-form-group">
                                         <label htmlFor="confirm-pass">Új jelszó megerősítése</label>
                                         <input
