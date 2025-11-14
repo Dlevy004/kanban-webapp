@@ -56,4 +56,11 @@
 |Desktop nézet (>1024px)|Széles képernyőn való megtekintés|Layout középen, margók rendben|Sikeres|
 |Gomb hover effekt|Login/Signup gomb fölé a kurzor|Színe megváltozik hover esetén|Sikeres|
 
+### Backend: Board CRUD műveletek tesztelése Thunder Client segítségével
+
+|Leírás|Lépések|Várt eredmény|Állapot|
+|------|-------|-------------|--------|
+|Auth Middleware (Token nélkül)|`GET` `/api/boards` kérés küldése `Authorization` fejléc nélkül.|Státusz: `401 Unauthorized`. | Sikeres|
+|Auth Middleware (Rossz Token)|`GET` `/api/boards` kérés küldése (lejárt/hamis) tokennel.|Státusz: `401 Unauthorized`. | Sikeres|
+
 ---
