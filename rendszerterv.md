@@ -246,6 +246,8 @@ A fejlesztés és üzemeltetés során az alábbi jogszabályoknak és iparági 
 - Megtekintheti a projekteket, feladatokat, kommenteket és státuszokat.
 - Nem módosíthat adatokat vagy küldhet kommentet.
 
+![Roles](./rendszerterv%20ábrák/roles.jpg)
+
 ### Menü-hierarchia
 
 #### BEJELENTKEZÉS
