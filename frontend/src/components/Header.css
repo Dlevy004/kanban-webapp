@@ -1,0 +1,30 @@
+.app-header {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background-color: var(--color-bg-elevated);
+  border-bottom: 1px solid var(--color-border-subtle);
+  box-shadow: var(--shadow-soft);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.app-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.app-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
