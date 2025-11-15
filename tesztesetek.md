@@ -74,3 +74,27 @@
 |Board oldal frissítése|A board oldal navbarján a logora kattintás.|Az oldal frissül, a board adatai újra betöltődnek.| Sikeres|
 
 ---
+
+## **Sándor**
+### Backend: Tábla műveletek (Board CRUD)
+
+|Leírás|Lépések|Várt eredmény|Állapot|
+|------|-------|-------------|--------|
+|Tábla létrehozása (Backend)|`POST` kérés küldése `/api/boards` címre `{ "title": "Teszt Tábla" }` body-val és érvényes tokennel.|Státusz: `201 Created`. A válasz tartalmazza az új tábla `_id`-ját, `title`-jét és a `columns` tömböt.|Sikeres|
+|Tábla létrehozása név nélkül|`POST` kérés küldése `/api/boards` címre üres body-val.|Státusz: `400 Bad Request` vagy `500` (validációtól függően). Hibaüzenet: Title is required.|Sikeres|
+|Saját táblák lekérdezése|`GET` kérés küldése `/api/boards` címre érvényes tokennel.|Státusz: `200 OK`. A válaszban egy tömb érkezik, ami csak az adott felhasználóhoz tartozó táblákat tartalmazza.|Sikeres|
+|Tábla átnevezése (Backend)|`PUT` kérés küldése `/api/boards/:id` címre `{ "title": "Módosított Név" }` body-val.|Státusz: `200 OK`. A válaszban a frissített tábla objektum érkezik az új névvel.|Sikeres|
+|Tábla törlése (Backend)|`DELETE` kérés küldése `/api/boards/:id` címre.|Státusz: `200 OK`. Az adatbázisból törlődik a tábla és a hozzá tartozó referenciák.|Sikeres|
+
+### Frontend: Dashboard és Tábla kezelés
+
+|Leírás|Lépések|Várt eredmény|Állapot|
+|------|-------|-------------|--------|
+|Dashboard betöltése|Bejelentkezés után a Dashboard oldal megnyitása.|A backendről lekért táblák kártyaként megjelennek. Ha nincs tábla, csak az "Új tábla" gomb látszik.|Sikeres|
+|Új tábla létrehozása (UI)|"Új tábla" gombra kattintás -> Név megadása (pl. "Projekt A") -> OK.|Az oldal átirányít az új tábla oldalára (`/board/:id`), vagy megjelenik az új kártya a listában.|Sikeres|
+|Létrehozás megszakítása| "Új tábla" gomb -> Mégse (Cancel) a felugró ablakban.|Nem történik API hívás, nem jön létre új kártya.|Sikeres|
+|Navigáció a táblára|Kattintás egy meglévő tábla kártyájára (nem a gombokra).|Az alkalmazás átirányít a `/board/:id` URL-re, ahol az ID megegyezik a kártya ID-jával.|Sikeres|
+|Tábla törlése (Sikeres)|Kattintás a kuka ikonra/Törlés gombra -> "OK" a megerősítő ablakban.|A tábla kártyája azonnal eltűnik a listából az oldal újratöltése nélkül.|Sikeres|
+|Tábla törlés elvetése|Kattintás a kuka ikonra -> "Mégse" a megerősítő ablakban.|A párbeszédablak bezárul, a tábla megmarad a listában.|Sikeres|
+|Tábla átnevezése (Sikeres)|Kattintás az "Átnevezés" gombra -> Új név megadása -> OK.|A kártyán a cím azonnal frissül az új névre az oldal újratöltése nélkül.|Sikeres|
+|Átnevezés megszakítása|Kattintás az "Átnevezés" gombra -> Mégse, vagy üres név megadása.|A cím nem változik, nem történik API hívás.|Sikeres|
