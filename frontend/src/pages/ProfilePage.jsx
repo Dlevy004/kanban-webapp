@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ProfilePage.css';
-import KanbanLogo from '../assets/kanban-logo-wout-bg.png';
 
 function isValidPassword(password) {
   let minLength = password.length >= 8;
@@ -43,16 +42,6 @@ const ProfilePage = () => {
         }
 
     }, [navigate]);
-
-    const handleLogout = () => {
-        localStorage.clear();
-        sessionStorage.clear();
-        navigate('/auth');
-    };
-
-    const handleDashboard = () => {
-        navigate('/dashboard');
-    };
 
     const handleUpdateUsername = (e) => {
         e.preventDefault();
@@ -107,140 +96,114 @@ const ProfilePage = () => {
     if (!user) return <div style={{ padding: '20px', color: 'var(--color-text-muted)' }}>Loading...</div>;
 
     return (
-        <div className="dashboard-page-wrapper"> 
-            <div className="dashboard-centered-content">
+        <div className="dashboard-main-container profile-main-container">
+            <main className="dashboard-main-content">
                 
-                <nav className="dashboard-navbar">
-                    <div className="dashboard-logo">
-                        <img src={KanbanLogo} alt="Kanban App Logo" className="kanban-logo-img" />
+                <h1 className="profile-title">Profil Beállítások</h1>
+
+                <div className="profile-content-grid">
+
+                    {/* Profilkép Kártya */}
+                    <div className="card">
+                        <h2 className="profile-card-title">Profilkép</h2>
+                        <div className="profile-picture-section">
+                            <img src={preview} className="profile-avatar-preview" />
+                            <div className="profile-picture-controls">
+                                <label htmlFor="file-upload" className="dashboard-logout-btn">
+                                    Kép cseréje
+                                </label>
+                                <input 
+                                    id="file-upload" 
+                                    type="file" 
+                                    accept="image/*" 
+                                    onChange={handlePictureChange} 
+                                    style={{ display: 'none' }} 
+                                />
+                                <button className="dashboard-logout-btn" onClick={handlePictureUpload}>
+                                    Feltöltés
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <div className="dashboard-user-info">
-                        <button
-                            className="dashboard-profile-btn"
-                            onClick={handleDashboard}
-                        >
-                            Vissza a Dashboardra
-                        </button>
-                        <button
-                            className="dashboard-logout-btn"
-                            onClick={handleLogout}
-                        >
-                            Kijelentkezés
-                        </button>
+
+                    {/* Felhasználónév Kártya */}
+                    <div className="card">
+                        <h2 className="profile-card-title">Adatok módosítása</h2>
+                        <form onSubmit={handleUpdateUsername}>
+                            <div className="profile-form-group">
+                                <label htmlFor="username">Felhasználónév</label>
+                                <input
+                                    id="username"
+                                    type="text"
+                                    className="input"
+                                    value={username}
+                                    onChange={(e) => setUsername(e.target.value)}
+                                />
+                            </div>
+                            <button type="submit" className="dashboard-logout-btn">
+                                Név mentése
+                            </button>
+                        </form>
                     </div>
-                </nav>
 
-                <div className="dashboard-main-container profile-main-container">
-                    <main className="dashboard-main-content">
-                        
-                        <h1 className="profile-title">Profil Beállítások</h1>
+                    {/* Jelszó Kártya */}
+                    <div className="card">
+                        <h2 className="profile-card-title">Jelszó változtatása</h2>
+                        <form onSubmit={handleUpdatePassword}>
+                            <div className="profile-form-group">
+                                <label htmlFor="current-pass">Jelenlegi jelszó</label>
+                                <input
+                                    id="current-pass"
+                                    type="password"
+                                    className="input"
+                                    value={currentPassword}
+                                    onChange={(e) => setCurrentPassword(e.target.value)}
+                                />
+                            </div>
 
-                        <div className="profile-content-grid">
-
-                            {/* Profilkép Kártya */}
-                            <div className="card">
-                                <h2 className="profile-card-title">Profilkép</h2>
-                                <div className="profile-picture-section">
-                                    <img src={preview} className="profile-avatar-preview" />
-                                    <div className="profile-picture-controls">
-                                        <label htmlFor="file-upload" className="dashboard-logout-btn">
-                                            Kép cseréje
-                                        </label>
-                                        <input 
-                                            id="file-upload" 
-                                            type="file" 
-                                            accept="image/*" 
-                                            onChange={handlePictureChange} 
-                                            style={{ display: 'none' }} 
-                                        />
-                                        <button className="dashboard-logout-btn" onClick={handlePictureUpload}>
-                                            Feltöltés
-                                        </button>
+                            <div className="profile-form-group">
+                                <label htmlFor="new-pass">Új jelszó</label>
+                                <div className="profile-input-with-help">
+                                    <input
+                                        id="new-pass"
+                                        type="password"
+                                        className="input"
+                                        value={newPassword}
+                                        onChange={(e) => setNewPassword(e.target.value)}
+                                    />
+                                    <div className="help-wrapper">
+                                        <img className="helpIcon" src="./public/images/help_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Segítég ikon" />
+                                        <div className="tip">
+                                            <p>
+                                                A jelszónak tartalmaznia kell: <br />
+                                                - legalább 8 karaktert <br />
+                                                - kis és nagybetűt <br />
+                                                - számot <br />
+                                                - speciális karaktert (!@#&$%_+-)
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            {/* Felhasználónév Kártya */}
-                            <div className="card">
-                                <h2 className="profile-card-title">Adatok módosítása</h2>
-                                <form onSubmit={handleUpdateUsername}>
-                                    <div className="profile-form-group">
-                                        <label htmlFor="username">Felhasználónév</label>
-                                        <input
-                                            id="username"
-                                            type="text"
-                                            className="input"
-                                            value={username}
-                                            onChange={(e) => setUsername(e.target.value)}
-                                        />
-                                    </div>
-                                    <button type="submit" className="dashboard-logout-btn">
-                                        Név mentése
-                                    </button>
-                                </form>
+                            <div className="profile-form-group">
+                                <label htmlFor="confirm-pass">Új jelszó megerősítése</label>
+                                <input
+                                    id="confirm-pass"
+                                    type="password"
+                                    className="input"
+                                    value={confirmPassword}
+                                    onChange={(e) => setConfirmPassword(e.target.value)}
+                                />
                             </div>
+                            <button type="submit" className="dashboard-logout-btn">
+                                Jelszó cseréje
+                            </button>
+                        </form>
+                    </div>
 
-                            {/* Jelszó Kártya */}
-                            <div className="card">
-                                <h2 className="profile-card-title">Jelszó változtatása</h2>
-                                <form onSubmit={handleUpdatePassword}>
-                                    <div className="profile-form-group">
-                                        <label htmlFor="current-pass">Jelenlegi jelszó</label>
-                                        <input
-                                            id="current-pass"
-                                            type="password"
-                                            className="input"
-                                            value={currentPassword}
-                                            onChange={(e) => setCurrentPassword(e.target.value)}
-                                        />
-                                    </div>
-
-                                    <div className="profile-form-group">
-                                        <label htmlFor="new-pass">Új jelszó</label>
-                                        <div className="profile-input-with-help">
-                                            <input
-                                                id="new-pass"
-                                                type="password"
-                                                className="input"
-                                                value={newPassword}
-                                                onChange={(e) => setNewPassword(e.target.value)}
-                                            />
-                                            <div className="help-wrapper">
-                                                <img className="helpIcon" src="./public/images/help_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Segítég ikon" />
-                                                <div className="tip">
-                                                    <p>
-                                                        A jelszónak tartalmaznia kell: <br />
-                                                        - legalább 8 karaktert <br />
-                                                        - kis és nagybetűt <br />
-                                                        - számot <br />
-                                                        - speciális karaktert (!@#&$%_+-)
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="profile-form-group">
-                                        <label htmlFor="confirm-pass">Új jelszó megerősítése</label>
-                                        <input
-                                            id="confirm-pass"
-                                            type="password"
-                                            className="input"
-                                            value={confirmPassword}
-                                            onChange={(e) => setConfirmPassword(e.target.value)}
-                                        />
-                                    </div>
-                                    <button type="submit" className="dashboard-logout-btn">
-                                        Jelszó cseréje
-                                    </button>
-                                </form>
-                            </div>
-
-                        </div>
-                    </main>
                 </div>
-
-            </div>
+            </main>
         </div>
     );
 };
