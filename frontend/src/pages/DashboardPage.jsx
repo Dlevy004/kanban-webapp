@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './DashboardPage.css';
-import KanbanLogo from '../assets/kanban-logo-wout-bg.png';
 
 const DashboardPage = () => {
     const [user, setUser] = useState(null);
@@ -31,12 +30,6 @@ const DashboardPage = () => {
                 }
 
                 const data = await response.json();
-                // A backend struktúrától függően lehet, hogy data.board vagy simán data jön vissza.
-                // A korábbi boardService kódod alapján: { message: '...', board: [...] } volt a válasz a handleReadAllBoards-nál.
-                // De ellenőrizzük: ha tömböt kapsz, akkor setBoards(data), ha objektumot, akkor setBoards(data.board)
-
-                // A controllered ezt küldi: res.status(200).json({ message: '...', board: board })
-                // Tehát a táblák listája a 'data.board' mezőben lesz!
                 setBoards(data.board || []);
 
             } catch (error) {
@@ -44,20 +37,8 @@ const DashboardPage = () => {
             }
         };
 
-        fetchBoards(); // Meghívjuk a lekérést
+        fetchBoards();
     }, [navigate]);
-
-    const handleLogout = () => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        sessionStorage.removeItem('token');
-        sessionStorage.removeItem('user');
-        navigate('/auth');
-    };
-
-    const handleProfile = () => {
-        navigate('/profile');
-    };
 
     const handleNewBoard = async () => {
         const title = window.prompt("Add meg az új tábla nevét:", "Új Projekt");
@@ -159,8 +140,8 @@ const DashboardPage = () => {
 
             const updatedBoard = await response.json();
 
-            setBoards((prevBoards) => 
-                prevBoards.map(board => 
+            setBoards((prevBoards) =>
+                prevBoards.map(board =>
                     board._id === boardId ? updatedBoard.board : board
                 )
             );
@@ -174,78 +155,52 @@ const DashboardPage = () => {
     if (!user) return <div style={{ padding: '20px', color: '#666' }}>Loading...</div>;
 
     return (
-        <div className="dashboard-page-wrapper">
-            <div className="dashboard-centered-content">
-
-                <nav className="dashboard-navbar">
-                    <div className="dashboard-logo">
-                        <img src={KanbanLogo} alt="Kanban App Logo" className="kanban-logo-img" />
-                    </div>
-                    <div className="dashboard-user-info">
-                        <button
-                            className="dashboard-profile-btn"
-                            onClick={handleProfile}
-                        >
-                            Profil
-                        </button>
-                        <button
-                            className="dashboard-logout-btn"
-                            onClick={handleLogout}
-                        >
-                            Kijelentkezés
-                        </button>
-                    </div>
-                </nav>
-
-                <div className="dashboard-main-container">
-                    <main className="dashboard-main-content">
-                        <div className="dashboard-welcome-section">
-                            <h1 className="dashboard-title">Szia {user.username}!</h1>
-                            <p className="dashboard-subtitle">Projektjeit itt találja:</p>
-                        </div>
-
-                        <div className="dashboard-boards-grid">
-                            <div
-                                className="dashboard-new-board-card"
-                                onClick={handleNewBoard}
-                            >
-                                <span className="new-board-icon">+</span>
-                                <span className="new-board-text">Új tábla</span>
-                            </div>
-
-                            {boards.map((board) => (
-                                <div
-                                    key={board._id}
-                                    className="dashboard-board-card"
-                                    onClick={() => handleBoardClick(board._id)}
-                                >
-                                    <div>
-                                        <h3 style={{ margin: 0, color: '#333' }}>{board.title}</h3>
-                                        <small style={{ color: '#666', marginTop: '10px' }}>
-                                            {new Date(board.createdAt).toLocaleDateString()}
-                                        </small>
-                                    </div>
-                                    <div className="dashboard-buttons">
-                                        <button
-                                            className="delete-board-btn"
-                                            onClick={(e) => handleDeleteBoard(e, board._id)}
-                                        >
-                                            Tábla törlése
-                                        </button>
-                                        <button
-                                            className="rename-board-btn"
-                                            onClick={(e) => handleRenameBoard(e, board._id)}
-                                        >
-                                            Tábla nenévek módosítása
-                                        </button>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </main>
+        <div className="dashboard-main-container">
+            <main className="dashboard-main-content">
+                <div className="dashboard-welcome-section">
+                    <h1 className="dashboard-title">Szia {user.username}!</h1>
+                    <p className="dashboard-subtitle">Projektjeit itt találja:</p>
                 </div>
 
-            </div>
+                <div className="dashboard-boards-grid">
+                    <div
+                        className="dashboard-new-board-card"
+                        onClick={handleNewBoard}
+                    >
+                        <span className="new-board-icon">+</span>
+                        <span className="new-board-text">Új tábla</span>
+                    </div>
+
+                    {boards.map((board) => (
+                        <div
+                            key={board._id}
+                            className="dashboard-board-card"
+                            onClick={() => handleBoardClick(board._id)}
+                        >
+                            <div>
+                                <h3 style={{ margin: 0, color: '#333' }}>{board.title}</h3>
+                                <small style={{ color: '#666', marginTop: '10px' }}>
+                                    {new Date(board.createdAt).toLocaleDateString()}
+                                </small>
+                            </div>
+                            <div className="dashboard-buttons">
+                                <button
+                                    className="delete-board-btn"
+                                    onClick={(e) => handleDeleteBoard(e, board._id)}
+                                >
+                                    Tábla törlése
+                                </button>
+                                <button
+                                    className="rename-board-btn"
+                                    onClick={(e) => handleRenameBoard(e, board._id)}
+                                >
+                                    Tábla nevének módosítása
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </main>
         </div>
     );
 };
