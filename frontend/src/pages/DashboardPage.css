@@ -132,6 +132,27 @@
     color: var(--solid-color, #2c3e50); 
 }
 
+.dashboard-board-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    background-color: var(--solid-color, #fff); 
+    border: 2px solid #999;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #555;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.dashboard-board-card:hover {
+    background-color: var(--secondary-color, #fff); 
+    border: 2px solid var(--ternary-color, #2c3e50); 
+    color: var(--solid-color, #2c3e50); 
+}
+
 .new-board-icon {
     font-size: 30px;
     margin-bottom: 10px;

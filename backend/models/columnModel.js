@@ -15,7 +15,7 @@ const columnSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId, 
     ref: 'Task' 
   }],
-  oder: {
+  order: {
     type: Number,
     required: true
   }
