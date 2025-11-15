@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import '../pages/AuthPage.css';
+import ThemeToggle from '../components/ThemeToggle.jsx';
 
 function isValidUsername(username) {
   return username.length >= 3 && username.length <= 15;
@@ -113,6 +114,11 @@ function AuthPage() {
 
     return (
         <div className="auth-page-wrapper">
+    
+            <div style={{ position: 'absolute', top: '1rem', right: '1rem', zIndex: 10 }}>
+                <ThemeToggle />
+            </div>
+
         <div className={isLoginView ? 'container' : 'container active'}>
             <div className="forms">
 
