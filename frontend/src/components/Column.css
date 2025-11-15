@@ -9,12 +9,14 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
+    border: 1px solid transparent; 
+    transition: all 0.2s ease;
 }
 
 .column-title {
     font-size: 18px;
     font-weight: 600;
-    color: var(--primary-color);
+    color: var(--color-text);
 }
 
 .tasks-list {
@@ -29,12 +31,22 @@
     background-color: var(--secondary-color);
     border: none;
     border-radius: 6px;
-    color: var(--solid-color);
+    color: #2c425c; 
+    font-weight: 600;
     cursor: pointer;
     text-align: left;
     transition: all 0.2s ease-in-out;
 }
 
 .new-task-button:hover {
-    background-color: var(--primary-color);
+    filter: brightness(1.1); 
+}
+
+:root[data-theme='dark'] .column-container {
+    border: 1px solid var(--color-accent-soft); 
+    box-shadow: var(--shadow-soft);
+}
+
+:root[data-theme='dark'] .new-task-button {
+    color: #2c425c;
 }
