@@ -98,3 +98,29 @@
 |Tábla törlés elvetése|Kattintás a kuka ikonra -> "Mégse" a megerősítő ablakban.|A párbeszédablak bezárul, a tábla megmarad a listában.|Sikeres|
 |Tábla átnevezése (Sikeres)|Kattintás az "Átnevezés" gombra -> Új név megadása -> OK.|A kártyán a cím azonnal frissül az új névre az oldal újratöltése nélkül.|Sikeres|
 |Átnevezés megszakítása|Kattintás az "Átnevezés" gombra -> Mégse, vagy üres név megadása.|A cím nem változik, nem történik API hívás.|Sikeres|
+
+## **András**
+### Frontend: Dashboard, Profile - design és reszponzív megjelenés
+
+|Leírás|Lépések|Várt eredmény|Állapot|
+|------|-------|-------------|--------|
+|Mobil nézet (320px-425px)|Kis képernyőn való megnyitás|Container teljes szélesség, border-radius nincs|Sikeres|
+|Tablet nézet (768px)|Közepes képernyőn való ellenőrzés|Container középen, kerekített szélekkel|Sikeres|
+|Desktop nézet (>1024px)|Széles képernyőn való megtekintés|Layout középen, margók rendben|Sikeres|
+|Gomb hover effekt|Gombok fölé a kurzor|Színe megváltozik hover esetén|Sikeres|
+
+### Frontend: Profile
+
+|Leírás|Lépések|Várt eredmény|Állapot|
+|------|-------|-------------|--------|
+|Kép feltöltése kép nélkül|Nem választunk ki új profilképet|Hibaüzenet: "Először válassz egy képet!"|Sikeres|
+|Nem egyező jelszó|`abcdef`, majd `abcdeg` jelszavak beírása|Hibaüzenet: "Az új jelszavak nem egyeznek!"|Sikeres|
+|Nem megfelelő jelszó|`abcdef`, majd `abcdef` jelszavak beírása|Hibaüzenet: "Az új jelszó nem felel meg a követelményeknek! (Minimum 8 karakter, kis- és nagybetű, szám, speciális karakter)"|Sikeres|
+
+### Frontend: Dashboard
+
+|Leírás|Lépések|Várt eredmény|Állapot|
+|------|-------|-------------|--------|
+|Profil gomb|Bejelentkezett állapotban a "Profil" gombra kattintás.|Átnavigál a profile oldalra.|Sikeres|
+|Kijelentkezés gomb|Bejelentkezett állapotban a "Kijelntkezés" gombra kattintás.|Átirányít a bejelentkezési oldalra.|Sikeres|
+|Tábla megnyitása|Kattintás egy meglévő projekt tábla kártyájára.|Átirányít a kattintott tábla oldalára|Sikeres|
