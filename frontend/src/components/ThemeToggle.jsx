@@ -13,10 +13,10 @@ export default function ThemeToggle() {
       aria-label={isDark ? 'Váltás világos módra' : 'Váltás sötét módra'}
     >
       <span style={{ fontSize: '1.1rem' }}>
-        {isDark ? '🌙' : '☀️'}
+        {isDark ? '☀️' : '🌙'}
       </span>
       <span style={{ fontSize: '0.85rem' }}>
-        {isDark ? 'Dark' : 'Light'}
+        {isDark ? 'Light' : 'Dark'}
       </span>
     </button>
   );
