@@ -126,6 +126,9 @@
 |Tábla megnyitása|Kattintás egy meglévő projekt tábla kártyájára.|Átirányít a kattintott tábla oldalára|Sikeres|
 
 
+
+
+## **Attila**
 ### Frontend: Téma kezelés (ThemeProvider, ThemeToggle)
 
 |Leírás|Lépések|Várt eredmény|Állapot|
