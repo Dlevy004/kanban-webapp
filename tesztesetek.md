@@ -124,3 +124,22 @@
 |Profil gomb|Bejelentkezett állapotban a "Profil" gombra kattintás.|Átnavigál a profile oldalra.|Sikeres|
 |Kijelentkezés gomb|Bejelentkezett állapotban a "Kijelntkezés" gombra kattintás.|Átirányít a bejelentkezési oldalra.|Sikeres|
 |Tábla megnyitása|Kattintás egy meglévő projekt tábla kártyájára.|Átirányít a kattintott tábla oldalára|Sikeres|
+
+
+### Frontend: Téma kezelés (ThemeProvider, ThemeToggle)
+
+|Leírás|Lépések|Várt eredmény|Állapot|
+|------|-------|-------------|--------|
+|Alapértelmezett világos téma|localStorage törlése → rendszer: light → app indítása|Téma: `light`, root `data-theme="light"`|Sikeres|
+|Alapértelmezett sötét téma|localStorage törlése → rendszer: dark → app indítása|Téma: `dark`, root `data-theme="dark"`|Sikeres|
+|Mentett téma betöltése|`localStorage.app-theme = "dark"` → app indítása|Téma `dark`, rendszerbeállítástól függetlenül|Sikeres|
+|Root data-theme frissül|Indítás light módban → toggleTheme()|Root `data-theme` `dark`-ra vált|Sikeres|
+|Téma mentése localStorage-be|Indítás → toggleTheme()|`app-theme` értéke módosul (`light` ↔ `dark`)|Sikeres|
+|Rendszer-téma változás átvétele|Nincs localStorage → indul light → rendszer dark event|Téma automatikusan `dark` lesz|Sikeres|
+|Rendszer-téma ignorálása mentett témával|`localStorage=light` → rendszer dark event|Téma marad `light`|Sikeres|
+|useTheme provider nélkül|Komponens useTheme() hívással provider nélkül|Hiba: „useTheme must be used within ThemeProvider”|Sikeres|
+|Light mód UI|`theme="light"` → komponens render|Ikon: ☀️, felirat: Light, aria-label: „Váltás sötét módra”|Sikeres|
+|Dark mód UI|`theme="dark"` → komponens render|Ikon: 🌙, felirat: Dark, aria-label: „Váltás világos módra”|Sikeres|
+|Toggle működik|Render → gombra kattintás|`toggleTheme()` egyszer lefut|Sikeres|
+|Gomb nem submitol formot|Formban render → kattintás|Nem fut form submit, csak a téma vált|Sikeres|
+|ARIA label jelenléte|Komponens render → gomb ellenőrzése|Megfelelő `aria-label` beállítva|Sikeres|
