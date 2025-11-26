@@ -178,8 +178,8 @@ const DashboardPage = () => {
                             onClick={() => handleBoardClick(board._id)}
                         >
                             <div>
-                                <h3 style={{ margin: 0, color: '#333' }}>{board.title}</h3>
-                                <small style={{ color: '#666', marginTop: '10px' }}>
+                                <h3 style={{ margin: 0, color: 'var(--text-color)' }}>{board.title}</h3>
+                                <small style={{ color: 'var(--text-color)', marginTop: '10px' }}>
                                     {new Date(board.createdAt).toLocaleDateString()}
                                 </small>
                             </div>
