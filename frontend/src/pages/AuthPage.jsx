@@ -211,6 +211,7 @@ function AuthPage() {
                             <img className="darkMode-icon icon hide" src="./public/images/lock_24dp_F9FCFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Lakat ikon" />
                             <div className="help-wrapper">
                                 <img className="helpIcon" src="./public/images/help_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Segítség ikon" />
+                                <img className="darkMode-icon helpIcon hide" src="./public/images/help_24dp_F9FCFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Segítség ikon" />
                                 <div className="tip">
                                     <p>
                                         A jelszónak tartalmaznia kell: <br />
