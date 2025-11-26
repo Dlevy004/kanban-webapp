@@ -168,11 +168,20 @@
 
 .dashboard-buttons > button:hover {
     border: none;
-    color: black;
+    transform: scale(1.1);
+    box-shadow: #1a1a1a39 3px 3px;
+}
+
+.delete-board-btn, .rename-board-btn {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
 }
 
 .delete-board-btn {
-    background-color: red;
+    background-color: rgb(203, 20, 20);
 }
 
 .rename-board-btn {
