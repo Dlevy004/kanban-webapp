@@ -94,7 +94,7 @@ body {
     border: 4px solid transparent;
     font-size: 16px;
     background-color: var(--solid-color);
-    color: black;
+    color: var(--color-text);
 }
 
 .input-field input.success {
