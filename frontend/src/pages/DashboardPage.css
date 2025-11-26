@@ -51,7 +51,7 @@
 .dashboard-profile-btn {
     padding: 8px 16px;
     background-color: var(--primary-color, #43536C);
-    color: var(--solid-color, white);
+    color: #e3e3e3;
     border: 2px solid transparent;
     border-radius: 6px;
     cursor: pointer;
