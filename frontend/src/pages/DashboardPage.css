@@ -180,3 +180,17 @@
 .rename-board-btn {
     background-color: steelblue;
 }
+
+.hide {
+  display: none;
+}
+
+:root[data-theme='dark'] .darkMode-icon {
+  display: block;
+  transition: all 0.4s ease-in-out;
+}
+
+:root[data-theme='dark'] .lightMode-icon {
+  display: none;
+  transition: all 0.4s ease-in-out;
+}

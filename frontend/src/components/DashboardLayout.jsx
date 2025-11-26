@@ -1,6 +1,7 @@
 import React from 'react';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import KanbanLogo from '../assets/kanban-logo-wout-bg.png';
+import KanbanDarkLogo from '../assets/light-kanban-logo.png';
 import '../pages/DashboardPage.css';
 import ThemeToggle from './ThemeToggle.jsx';
 
@@ -31,7 +32,8 @@ export default function DashboardLayout() {
 
         <nav className="dashboard-navbar">
           <div className="dashboard-logo">
-            <img src={KanbanLogo} alt="Kanban App Logo" className="kanban-logo-img" />
+            <img src={KanbanLogo} alt="Kanban App Logo" className="lightMode-icon kanban-logo-img" />
+            <img src={KanbanDarkLogo} alt="Kanban App Logo" className="darkMode-icon hide kanban-logo-img" />
           </div>
           <div className="dashboard-user-info">
             
