@@ -143,6 +143,7 @@ function AuthPage() {
                                 onChange={(e) => setLoginPassword(e.target.value)}
                             />
                             <img className="icon" src="./public/images/lock_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Lakat ikon" />
+                            <img className="darkMode-icon icon hide" src="./public/images/lock_24dp_F9FCFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Lakat ikon" />
                         </div>
 
                         <div className="checkbox-text">
@@ -206,6 +207,7 @@ function AuthPage() {
                                 onChange={(e) => setRegPassword(e.target.value)}
                             />
                             <img className="icon" src="./public/images/lock_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Lakat ikon" />
+                            <img className="darkMode-icon icon hide" src="./public/images/lock_24dp_F9FCFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Lakat ikon" />
                             <div className="help-wrapper">
                                 <img className="helpIcon" src="./public/images/help_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Segítség ikon" />
                                 <div className="tip">
@@ -226,6 +228,7 @@ function AuthPage() {
                                 onChange={(e) => setRegConfirm(e.target.value)}
                             />
                             <img className="icon" src="./public/images/lock_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Lakat ikon" />
+                            <img className="darkMode-icon icon hide" src="./public/images/lock_24dp_F9FCFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Lakat ikon" />
                         </div>
 
                         {error && !isLoginView && <div style={{ color: 'red', marginTop: '5px', textAlign: 'center' }}>{error}</div>}
