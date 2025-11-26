@@ -151,7 +151,6 @@ div.input-field button {
 .tip {
     position: absolute;
     right: 0;
-    background: white;
     color: black;
     border: 1px solid #ccc;
     padding: 8px 12px;
