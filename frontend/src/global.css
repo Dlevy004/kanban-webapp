@@ -202,3 +202,14 @@ a:hover {
 .text-muted {
   color: var(--color-text-muted);
 }
+
+/*darkmode színek*/
+
+.hide {
+  display: none;
+}
+
+:root[data-theme='dark'] .darkMode-icon {
+  display: block;
+  transition: all 0.4s ease-in-out;
+}
