@@ -20,11 +20,11 @@
     .profile-content-grid {
         grid-template-areas: 
             "avatar details"
-            "avatar password";
+            ". password";
         grid-template-columns: 1fr 2fr;
     }
     
-    .profile-content-grid .card:nth-child(1) { grid-area: avatar; }
+    .profile-content-grid .card:nth-child(1) { grid-area: avatar; align-self: start; }
     .profile-content-grid .card:nth-child(2) { grid-area: details; }
     .profile-content-grid .card:nth-child(3) { grid-area: password; }
 }
