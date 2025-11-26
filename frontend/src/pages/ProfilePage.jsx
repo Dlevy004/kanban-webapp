@@ -172,7 +172,8 @@ const ProfilePage = () => {
                                         onChange={(e) => setNewPassword(e.target.value)}
                                     />
                                     <div className="help-wrapper">
-                                        <img className="helpIcon" src="./public/images/help_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Segítég ikon" />
+                                        <img className="lightMode helpIcon" src="./public/images/help_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Segítég ikon" />
+                                        <img className="darkMode-icon hide helpIcon" src="./public/images/help_24dp_F9FCFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Segítég ikon" />
                                         <div className="tip">
                                             <p>
                                                 A jelszónak tartalmaznia kell: <br />
