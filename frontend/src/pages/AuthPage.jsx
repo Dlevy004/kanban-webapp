@@ -190,6 +190,7 @@ function AuthPage() {
                                 onChange={(e) => setRegUsername(e.target.value)}
                             />
                             <img className="icon" src="./public/images/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Profil ikon" />
+                            <img className="darkMode-icon icon hide" src="./public/images/account_circle_24dp_F9FCFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Profil ikon" />
                         </div>
 
                         <div className="input-field">
