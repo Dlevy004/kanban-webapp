@@ -164,6 +164,8 @@ div.input-field button {
 
 .help-wrapper:is(:hover, :focus, :active) .tip{
     display: block;
+    background-color: #e3e3e3;
+    color: black;
 }
 
 .form .checkbox-text {
