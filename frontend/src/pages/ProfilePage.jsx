@@ -141,14 +141,42 @@ const ProfilePage = () => {
         }
     };
 
-    const handlePictureUpload = () => {
-        if (!profilePictureFile) {
-            alert("Először válassz egy képet!");
-            return;
+    const handlePictureUpload = async () => {
+        if (!preview || preview.includes('via.placeholder.com')) {
+             alert("Kérlek, válassz ki egy képet először!");
+             return;
         }
-        // TODO: API hívás a kép feltöltésére
-        console.log("Kép feltöltése:", profilePictureFile.name);
-        alert("Nincs implementálva a kép feltöltése!");
+
+        try {
+            const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+
+            const response = await axios.put(
+                'http://localhost:5500/api/users/profile-picture',
+                { profilePictureUrl: preview }, 
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                }
+            );
+
+            const updatedUser = response.data.user;
+            setUser(updatedUser);
+
+            if (localStorage.getItem('user')) {
+                localStorage.setItem('user', JSON.stringify(updatedUser));
+            } else {
+                sessionStorage.setItem('user', JSON.stringify(updatedUser));
+            }
+
+            alert("Profilkép sikeresen feltöltve!");
+            setProfilePictureFile(null);
+
+        } catch (error) {
+            console.error("Hiba a képfeltöltéskor:", error);
+            const message = error.response?.data?.message || "Hiba történt a képfeltöltés során.";
+            alert(message);
+        }
     };
 
 
