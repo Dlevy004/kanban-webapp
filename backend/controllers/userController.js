@@ -25,6 +25,27 @@ const handleUpdateUserProfile = async (req, res) => {
     }
 }
 
+const handleUpdateUserPassword = async (req, res) => {
+    try {
+        const userId = req.user.id;
+        const { currentPassword, newPassword } = req.body;
+
+        if (!currentPassword || !newPassword) {
+            return res.status(400).json({ message: 'Minden mező kitöltése kötelező.' });
+        }
+
+        await userService.updateUserPassword(userId, currentPassword, newPassword);
+
+        res.status(200).json({
+            message: 'A jelszó sikeresen megváltozott.'
+        });
+
+    } catch (error) {
+        res.status(400).json({ message: error.message || 'Hiba a jelszócsere során.' });
+    }
+}
+
 module.exports = {
-    handleUpdateUserProfile
+    handleUpdateUserProfile,
+    handleUpdateUserPassword
 }
