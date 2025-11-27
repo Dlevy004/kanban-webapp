@@ -22,6 +22,27 @@ const updateUserProfile = async (userId, updateData) => {
     return updateUser;
 }
 
+const updateUserPassword = async (userId, currentPassword, newPassword) => {
+    const user = await User.findById(userId).select('+passwordHash');
+    
+    if (!user) {
+        throw new Error('User not found');
+    }
+
+    const isMatch = await user.comparePassword(currentPassword);
+    if (!isMatch) {
+        throw new Error('A jelenlegi jelszó hibás.');
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    user.passwordHash = await bcrypt.hash(newPassword, salt);
+
+    await user.save();
+
+    return true;
+};
+
 module.exports = {
-    updateUserProfile
+    updateUserProfile,
+    updateUserPassword
 }
