@@ -44,11 +44,46 @@ const ProfilePage = () => {
 
     }, [navigate]);
 
-    const handleUpdateUsername = (e) => {
+    const handleUpdateUsername = async (e) => {
         e.preventDefault();
-        // TODO: API hívás a username frissítésére
+        
+        if (!username.trim()) {
+            alert('A felhasználónév nem lehet üres!');
+            return;
+        }
+
+        try {
+            const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+
+            const response = await axios.put(
+                'http://localhost:5500/api/users/profile',
+                { username: username },
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                }
+            );
+            const updatedUser = response.data.user;
+
+            setUser(updatedUser);
+
+            if (localStorage.getItem('user')) {
+                localStorage.setItem('user', JSON.stringify(updatedUser));
+            } else {
+                sessionStorage.setItem('user', JSON.stringify(updatedUser));
+            }
+
+            alert("Sikeres névváltás!");
+        } catch (error) {
+            console.error("Hiba a név frissítésekor:", error);
+
+            const message = error.response?.data?.message || "Hiba történt a frissítés során.";
+            
+            alert(message);
+        }
+
         console.log("Új felhasználónév:", username);
-        alert("Nincs implementálva a felhasználónév frissítése!");
     };
 
     const handleUpdatePassword = (e) => {
