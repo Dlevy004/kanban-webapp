@@ -42,7 +42,22 @@ const updateUserPassword = async (userId, currentPassword, newPassword) => {
     return true;
 };
 
+const updateProfilePicture = async (userId, base64Image) => {
+    const user = await User.findByIdAndUpdate(
+        userId,
+        { profilePictureUrl: base64Image },
+        { new: true }
+    ).select('-passwordHash');
+
+    if (!user) {
+        throw new Error('User not found');
+    }
+
+    return user;
+};
+
 module.exports = {
     updateUserProfile,
-    updateUserPassword
+    updateUserPassword,
+    updateProfilePicture
 }
