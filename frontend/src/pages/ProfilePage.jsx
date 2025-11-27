@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ProfilePage.css';
+import axios from 'axios';
 
 function isValidPassword(password) {
   let minLength = password.length >= 8;
@@ -43,16 +44,50 @@ const ProfilePage = () => {
 
     }, [navigate]);
 
-    const handleUpdateUsername = (e) => {
+    const handleUpdateUsername = async (e) => {
         e.preventDefault();
-        // TODO: API hívás a username frissítésére
+        
+        if (!username.trim()) {
+            alert('A felhasználónév nem lehet üres!');
+            return;
+        }
+
+        try {
+            const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+
+            const response = await axios.put(
+                'http://localhost:5500/api/users/profile',
+                { username: username },
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                }
+            );
+            const updatedUser = response.data.user;
+
+            setUser(updatedUser);
+
+            if (localStorage.getItem('user')) {
+                localStorage.setItem('user', JSON.stringify(updatedUser));
+            } else {
+                sessionStorage.setItem('user', JSON.stringify(updatedUser));
+            }
+
+            alert("Sikeres névváltás!");
+        } catch (error) {
+            console.error("Hiba a név frissítésekor:", error);
+
+            const message = error.response?.data?.message || "Hiba történt a frissítés során.";
+            
+            alert(message);
+        }
+
         console.log("Új felhasználónév:", username);
-        alert("Nincs implementálva a felhasználónév frissítése!");
     };
 
-    const handleUpdatePassword = (e) => {
+    const handleUpdatePassword = async (e) => {
         e.preventDefault();
-        // TODO: API hívás a jelszó cseréjére
         if (newPassword !== confirmPassword) {
             alert("Az új jelszavak nem egyeznek!");
             return;
@@ -63,11 +98,35 @@ const ProfilePage = () => {
             return;
         }
 
+        try {
+            const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+
+            const response = await axios.put(
+                'http://localhost:5500/api/users/password',
+                { 
+                    currentPassword: currentPassword,
+                    newPassword: newPassword
+                },
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                }
+            );
+
+            alert(response.data.message);
+
+            setCurrentPassword('');
+            setNewPassword('');
+            setConfirmPassword('');
+
+        } catch (error) {
+            console.error("Hiba a jelszócsere során:", error);
+            const message = error.response?.data?.message || "Hiba történt a jelszócsere során.";
+            alert(message);
+        }
+
         console.log("Jelszócsere adatok:", { currentPassword, newPassword });
-        alert("Nincs implementálva a jelszó cseréje!");
-        setCurrentPassword('');
-        setNewPassword('');
-        setConfirmPassword('');
     };
 
     const handlePictureChange = (e) => {
@@ -82,14 +141,42 @@ const ProfilePage = () => {
         }
     };
 
-    const handlePictureUpload = () => {
-        if (!profilePictureFile) {
-            alert("Először válassz egy képet!");
-            return;
+    const handlePictureUpload = async () => {
+        if (!preview || preview.includes('via.placeholder.com')) {
+             alert("Kérlek, válassz ki egy képet először!");
+             return;
         }
-        // TODO: API hívás a kép feltöltésére
-        console.log("Kép feltöltése:", profilePictureFile.name);
-        alert("Nincs implementálva a kép feltöltése!");
+
+        try {
+            const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+
+            const response = await axios.put(
+                'http://localhost:5500/api/users/profile-picture',
+                { profilePictureUrl: preview }, 
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                }
+            );
+
+            const updatedUser = response.data.user;
+            setUser(updatedUser);
+
+            if (localStorage.getItem('user')) {
+                localStorage.setItem('user', JSON.stringify(updatedUser));
+            } else {
+                sessionStorage.setItem('user', JSON.stringify(updatedUser));
+            }
+
+            alert("Profilkép sikeresen feltöltve!");
+            setProfilePictureFile(null);
+
+        } catch (error) {
+            console.error("Hiba a képfeltöltéskor:", error);
+            const message = error.response?.data?.message || "Hiba történt a képfeltöltés során.";
+            alert(message);
+        }
     };
 
 
