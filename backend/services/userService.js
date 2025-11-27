@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs');
 const User = require('../models/userModel');
 
 const updateUserProfile = async (userId, updateData) => {
