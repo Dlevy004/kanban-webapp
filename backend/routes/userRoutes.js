@@ -7,4 +7,6 @@ router.put('/profile', protect, userController.handleUpdateUserProfile);
 
 router.put('/password', protect, userController.handleUpdateUserPassword);
 
+router.put('/profile-picture', protect, userController.updateProfilePicture);
+
 module.exports = router;
