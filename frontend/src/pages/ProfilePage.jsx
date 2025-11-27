@@ -86,9 +86,8 @@ const ProfilePage = () => {
         console.log("Új felhasználónév:", username);
     };
 
-    const handleUpdatePassword = (e) => {
+    const handleUpdatePassword = async (e) => {
         e.preventDefault();
-        // TODO: API hívás a jelszó cseréjére
         if (newPassword !== confirmPassword) {
             alert("Az új jelszavak nem egyeznek!");
             return;
@@ -99,11 +98,35 @@ const ProfilePage = () => {
             return;
         }
 
+        try {
+            const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+
+            const response = await axios.put(
+                'http://localhost:5500/api/users/password',
+                { 
+                    currentPassword: currentPassword,
+                    newPassword: newPassword
+                },
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                }
+            );
+
+            alert(response.data.message);
+
+            setCurrentPassword('');
+            setNewPassword('');
+            setConfirmPassword('');
+
+        } catch (error) {
+            console.error("Hiba a jelszócsere során:", error);
+            const message = error.response?.data?.message || "Hiba történt a jelszócsere során.";
+            alert(message);
+        }
+
         console.log("Jelszócsere adatok:", { currentPassword, newPassword });
-        alert("Nincs implementálva a jelszó cseréje!");
-        setCurrentPassword('');
-        setNewPassword('');
-        setConfirmPassword('');
     };
 
     const handlePictureChange = (e) => {
