@@ -45,7 +45,29 @@ const handleUpdateUserPassword = async (req, res) => {
     }
 }
 
+const updateProfilePicture = async (req, res) => {
+    try {
+        const userId = req.user.id;
+        const { profilePictureUrl } = req.body;
+
+        if (!profilePictureUrl) {
+            return res.status(400).json({ message: 'Nincs kép kiválasztva.' });
+        }
+
+        const updatedUser = await userService.updateProfilePicture(userId, profilePictureUrl);
+
+        res.status(200).json({
+            message: 'Profilkép sikeresen frissítve.',
+            user: updatedUser
+        });
+
+    } catch (error) {
+        res.status(400).json({ message: error.message || 'Hiba a képfeltöltés során.' });
+    }
+};
+
 module.exports = {
     handleUpdateUserProfile,
-    handleUpdateUserPassword
+    handleUpdateUserPassword,
+    updateProfilePicture
 }
