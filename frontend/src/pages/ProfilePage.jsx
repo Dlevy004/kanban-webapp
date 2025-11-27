@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ProfilePage.css';
+import axios from 'axios';
 
 function isValidPassword(password) {
   let minLength = password.length >= 8;
