@@ -72,4 +72,26 @@ describe('BoardService Tesztek', () => {
         });
     });
 
+    
+    // 3. teszteset: törlés
+    describe('deleteBoard', () => {
+        it('should delete board and related columns/tasks', async () => {
+            // arrange
+            const boardId = 'board1';
+            Board.findByIdAndDelete.mockResolvedValue({ _id: boardId });
+            Column.deleteMany.mockResolvedValue({ deletedCount: 2 });
+            Task.deleteMany.mockResolvedValue({ deletedCount: 5 });
+
+            // act
+            await boardService.deleteBoard(boardId);
+
+            // assert
+            expect(Task.deleteMany).toHaveBeenCalledWith({ board: boardId });
+
+            expect(Column.deleteMany).toHaveBeenCalledWith({ board: boardId });
+
+            expect(Board.findByIdAndDelete).toHaveBeenCalledWith(boardId);
+        });
+    });
+
 });
