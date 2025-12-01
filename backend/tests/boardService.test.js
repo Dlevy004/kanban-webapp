@@ -37,4 +37,39 @@ describe('BoardService Tesztek', () => {
         });
     });
 
+    // 2. teszteset: lekérés
+    describe('readByIdBoard', () => {
+        it('should return board with populated columns and tasks', async () => {
+            // arrange
+            const boardId = 'board1';
+            const mockBoard = { _id: boardId, title: 'Populated Board' };
+
+            const mockPopulate = jest.fn().mockResolvedValue(mockBoard);
+            Board.findById.mockReturnValue({ populate: mockPopulate });
+
+            // act
+            const result = await boardService.readByIdBoard(boardId);
+
+            // assert
+            expect(Board.findById).toHaveBeenCalledWith(boardId);
+
+            expect(mockPopulate).toHaveBeenCalledWith(expect.objectContaining({
+                path: 'columns',
+                populate: { path: 'tasks', model: 'Task' }
+            }));
+            expect(result).toEqual(mockBoard);
+        });
+
+        it('should throw error if board not found', async () => {
+            // arrange
+            const mockPopulate = jest.fn().mockResolvedValue(null);
+            Board.findById.mockReturnValue({ populate: mockPopulate });
+
+            // act & assert
+            await expect(boardService.readByIdBoard('badId'))
+                .rejects
+                .toThrow('Board not found.');
+        });
+    });
+
 });
