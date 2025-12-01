@@ -63,4 +63,30 @@ describe('TaskService Tesztek', () => {
         });
     });
 
+    // 2. teszt: delete
+    describe('deleteTask', () => {
+        it('should remove task reference from column and delete task', async () => {
+            // ARRANGE
+            const taskId = 'task_abc';
+            const columnId = 'col_123';
+
+            const mockTask = { _id: taskId, column: columnId };
+
+            Task.findById.mockResolvedValue(mockTask);
+            Task.deleteOne.mockResolvedValue(true);
+            Column.findByIdAndUpdate.mockResolvedValue(true);
+
+            // ACT
+            await taskService.deleteTask(taskId);
+
+            // ASSERT
+            expect(Task.findById).toHaveBeenCalledWith(taskId);
+            expect(Column.findByIdAndUpdate).toHaveBeenCalledWith(
+                columnId,
+                { $pull: { tasks: taskId } }
+            );
+            expect(Task.deleteOne).toHaveBeenCalledWith({ _id: taskId });
+        });
+    });
+
 });
