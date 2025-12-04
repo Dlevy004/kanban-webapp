@@ -6,7 +6,7 @@ import '../pages/DashboardPage.css';
 import ThemeToggle from './ThemeToggle.jsx';
 
 const VICCEK = [
-"Mire táncolnak a programozók a buliban? – Algoritmusra.",
+  "Mire táncolnak a programozók a buliban? – Algoritmusra.",
   "Hány programozó kell egy villanykörte becsavarásához? – Egy sem, mert az hardverhiba.",
   "Hogy hívják az állandóan hibázó programozó csoportot? – ERRORISTA CSOPORT.",
   "A programozó találkozik egy beszélő békával. A béka megszólal: 'Csókolj meg, és királylánnyá változom!' A programozó zsebre teszi. A béka újra könyörög: 'De tényleg, csókolj meg, és a tiéd leszek!' A programozó válaszol: 'Tudod, rengeteg a munkám, egy csaj csak púp lenne a hátamon. De egy beszélő béka... az cool.'",

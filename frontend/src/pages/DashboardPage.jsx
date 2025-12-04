@@ -7,6 +7,14 @@ const DashboardPage = () => {
     const [boards, setBoards] = useState([]);
     const navigate = useNavigate();
 
+    const getGreeting = () => {
+        const hour = new Date().getHours();
+        if (hour < 5) return 'Még fent vagy? Kitartás';
+        if (hour < 10) return 'Jó reggelt';
+        if (hour < 18) return 'Szép napot';
+        return 'Kellemes estét';
+    };
+
     useEffect(() => {
         const userData = localStorage.getItem('user') || sessionStorage.getItem('user');
         const token = localStorage.getItem('token') || sessionStorage.getItem('token');
@@ -158,7 +166,7 @@ const DashboardPage = () => {
         <div className="dashboard-main-container">
             <main className="dashboard-main-content">
                 <div className="dashboard-welcome-section">
-                    <h1 className="dashboard-title">Szia {user.username}!</h1>
+                    <h1 className="dashboard-title">{getGreeting()}, {user.username}!</h1>
                     <p className="dashboard-subtitle">Projektjeit itt találja:</p>
                 </div>
 
@@ -178,8 +186,8 @@ const DashboardPage = () => {
                             onClick={() => handleBoardClick(board._id)}
                         >
                             <div>
-                                <h3 style={{ margin: 0, color: 'var(--text-color)' }}>{board.title}</h3>
-                                <small style={{ color: 'var(--text-color)', marginTop: '10px' }}>
+                                <h3 style={{ margin: 0, color: 'var(--color-text)' }}>{board.title}</h3>
+                                <small style={{ color: 'var(--color-text-muted)', marginTop: '10px' }}>
                                     {new Date(board.createdAt).toLocaleDateString()}
                                 </small>
                             </div>
