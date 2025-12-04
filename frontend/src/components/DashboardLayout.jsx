@@ -27,7 +27,6 @@ const VICCEK = [
   "Mit mond a processzor a memóriának? – Felejts el!",
   "A programozó vizsgázik. – A 0 az hamis, az 1 pedig igaz, nemde? – 1.",
   "Miért Chuck Norris a világ legjobb programozója? – Mert olyan kódot ír, ami saját magát képes optimalizálni.",
-  "Két informatikus beszélget: – Képzeld, tegnap az éjszakai klubban megismerkedtem egy csinos szőke nővel. – Szerencsés fickó! – Felhívtam a lakásra, ittunk egy kicsit, átöleltem... – És aztán? – Egyszer csak azt mondja: 'Vetkőztess le!' – Nahát! – Levettem a nadrágját, aztán a bugyiját is, aztán lefektettem az új laptopom mellé az asztalra. – Nocsak, vettél egy új laptopot? Milyen processzorral?",
   "Hogyan próbálnak meggazdagodni az objektumorientált programozók? – Öröklődés által."
 ];
 

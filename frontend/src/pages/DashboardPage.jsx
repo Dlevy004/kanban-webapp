@@ -16,6 +16,18 @@ const DashboardPage = () => {
     };
 
     useEffect(() => {
+        if (boards.length === 0) {
+            document.title = 'Dashboard | Kanban App';
+        } else {
+            document.title = `Dashboard (${boards.length} projekt) | Kanban App`;
+        }
+
+        return () => {
+            document.title = 'Kanban App';
+        };
+    }, [boards]);
+
+    useEffect(() => {
         const userData = localStorage.getItem('user') || sessionStorage.getItem('user');
         const token = localStorage.getItem('token') || sessionStorage.getItem('token');
 

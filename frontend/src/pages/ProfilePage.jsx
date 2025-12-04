@@ -44,6 +44,10 @@ const ProfilePage = () => {
 
     }, [navigate]);
 
+    useEffect(() => {
+        document.title = 'Profil Beállítások | Kanban App';
+    }, []);
+
     const handleUpdateUsername = async (e) => {
         e.preventDefault();
         

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import '../pages/AuthPage.css';
@@ -43,6 +43,12 @@ function AuthPage() {
     const [error, setError] = useState('');
 
     const [rememberMe, setRememberMe] = useState(true);
+
+    useEffect(() => {
+        document.title = isLoginView 
+            ? 'Bejelentkezés | Kanban App' 
+            : 'Regisztráció | Kanban App';
+    }, [isLoginView]);
 
     const handleLoginSubmit = async (e) => {
         e.preventDefault();
