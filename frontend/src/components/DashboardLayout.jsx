@@ -73,19 +73,22 @@ export default function DashboardLayout() {
             position: 'absolute',
             left: '50%',
             transform: 'translateX(-50%)',
-              
+            maxWidth: '45vw',
+            width: '100%',
+            padding: '0 20px',  
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             textAlign: 'center',
             fontStyle: 'italic',
             color: 'var(--color-text)', 
-            fontSize: '0.95rem',
+            fontSize: '0.9rem',
             opacity: 0.9,            
             whiteSpace: 'normal',     
             lineHeight: '1.4',   
             width: 'fit-content',
-            pointerEvents: 'none'     
+            pointerEvents: 'none',
+            zIndex: 0     
           }}> 
             <span style={{ maxWidth: '600px' }}>
               {napiVicc}
