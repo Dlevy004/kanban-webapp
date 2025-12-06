@@ -99,6 +99,29 @@
 |Tábla átnevezése (Sikeres)|Kattintás az "Átnevezés" gombra -> Új név megadása -> OK.|A kártyán a cím azonnal frissül az új névre az oldal újratöltése nélkül.|Sikeres|
 |Átnevezés megszakítása|Kattintás az "Átnevezés" gombra -> Mégse, vagy üres név megadása.|A cím nem változik, nem történik API hívás.|Sikeres|
 
+### Frontend: Oszlop (Column) kezelés és Task CRUD
+
+|Leírás|Lépések|Várt eredmény|Állapot|
+|------|-------|-------------|--------|
+|Oszlop létrehozása|Kattintás a "+ Create new column" gombra -> Név megadása -> OK.|Az új oszlop megjelenik a tábla jobb szélén. Az adatbázisban létrejön.|Sikeres|
+|Oszlop átnevezése|Kattintás az oszlop címére -> Új név beírása -> OK.|Az oszlop neve frissül a felületen és az adatbázisban.|Sikeres|
+|Oszlop törlése|Kattintás az oszlop fejlécében lévő `X` gombra -> Megerősítés "OK".|Az oszlop és a benne lévő összes feladat eltűnik a felületről.|Sikeres|
+|Új feladat hozzáadása|Kattintás a "+ Create new task" gombra az oszlop alján -> Cím megadása -> OK.|A feladat kártya megjelenik az adott oszlop alján.|Sikeres|
+|Feladat gyors átnevezése|Kattintás a feladat kártyán lévő ✏️ gombra -> Új cím -> OK.|A kártya címe frissül.|Sikeres|
+|Feladat törlése|Kattintás a feladat kártyán lévő 🗑️ gombra -> Megerősítés "OK".|A kártya eltűnik az oszlopból.|Sikeres|
+|Feladat mozgatása (Drag & Drop)|Feladat áthúzása egyik oszlopból a másikba (vagy sorrendezés oszlopon belül).|A kártya az új helyen marad. Oldalfrissítés után is megőrzi a pozícióját (Backend update).|Sikeres|
+
+### Frontend: Részletek (Modal) és AI funkciók
+
+|Leírás|Lépések|Várt eredmény|Állapot|
+|------|-------|-------------|--------|
+|Részletek megnyitása|Kattintás a feladat kártya testére (nem a gombokra).|Megnyílik a felugró ablak (Modal) a feladat adataival.|Sikeres|
+|Dátum és Leírás mentése|Modalban: Dátum kiválasztása, Leírás beírása -> "Mentés".|A Modal bezárul. A kártyán megjelenik a naptár ikon és a dátum.|Sikeres|
+|Üres dátum kezelése|Új feladat megnyitása a Modalban.|A dátum mező automatikusan a holnapi napra áll be alapértelmezettként.|Sikeres|
+|AI Leírás generálás (Gemini)|Modal megnyitása -> Kattintás az "✨ AI írás" gombra.|Rövid töltés után a "Leírás" mező automatikusan kitöltődik egy generált szöveggel a cím alapján.|Sikeres|
+|AI hiba kezelése|AI gomb megnyomása (pl. hálózati hiba vagy rossz kulcs esetén).|Hibaüzenet (alert) jelenik meg, az alkalmazás nem omlik össze.|Sikeres|
+|Sötét mód (Modal & Kártya)|Téma váltása Dark módra -> Kártyák és Modal ellenőrzése.|A kártyák és a Modal háttere sötét, a szövegek világosak, a színek illeszkednek a témához.|Sikeres|
+
 ## **András**
 ### Frontend: Dashboard, Profile - design és reszponzív megjelenés
 
