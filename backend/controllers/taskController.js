@@ -4,7 +4,9 @@ const handleCreateTask = async (req, res) => {
     try {
         const { title, description, boardId, columnId, assigneeId, dueDate } = req.body;
 
-        if (!title || !boardId || !columnId) {
+        const targetColumnId = columnId || column;
+
+        if (!title || !boardId || !targetColumnId) {
             return res.status(400).json({ message: 'Title, boardId and columnId are required.' });
         }
 
@@ -12,7 +14,7 @@ const handleCreateTask = async (req, res) => {
             title,
             description,
             boardId,
-            columnId,
+            targetColumnId,
             assigneeId,
             dueDate
         );

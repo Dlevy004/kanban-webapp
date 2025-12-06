@@ -2,7 +2,7 @@ import React from 'react';
 import './Column.css';
 import Task from './Task.jsx';
 
-function Column({ columnData }) {
+function Column({ columnData, onAddTask }) {
 
     return (
         <div className="column-container">
@@ -14,7 +14,7 @@ function Column({ columnData }) {
                 ))}
             </div>
 
-            <button className="new-task-button">
+            <button className="new-task-button" onClick={() => onAddTask(columnData._id)}>
                 + Create new task
             </button>
         </div>
