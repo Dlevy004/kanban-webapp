@@ -33,6 +33,39 @@
     gap: 10px;
 }
 
+.task-check-circle {
+    width: 22px;
+    height: 22px;
+    border: 2px solid #b0b0b0; 
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-top: 2px;
+    transition: all 0.2s ease;
+    background-color: transparent;
+}
+
+.task-check-circle:hover {
+    border-color: var(--secondary-color);
+    background-color: rgba(0,0,0,0.05);
+}
+
+.task-check-circle.checked {
+    background-color: #4caf50;
+    border-color: #4caf50;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.completed-task {
+    opacity: 0.8;
+    background-color: rgba(76, 175, 80, 0.05);
+}
+
 .task-title {
     font-size: 16px;
     color: var(--color-text);
@@ -47,16 +80,19 @@
     word-break: break-word;
     flex-grow: 1;
     margin: 0;
+    transition: color 0.2s ease;
+}
+
+.task-title.completed {
+    text-decoration: line-through;
+    color: #888; 
 }
 
 .task-description {
     font-size: 0.85rem;
-    
     color: var(--color-text-muted); 
-    
     line-height: 1.4;
     margin-top: 4px;
-    
     display: -webkit-box;
     -webkit-line-clamp: 3;
     line-clamp: 3;
@@ -84,4 +120,16 @@
 :root[data-theme='dark'] .task-card-container:hover {
     border: 2px solid var(--secondary-color);
     filter: brightness(1.1);
+}
+
+:root[data-theme='dark'] .task-check-circle {
+    border-color: #666; 
+}
+:root[data-theme='dark'] .task-check-circle:hover {
+    border-color: var(--secondary-color);
+    background-color: rgba(255,255,255,0.1);
+}
+
+:root[data-theme='dark'] .task-title.completed {
+    color: #aaa;
 }
