@@ -136,6 +136,18 @@ div.input-field button {
     padding-left: 5px;
 }
 
+.input-field .password-toggle-icon.icon {
+    left: auto;         
+    right: 10px;
+    padding-left: 0;
+    
+    cursor: pointer;
+    padding: 5px;
+    z-index: 10;
+    width: 24px;
+    height: 24px;
+}
+
 .help-wrapper .helpIcon {
     cursor: pointer;
 }
@@ -266,4 +278,3 @@ div.input-field button {
         margin-top: 30px;
     }
 }
-
