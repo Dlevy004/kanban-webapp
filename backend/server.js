@@ -28,6 +28,9 @@ app.use('/api/tasks', taskRoutes);
 const userRoutes = require('./routes/userRoutes');
 app.use('/api/users', userRoutes);
 
+const aiRoutes = require('./routes/aiRoutes');
+app.use('/api/ai', aiRoutes);
+
 
 if (!MONGO_URI) {
     console.error('Fatal Error: MONGO_URI is not set in .env file.');
