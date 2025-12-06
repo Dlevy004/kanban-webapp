@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Draggable } from '@hello-pangea/dnd';
 import './Task.css';
 
-function TaskCard({ taskData, index, columnId, onDelete, onUpdate, onClick, onComplete }) {
+function TaskCard({ taskData, index, columnId, onDelete, onUpdate, onClick, onToggleCompletion }) {
 
-    const [isCompleted, setIsCompleted] = useState(false);
+    const isCompleted = taskData.isCompleted || false;
 
     const formatDate = (dateString) => {
         if (!dateString) return null;
@@ -14,11 +14,8 @@ function TaskCard({ taskData, index, columnId, onDelete, onUpdate, onClick, onCo
     const handleCheckClick = (e) => {
         e.stopPropagation(); 
         
-        if (!isCompleted) {
-            setIsCompleted(true);
-            if (onComplete) onComplete();
-        } else {
-            setIsCompleted(false);
+        if (onToggleCompletion) {
+            onToggleCompletion(taskData._id, columnId, !isCompleted);
         }
     };
 

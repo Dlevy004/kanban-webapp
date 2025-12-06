@@ -67,6 +67,38 @@ function BoardPage() {
         }, 250);
     };
 
+    const handleToggleTaskCompletion = async (taskId, columnId, newStatus) => {
+        const updatedColumns = columns.map(col => {
+            if (col._id === columnId) {
+                return {
+                    ...col,
+                    tasks: col.tasks.map(task => 
+                        task._id === taskId ? { ...task, isCompleted: newStatus } : task
+                    )
+                };
+            }
+            return col;
+        });
+        setColumns(updatedColumns);
+
+        if (newStatus === true) {
+            triggerConfetti();
+        }
+
+        try {
+            await fetch(`/api/tasks/${taskId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+                body: JSON.stringify({ isCompleted: newStatus })
+            });
+        } catch (error) {
+            console.error("Error updating task status:", error);
+        }
+    };
+
     const handleAddColumn = async () => {
         const title = prompt("Name the new column");
         if (!title) return;
@@ -120,7 +152,8 @@ function BoardPage() {
                     description: "",
                     dueDate: null,
                     assigneeId: null,
-                    order: 0
+                    order: 0,
+                    isCompleted: false
                 })
             });
 
@@ -359,7 +392,7 @@ function BoardPage() {
                         onDeleteTask={handleDeleteTask}
                         onUpdateTask={handleUpdateTaskTitle}
                         onTaskClick={openTaskModal}
-                        onCompleteTask={triggerConfetti} 
+                        onToggleTaskCompletion={handleToggleTaskCompletion}
                     />
                 ))}
 
