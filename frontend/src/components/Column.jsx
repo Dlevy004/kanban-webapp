@@ -3,11 +3,27 @@ import './Column.css';
 import Task from './Task.jsx';
 import { Droppable } from '@hello-pangea/dnd';
 
-function Column({ columnData, onAddTask }) {
-
+function Column({ columnData, onAddTask, onDeleteColumn, onUpdateColumn, onDeleteTask, onUpdateTask }) {
     return (
         <div className="column-container">
-            <div className="column-title">{columnData.title}</div>
+            <div className="column-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+
+                <div
+                    className="column-title"
+                    onClick={() => onUpdateColumn(columnData._id, columnData.title)}
+                    style={{ cursor: 'pointer', flexGrow: 1 }}
+                    title="Click to rename"
+                >
+                    {columnData.title}
+                </div>
+
+                <button
+                    onClick={() => onDeleteColumn(columnData._id)}
+                    style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#ff4d4f', fontWeight: 'bold' }}
+                >
+                    ✕
+                </button>
+            </div>
 
             <Droppable droppableId={columnData._id}>
                 {(provided) => (
@@ -18,7 +34,14 @@ function Column({ columnData, onAddTask }) {
                         style={{ minHeight: '100px' }}
                     >
                         {columnData.tasks && columnData.tasks.map((task, index) => (
-                            <Task key={task._id} taskData={task} index={index} />
+                            <Task
+                                key={task._id}
+                                taskData={task}
+                                index={index}
+                                columnId={columnData._id}
+                                onDelete={onDeleteTask}
+                                onUpdate={onUpdateTask}
+                            />
                         ))}
                         {provided.placeholder}
                     </div>

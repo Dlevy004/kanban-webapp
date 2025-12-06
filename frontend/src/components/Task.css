@@ -1,4 +1,5 @@
 .task-card-container {
+    display: flex;
     padding: 12px;
     background-color: var(--ternary-color);
     border-radius: 6px;
@@ -23,6 +24,8 @@
     font-weight: bold;
     white-space: nowrap;
     overflow: hidden;
+    word-break: 'break-word';
+    flex-grow: 1;
 }
 
 :root[data-theme='dark'] .task-card-container {

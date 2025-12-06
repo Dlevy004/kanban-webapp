@@ -123,14 +123,6 @@ function BoardPage() {
         }
     };
 
-    useEffect(() => {
-        if (boardData && boardData.title) {
-            document.title = `${boardData.title} | Kanban App`;
-        } else {
-            document.title = 'Tábla | Kanban App';
-        }
-    }, [boardData]);
-
     const onDragEnd = async (result) => {
         const { source, destination, draggableId } = result;
 
@@ -189,12 +181,129 @@ function BoardPage() {
         }
     };
 
+    const handleDeleteColumn = async (columnId) => {
+        if (!window.confirm("Delete column and all associated tasks with it?")) return;
+
+        try {
+            const response = await fetch(`/api/columns/${columnId}`, {
+                method: 'DELETE',
+                headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+            });
+
+            if (response.ok) {
+                setColumns(columns.filter(col => col._id !== columnId));
+            }
+        } catch (error) {
+            console.error("Error deleting column:", error);
+        }
+    };
+
+    const handleUpdateColumnTitle = async (columnId, oldTitle) => {
+        const newTitle = prompt("Rename column:", oldTitle);
+        if (!newTitle || newTitle === oldTitle) return;
+
+        try {
+            const response = await fetch(`/api/columns/${columnId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+                body: JSON.stringify({ title: newTitle })
+            });
+
+            if (response.ok) {
+                setColumns(columns.map(col =>
+                    col._id === columnId ? { ...col, title: newTitle } : col
+                ));
+            }
+        } catch (error) {
+            console.error("Error renaming column:", error);
+        }
+    };
+
+
+    const handleDeleteTask = async (taskId, columnId) => {
+        if (!window.confirm("Delete this task?")) return;
+
+        try {
+            const response = await fetch(`/api/tasks/${taskId}`, {
+                method: 'DELETE',
+                headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+            });
+
+            if (response.ok) {
+                const updatedColumns = columns.map(col => {
+                    if (col._id === columnId) {
+                        return {
+                            ...col,
+                            tasks: col.tasks.filter(task => task._id !== taskId)
+                        };
+                    }
+                    return col;
+                });
+                setColumns(updatedColumns);
+            }
+        } catch (error) {
+            console.error("Error deleting task:", error);
+        }
+    };
+
+    const handleUpdateTaskTitle = async (taskId, columnId, oldTitle) => {
+        const newTitle = prompt("Rename task:", oldTitle);
+        if (!newTitle || newTitle === oldTitle) return;
+
+        try {
+            const response = await fetch(`/api/tasks/${taskId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+                body: JSON.stringify({ title: newTitle })
+            });
+
+            if (response.ok) {
+                const updatedColumns = columns.map(col => {
+                    if (col._id === columnId) {
+                        return {
+                            ...col,
+                            tasks: col.tasks.map(task =>
+                                task._id === taskId ? { ...task, title: newTitle } : task
+                            )
+                        };
+                    }
+                    return col;
+                });
+                setColumns(updatedColumns);
+            }
+        } catch (error) {
+            console.error("Error renaming task:", error);
+        }
+    };
+
+    useEffect(() => {
+        if (boardData && boardData.title) {
+            document.title = `${boardData.title} | Kanban App`;
+        } else {
+            document.title = 'Tábla | Kanban App';
+        }
+    }, [boardData]);
+
     return (
         <DragDropContext onDragEnd={onDragEnd}>
             <main className="board-page-main">
 
                 {columns.map((column) => (
-                    <Column key={column._id} columnData={column} onAddTask={handleAddTask} />
+                    <Column
+                        key={column._id}
+                        columnData={column}
+                        onAddTask={handleAddTask}
+                        onDeleteColumn={handleDeleteColumn}
+                        onUpdateColumn={handleUpdateColumnTitle}
+                        onDeleteTask={handleDeleteTask}
+                        onUpdateTask={handleUpdateTaskTitle}
+                    />
                 ))}
 
                 <button onClick={handleAddColumn} className="new-column-button">
