@@ -1,9 +1,9 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-
 const generateTaskDescription = async (taskTitle) => {
     try {
+        const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+        
         const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
         const prompt = `Írj egy rövid, tömör, szakmai feladatleírást egy szoftverfejlesztési projekthez (Kanban tábla). 
@@ -16,7 +16,7 @@ const generateTaskDescription = async (taskTitle) => {
 
         return text;
     } catch (error) {
-        console.error("AI Generation Error Detailed:", JSON.stringify(error, null, 2));
+        console.error("AI Generation Error Detailed:", error.message || error);
         throw new Error("Failed to generate description!");
     }
 };
