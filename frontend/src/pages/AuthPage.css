@@ -139,7 +139,7 @@ div.input-field button {
 .input-field .password-toggle-icon.icon {
     left: auto;         
     right: 10px;
-    padding-left: 0;
+    padding-left: 0;    
     
     cursor: pointer;
     padding: 5px;
@@ -156,7 +156,7 @@ div.input-field button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    right: 30px;
+    right: 10px;
     z-index: 99;
 }
 

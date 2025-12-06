@@ -240,14 +240,14 @@ function AuthPage() {
                                 placeholder="Jelszó létrehozása" required 
                                 value={regPassword}
                                 onChange={(e) => setRegPassword(e.target.value)}
-                                style={{ paddingRight: '40px' }}
+                                style={{ paddingRight: '85px' }}
                             />
                             <img className="icon" src="./public/images/lock_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Lakat ikon" />
                             <img className="darkMode-icon icon hide" src="./public/images/lock_24dp_F9FCFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Lakat ikon" />
                             
                             <img 
                                 className="password-toggle-icon icon"
-                                style={{ right: '60px' }}
+                                style={{ right: '45px' }}
                                 src={showRegPassword 
                                     ? "./public/images/visibility_24dp_000000.svg" 
                                     : "./public/images/visibility_off_24dp_000000.svg"}
@@ -256,7 +256,7 @@ function AuthPage() {
                             />
                              <img 
                                 className="password-toggle-icon darkMode-icon icon hide"
-                                style={{ right: '60px' }}
+                                style={{ right: '45px' }}
                                 src={showRegPassword 
                                     ? "./public/images/visibility_24dp_F9FCFF.svg" 
                                     : "./public/images/visibility_off_24dp_F9FCFF.svg"}
