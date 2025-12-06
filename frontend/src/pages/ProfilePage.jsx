@@ -22,6 +22,10 @@ const ProfilePage = () => {
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     
+    const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+    const [showNewPassword, setShowNewPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
     const [preview, setPreview] = useState('https://via.placeholder.com/120'); 
     const [profilePictureFile, setProfilePictureFile] = useState(null);
 
@@ -123,6 +127,9 @@ const ProfilePage = () => {
             setCurrentPassword('');
             setNewPassword('');
             setConfirmPassword('');
+            setShowCurrentPassword(false);
+            setShowNewPassword(false);
+            setShowConfirmPassword(false);
 
         } catch (error) {
             console.error("Hiba a jelszócsere során:", error);
@@ -198,7 +205,7 @@ const ProfilePage = () => {
                     <div className="card">
                         <h2 className="profile-card-title">Profilkép</h2>
                         <div className="profile-picture-section">
-                            <img src={preview} className="profile-avatar-preview" />
+                            <img src={preview} className="profile-avatar-preview" alt="" />
                             <div className="profile-picture-controls">
                                 <label htmlFor="file-upload" className="dashboard-logout-btn">
                                     Kép cseréje
@@ -243,13 +250,31 @@ const ProfilePage = () => {
                         <form onSubmit={handleUpdatePassword}>
                             <div className="profile-form-group">
                                 <label htmlFor="current-pass">Jelenlegi jelszó</label>
-                                <input
-                                    id="current-pass"
-                                    type="password"
-                                    className="input"
-                                    value={currentPassword}
-                                    onChange={(e) => setCurrentPassword(e.target.value)}
-                                />
+                                <div className="password-wrapper">
+                                    <input
+                                        id="current-pass"
+                                        type={showCurrentPassword ? "text" : "password"} 
+                                        className="input"
+                                        value={currentPassword}
+                                        onChange={(e) => setCurrentPassword(e.target.value)}
+                                    />
+                                    <img 
+                                        className="password-toggle-icon lightMode"
+                                        src={showCurrentPassword 
+                                            ? "./public/images/visibility_24dp_000000.svg" 
+                                            : "./public/images/visibility_off_24dp_000000.svg"}
+                                        alt="Jelszó mutatása"
+                                        onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+                                    />
+                                    <img 
+                                        className="password-toggle-icon darkMode-icon hide"
+                                        src={showCurrentPassword 
+                                            ? "./public/images/visibility_24dp_F9FCFF.svg" 
+                                            : "./public/images/visibility_off_24dp_F9FCFF.svg"}
+                                        alt="Jelszó mutatása"
+                                        onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+                                    />
+                                </div>
                             </div>
 
                             <div className="profile-form-group">
@@ -257,14 +282,32 @@ const ProfilePage = () => {
                                 <div className="profile-input-with-help">
                                     <input
                                         id="new-pass"
-                                        type="password"
+                                        type={showNewPassword ? "text" : "password"} 
                                         className="input"
                                         value={newPassword}
                                         onChange={(e) => setNewPassword(e.target.value)}
                                     />
+
+                                    <img 
+                                        className="password-toggle-icon lightMode"
+                                        src={showNewPassword 
+                                            ? "./public/images/visibility_24dp_000000.svg" 
+                                            : "./public/images/visibility_off_24dp_000000.svg"}
+                                        alt="Jelszó mutatása"
+                                        onClick={() => setShowNewPassword(!showNewPassword)}
+                                    />
+                                    <img 
+                                        className="password-toggle-icon darkMode-icon hide"
+                                        src={showNewPassword 
+                                            ? "./public/images/visibility_24dp_F9FCFF.svg" 
+                                            : "./public/images/visibility_off_24dp_F9FCFF.svg"}
+                                        alt="Jelszó mutatása"
+                                        onClick={() => setShowNewPassword(!showNewPassword)}
+                                    />
+
                                     <div className="help-wrapper">
-                                        <img className="lightMode helpIcon" src="./public/images/help_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Segítég ikon" />
-                                        <img className="darkMode-icon hide helpIcon" src="./public/images/help_24dp_F9FCFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Segítég ikon" />
+                                        <img className="lightMode helpIcon" src="./public/images/help_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Segítség ikon" />
+                                        <img className="darkMode-icon hide helpIcon" src="./public/images/help_24dp_F9FCFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Segítség ikon" />
                                         <div className="tip">
                                             <p>
                                                 A jelszónak tartalmaznia kell: <br />
@@ -280,13 +323,31 @@ const ProfilePage = () => {
 
                             <div className="profile-form-group">
                                 <label htmlFor="confirm-pass">Új jelszó megerősítése</label>
-                                <input
-                                    id="confirm-pass"
-                                    type="password"
-                                    className="input"
-                                    value={confirmPassword}
-                                    onChange={(e) => setConfirmPassword(e.target.value)}
-                                />
+                                <div className="password-wrapper">
+                                    <input
+                                        id="confirm-pass"
+                                        type={showConfirmPassword ? "text" : "password"} 
+                                        className="input"
+                                        value={confirmPassword}
+                                        onChange={(e) => setConfirmPassword(e.target.value)}
+                                    />
+                                     <img 
+                                        className="password-toggle-icon lightMode"
+                                        src={showConfirmPassword 
+                                            ? "./public/images/visibility_24dp_000000.svg" 
+                                            : "./public/images/visibility_off_24dp_000000.svg"}
+                                        alt="Jelszó mutatása"
+                                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                    />
+                                    <img 
+                                        className="password-toggle-icon darkMode-icon hide"
+                                        src={showConfirmPassword 
+                                            ? "./public/images/visibility_24dp_F9FCFF.svg" 
+                                            : "./public/images/visibility_off_24dp_F9FCFF.svg"}
+                                        alt="Jelszó mutatása"
+                                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                    />
+                                </div>
                             </div>
                             <button type="submit" className="dashboard-logout-btn">
                                 Jelszó cseréje
