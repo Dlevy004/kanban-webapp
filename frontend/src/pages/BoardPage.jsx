@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Column from '../components/Column';
 import { DragDropContext } from '@hello-pangea/dnd';
 import './BoardPage.css';
+import TaskModal from '../components/TaskModal';
 
 function BoardPage() {
     const { id } = useParams();
@@ -10,6 +11,11 @@ function BoardPage() {
     const [boardData, setBoardData] = useState(null);
     const [columns, setColumns] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    const [selectedTask, setSelectedTask] = useState(null);
+    const openTaskModal = (task) => {
+        setSelectedTask(task);
+    };
 
     useEffect(() => {
         const fetchBoardData = async () => {
@@ -282,6 +288,40 @@ function BoardPage() {
         }
     };
 
+    const handleSaveTaskDetails = async (updatedTaskData) => {
+        try {
+            const response = await fetch(`/api/tasks/${updatedTaskData._id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+                body: JSON.stringify(updatedTaskData)
+            });
+
+            if (response.ok) {
+                const savedTaskResponse = await response.json();
+                const savedTask = savedTaskResponse.task || savedTaskResponse;
+
+                const updatedColumns = columns.map(col => {
+                    if (col.tasks.some(t => t._id === savedTask._id)) {
+                        return {
+                            ...col,
+                            tasks: col.tasks.map(t => t._id === savedTask._id ? savedTask : t)
+                        };
+                    }
+                    return col;
+                });
+
+                setColumns(updatedColumns);
+                setSelectedTask(null);
+            }
+        } catch (error) {
+            console.error("Error saving task details:", error);
+            alert("Server error saving task details");
+        }
+    };
+
     useEffect(() => {
         if (boardData && boardData.title) {
             document.title = `${boardData.title} | Kanban App`;
@@ -303,8 +343,17 @@ function BoardPage() {
                         onUpdateColumn={handleUpdateColumnTitle}
                         onDeleteTask={handleDeleteTask}
                         onUpdateTask={handleUpdateTaskTitle}
+                        onTaskClick={openTaskModal}
                     />
                 ))}
+
+                {selectedTask && (
+                    <TaskModal
+                        task={selectedTask}
+                        onClose={() => setSelectedTask(null)}
+                        onSave={handleSaveTaskDetails}
+                    />
+                )}
 
                 <button onClick={handleAddColumn} className="new-column-button">
                     + Create new column

@@ -3,7 +3,7 @@ import './Column.css';
 import Task from './Task.jsx';
 import { Droppable } from '@hello-pangea/dnd';
 
-function Column({ columnData, onAddTask, onDeleteColumn, onUpdateColumn, onDeleteTask, onUpdateTask }) {
+function Column({ columnData, onAddTask, onDeleteColumn, onUpdateColumn, onDeleteTask, onUpdateTask, onTaskClick }) {
     return (
         <div className="column-container">
             <div className="column-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
@@ -41,6 +41,7 @@ function Column({ columnData, onAddTask, onDeleteColumn, onUpdateColumn, onDelet
                                 columnId={columnData._id}
                                 onDelete={onDeleteTask}
                                 onUpdate={onUpdateTask}
+                                onClick={() => onTaskClick(task)}
                             />
                         ))}
                         {provided.placeholder}

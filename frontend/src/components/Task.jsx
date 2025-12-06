@@ -2,58 +2,71 @@ import React from 'react';
 import { Draggable } from '@hello-pangea/dnd';
 import './Task.css';
 
-function TaskCard({ taskData, index, columnId, onDelete, onUpdate }) {
+function TaskCard({ taskData, index, columnId, onDelete, onUpdate, onClick }) {
+
+    const formatDate = (dateString) => {
+        if (!dateString) return null;
+        return new Date(dateString).toLocaleDateString('hu-HU');
+    };
+
     return (
         <Draggable draggableId={taskData._id} index={index}>
-            {(provided) => (
+            {(provided, snapshot) => (
                 <div
                     className="task-card-container"
                     ref={provided.innerRef}
+                    onClick={() => {
+                        if (!snapshot.isDragging) {
+                            onClick();
+                        }
+                    }}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                 >
-                    <p className="task-title">{taskData.title}</p>
+                    <div className="task-header">
+                        <h4 className="task-title">{taskData.title}</h4>
 
-                    <div className="task-actions" style={{ display: 'flex', gap: '5px' }}>
+                        <div className="task-actions" style={{ display: 'flex', gap: '5px', flexShrink: 0 }}>
+                            <button
+                                onMouseDown={(e) => { e.preventDefault(); e.stopPropagation() }}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    onUpdate(taskData._id, columnId, taskData.title);
+                                }}
+                                style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '16px', padding: '2px', opacity: 0.7 }}
+                                title="Edit"
+                            >
+                                ✏️
+                            </button>
 
-                        <button
-                            onMouseDown={(e) => {
-                                e.preventDefault();
-                                e.stopPropagation()
-                            }}
-                            onClick={(e) => {
-                                e.preventDefault();
-                                e.stopPropagation();
-                                onUpdate(taskData._id, columnId, taskData.title);
-                            }}
-                            style={{
-                                background: 'none', border: 'none', cursor: 'pointer',
-                                fontSize: '14px', padding: '2px'
-                            }}
-                            title="Edit"
-                        >
-                            ✏️
-                        </button>
-
-                        <button
-                            onMouseDown={(e) => {
-                                e.preventDefault();
-                                e.stopPropagation()
-                            }}
-                            onClick={(e) => {
-                                e.preventDefault();
-                                e.stopPropagation();
-                                onDelete(taskData._id, columnId);
-                            }}
-                            style={{
-                                background: 'none', border: 'none', cursor: 'pointer',
-                                fontSize: '14px', padding: '2px'
-                            }}
-                            title="Delete"
-                        >
-                            🗑️
-                        </button>
+                            <button
+                                onMouseDown={(e) => { e.preventDefault(); e.stopPropagation() }}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    onDelete(taskData._id, columnId);
+                                }}
+                                style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '16px', padding: '2px', opacity: 0.7 }}
+                                title="Delete"
+                            >
+                                🗑️
+                            </button>
+                        </div>
                     </div>
+
+                    {taskData.description && (
+                        <div className="task-description">
+                            {taskData.description}
+                        </div>
+                    )}
+
+                    {taskData.dueDate && (
+                        <div className="task-footer">
+                            <span>📅</span>
+                            {formatDate(taskData.dueDate)}
+                        </div>
+                    )}
                 </div>
             )}
         </Draggable>
