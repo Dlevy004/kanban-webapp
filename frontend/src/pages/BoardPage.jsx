@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Column from '../components/Column';
+import { DragDropContext } from '@hello-pangea/dnd';
 import './BoardPage.css';
 
 function BoardPage() {
@@ -130,17 +131,77 @@ function BoardPage() {
         }
     }, [boardData]);
 
+    const onDragEnd = async (result) => {
+        const { source, destination, draggableId } = result;
+
+        if (!destination) return;
+        if (source.droppableId === destination.droppableId && source.index === destination.index) return;
+
+        const startColumn = columns.find(col => col._id === source.droppableId);
+        const finishColumn = columns.find(col => col._id === destination.droppableId);
+
+        const newColumns = [...columns];
+
+        if (startColumn === finishColumn) {
+            const newTaskIds = Array.from(startColumn.tasks);
+            const [movedTask] = newTaskIds.splice(source.index, 1);
+            newTaskIds.splice(destination.index, 0, movedTask);
+
+            const newColumn = { ...startColumn, tasks: newTaskIds };
+
+            setColumns(columns.map(col => col._id === newColumn._id ? newColumn : col));
+        }
+        else {
+            const startTaskIds = Array.from(startColumn.tasks);
+            const [movedTask] = startTaskIds.splice(source.index, 1);
+
+            const updatedMovedTask = { ...movedTask, column: finishColumn._id };
+
+            const finishTaskIds = Array.from(finishColumn.tasks);
+            finishTaskIds.splice(destination.index, 0, updatedMovedTask);
+
+            const newStart = { ...startColumn, tasks: startTaskIds };
+            const newFinish = { ...finishColumn, tasks: finishTaskIds };
+
+            setColumns(columns.map(col => {
+                if (col._id === newStart._id) return newStart;
+                if (col._id === newFinish._id) return newFinish;
+                return col;
+            }));
+        }
+
+        try {
+            await fetch(`/api/tasks/${draggableId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+                body: JSON.stringify({
+                    sourceColumnId: source.droppableId,
+                    destColumnId: destination.droppableId,
+                    destIndex: destination.index,
+                })
+            });
+        } catch (error) {
+            console.error("Error saving moved task:", error);
+            alert("Error saving task! Refresh the page!");
+        }
+    };
+
     return (
-        <main className="board-page-main">
+        <DragDropContext onDragEnd={onDragEnd}>
+            <main className="board-page-main">
 
-            {columns.map((column) => (
-                <Column key={column._id} columnData={column} onAddTask={handleAddTask} />
-            ))}
+                {columns.map((column) => (
+                    <Column key={column._id} columnData={column} onAddTask={handleAddTask} />
+                ))}
 
-            <button onClick={handleAddColumn} className="new-column-button">
-                + Create new column
-            </button>
-        </main>
+                <button onClick={handleAddColumn} className="new-column-button">
+                    + Create new column
+                </button>
+            </main>
+        </DragDropContext>
     );
 }
 

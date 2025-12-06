@@ -75,6 +75,26 @@ const updateTask = async (taskId, updateData) => {
     return updatedTask;
 };
 
+const moveTask = async (taskId, sourceColumnId, destColumnId, destIndex) => {
+    await Column.findByIdAndUpdate(sourceColumnId, {
+        $pull: { tasks: taskId }
+    });
+
+    await Column.findByIdAndUpdate(destColumnId, {
+        $push: { 
+            tasks: { 
+                $each: [taskId], 
+                $position: destIndex 
+            } 
+        }
+    });
+
+    const updatedTask = await Task.findByIdAndUpdate(taskId, {
+        column: destColumnId
+    }, { new: true });
+
+    return updatedTask;
+};
 
 const deleteTask = async (taskId) => {
     const task = await Task.findById(taskId);
@@ -99,5 +119,6 @@ module.exports = {
     readTasksByColumn,
     readTasksByBoard,
     updateTask,
+    moveTask,
     deleteTask
 };

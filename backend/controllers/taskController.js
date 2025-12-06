@@ -92,18 +92,32 @@ const handleReadTasksByBoard = async (req, res) => {
 const handleUpdateTask = async (req, res) => {
     try {
         const taskId = req.params.id;
-        const updateData = req.body;
+        const { destColumnId, sourceColumnId, destIndex, ...otherUpdates } = req.body;
 
-        const updatedTask = await taskService.updateTask(taskId, updateData);
+        let updatedTask;
 
-        res.status(200).json({
-            message: 'Task updated successfully.',
-            task: updatedTask
+        
+        if (destColumnId && destIndex !== undefined && sourceColumnId) {
+            updatedTask = await taskService.moveTask(
+                taskId, 
+                sourceColumnId, 
+                destColumnId, 
+                destIndex
+            );
+        } 
+        else {
+            updatedTask = await taskService.updateTask(taskId, otherUpdates);
+        }
+
+        res.status(200).json({ 
+            message: 'Task updated successfully.', 
+            task: updatedTask 
         });
 
     } catch (error) {
-        res.status(400).json({
-            message: error.message || 'Task update failed.'
+        console.error("Update error:", error);
+        res.status(400).json({ 
+            message: error.message || 'Task update failed.' 
         });
     }
 };

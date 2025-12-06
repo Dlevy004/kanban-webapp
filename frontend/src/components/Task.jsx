@@ -1,11 +1,21 @@
 import React from 'react';
+import { Draggable } from '@hello-pangea/dnd';
 import './Task.css';
 
-function TaskCard({ taskData }) {
+function TaskCard({ taskData, index }) {
     return (
-        <div className="task-card-container">
-            <p className="task-title">{taskData.title}</p>
-        </div>
+        <Draggable draggableId={taskData._id} index={index}>
+            {(provided) => (
+                <div
+                    className="task-card-container"
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                >
+                    <p className="task-title">{taskData.title}</p>
+                </div>
+            )}
+        </Draggable>
     );
 }
 
