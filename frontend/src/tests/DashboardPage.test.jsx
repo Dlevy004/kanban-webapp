@@ -28,8 +28,6 @@ describe('DashboardPage Component', () => {
     beforeEach(() => {
         jest.clearAllMocks();
         
-        // Alapértelmezett mock: egy rövid késleltetést (Promise) adunk neki, 
-        // hogy a React state update-ek sorrendje kiszámíthatóbb legyen.
         global.fetch = jest.fn(() => 
             Promise.resolve({
                 ok: true,
@@ -47,7 +45,6 @@ describe('DashboardPage Component', () => {
 
     const renderWithRouter = async (component) => {
         let result;
-        // Az act-be csomagolás segít a kezdeti useEffect lefutásában
         await act(async () => {
             result = render(
                 <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
@@ -70,7 +67,6 @@ describe('DashboardPage Component', () => {
 
         await renderWithRouter(<DashboardPage />);
 
-        // Megvárjuk, amíg a Loading eltűnik és a név megjelenik
         expect(await screen.findByText(/TesztElek/i)).toBeInTheDocument();
 
         expect(await screen.findByText('Projekt Alpha')).toBeInTheDocument();
@@ -94,13 +90,10 @@ test('Új tábla létrehozása (API hívás és navigáció)', async () => {
 
         await renderWithRouter(<DashboardPage />);
 
-        // JAVÍTÁS: A "Dashboard" helyett keressük a felhasználónevet vagy az "Új tábla" szöveget
-        // Ez biztosítja, hogy az oldal betöltődött, mielőtt kattintunk
         await screen.findByText(/TesztElek/i); 
 
         window.prompt.mockReturnValue('Új Szuper Projekt');
 
-        // Itt már biztosan ott van a gomb
         const newBoardBtn = screen.getByText('Új tábla');
         
         await act(async () => {
