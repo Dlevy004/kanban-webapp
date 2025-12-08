@@ -40,6 +40,10 @@ function AuthPage() {
     const [regPassword, setRegPassword] = useState('');
     const [regConfirm, setRegConfirm] = useState('');
 
+    const [showLoginPassword, setShowLoginPassword] = useState(false);
+    const [showRegPassword, setShowRegPassword] = useState(false);
+    const [showRegConfirm, setShowRegConfirm] = useState(false);
+
     const [error, setError] = useState('');
 
     const [rememberMe, setRememberMe] = useState(true);
@@ -111,6 +115,8 @@ function AuthPage() {
         setRegEmail('');
         setRegPassword('');
         setRegConfirm('');
+        setShowRegPassword(false);
+        setShowRegConfirm(false);
 
         } catch (err) {
         console.error('Regisztrációs hiba:', err.response.data.message);
@@ -128,7 +134,7 @@ function AuthPage() {
         <div className={isLoginView ? 'container' : 'container active'}>
             <div className="forms">
 
-                {/* --- login form --- */}
+                {/* --- LOGIN FORM --- */}
                 <div className="form login">
                     <img src="./public/images/kanban-logo.png" alt="kanban logo" />
                     <span className="title">Bejelentkezés</span>
@@ -144,12 +150,32 @@ function AuthPage() {
                         </div>
                         
                         <div className="input-field">
-                            <input type="password" placeholder="Jelszó" required 
+                            <input 
+                                type={showLoginPassword ? "text" : "password"} 
+                                placeholder="Jelszó" required 
                                 value={loginPassword}
                                 onChange={(e) => setLoginPassword(e.target.value)}
+                                style={{ paddingRight: '40px' }}
                             />
                             <img className="icon" src="./public/images/lock_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Lakat ikon" />
                             <img className="darkMode-icon icon hide" src="./public/images/lock_24dp_F9FCFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Lakat ikon" />
+                            
+                            <img 
+                                className="password-toggle-icon icon"
+                                src={showLoginPassword 
+                                    ? "./public/images/visibility_24dp_000000.svg" 
+                                    : "./public/images/visibility_off_24dp_000000.svg"}
+                                alt="Jelszó mutatása"
+                                onClick={() => setShowLoginPassword(!showLoginPassword)}
+                            />
+                            <img 
+                                className="password-toggle-icon darkMode-icon icon hide"
+                                src={showLoginPassword 
+                                    ? "./public/images/visibility_24dp_F9FCFF.svg" 
+                                    : "./public/images/visibility_off_24dp_F9FCFF.svg"}
+                                alt="Jelszó mutatása"
+                                onClick={() => setShowLoginPassword(!showLoginPassword)}
+                            />
                         </div>
 
                         <div className="checkbox-text">
@@ -184,7 +210,7 @@ function AuthPage() {
                     </div>
                 </div>
 
-                {/* --- register form --- */}
+                {/* --- REGISTER FORM --- */}
                 <div className="form signup">
                     <img src="./public/images/kanban-logo.png" alt="kanban log" />
                     <span className="title">Regisztráció</span>
@@ -209,12 +235,35 @@ function AuthPage() {
                         </div>
                         
                         <div className="input-field">
-                            <input type="password" placeholder="Jelszó létrehozása" required 
+                            <input 
+                                type={showRegPassword ? "text" : "password"} 
+                                placeholder="Jelszó létrehozása" required 
                                 value={regPassword}
                                 onChange={(e) => setRegPassword(e.target.value)}
+                                style={{ paddingRight: '85px' }}
                             />
                             <img className="icon" src="./public/images/lock_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Lakat ikon" />
                             <img className="darkMode-icon icon hide" src="./public/images/lock_24dp_F9FCFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Lakat ikon" />
+                            
+                            <img 
+                                className="password-toggle-icon icon"
+                                style={{ right: '45px' }}
+                                src={showRegPassword 
+                                    ? "./public/images/visibility_24dp_000000.svg" 
+                                    : "./public/images/visibility_off_24dp_000000.svg"}
+                                alt="Jelszó mutatása"
+                                onClick={() => setShowRegPassword(!showRegPassword)}
+                            />
+                             <img 
+                                className="password-toggle-icon darkMode-icon icon hide"
+                                style={{ right: '45px' }}
+                                src={showRegPassword 
+                                    ? "./public/images/visibility_24dp_F9FCFF.svg" 
+                                    : "./public/images/visibility_off_24dp_F9FCFF.svg"}
+                                alt="Jelszó mutatása"
+                                onClick={() => setShowRegPassword(!showRegPassword)}
+                            />
+
                             <div className="help-wrapper">
                                 <img className="helpIcon" src="./public/images/help_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Segítség ikon" />
                                 <img className="darkMode-icon helpIcon hide" src="./public/images/help_24dp_F9FCFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Segítség ikon" />
@@ -231,12 +280,32 @@ function AuthPage() {
                         </div>
                         
                         <div className="input-field">
-                            <input type="password" placeholder="Jelszó megerősítése" required 
+                            <input 
+                                type={showRegConfirm ? "text" : "password"} 
+                                placeholder="Jelszó megerősítése" required 
                                 value={regConfirm}
                                 onChange={(e) => setRegConfirm(e.target.value)}
+                                style={{ paddingRight: '40px' }}
                             />
                             <img className="icon" src="./public/images/lock_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Lakat ikon" />
                             <img className="darkMode-icon icon hide" src="./public/images/lock_24dp_F9FCFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Lakat ikon" />
+
+                            <img 
+                                className="password-toggle-icon icon"
+                                src={showRegConfirm 
+                                    ? "./public/images/visibility_24dp_000000.svg" 
+                                    : "./public/images/visibility_off_24dp_000000.svg"}
+                                alt="Jelszó mutatása"
+                                onClick={() => setShowRegConfirm(!showRegConfirm)}
+                            />
+                            <img 
+                                className="password-toggle-icon darkMode-icon icon hide"
+                                src={showRegConfirm 
+                                    ? "./public/images/visibility_24dp_F9FCFF.svg" 
+                                    : "./public/images/visibility_off_24dp_F9FCFF.svg"}
+                                alt="Jelszó mutatása"
+                                onClick={() => setShowRegConfirm(!showRegConfirm)}
+                            />
                         </div>
 
                         {error && !isLoginView && <div style={{ color: 'red', marginTop: '5px', textAlign: 'center' }}>{error}</div>}

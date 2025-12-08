@@ -2,18 +2,28 @@ import React from 'react';
 import { Draggable } from '@hello-pangea/dnd';
 import './Task.css';
 
-function TaskCard({ taskData, index, columnId, onDelete, onUpdate, onClick }) {
+function TaskCard({ taskData, index, columnId, onDelete, onUpdate, onClick, onToggleCompletion }) {
+
+    const isCompleted = taskData.isCompleted || false;
 
     const formatDate = (dateString) => {
         if (!dateString) return null;
         return new Date(dateString).toLocaleDateString('hu-HU');
     };
 
+    const handleCheckClick = (e) => {
+        e.stopPropagation(); 
+        
+        if (onToggleCompletion) {
+            onToggleCompletion(taskData._id, columnId, !isCompleted);
+        }
+    };
+
     return (
         <Draggable draggableId={taskData._id} index={index}>
             {(provided, snapshot) => (
                 <div
-                    className="task-card-container"
+                    className={`task-card-container ${isCompleted ? 'completed-task' : ''}`}
                     ref={provided.innerRef}
                     onClick={() => {
                         if (!snapshot.isDragging) {
@@ -24,7 +34,18 @@ function TaskCard({ taskData, index, columnId, onDelete, onUpdate, onClick }) {
                     {...provided.dragHandleProps}
                 >
                     <div className="task-header">
-                        <h4 className="task-title">{taskData.title}</h4>
+                        
+                        <div 
+                            className={`task-check-circle ${isCompleted ? 'checked' : ''}`} 
+                            onClick={handleCheckClick}
+                            title="Mark as done"
+                        >
+                            {isCompleted && <span>✓</span>}
+                        </div>
+
+                        <h4 className={`task-title ${isCompleted ? 'completed' : ''}`}>
+                            {taskData.title}
+                        </h4>
 
                         <div className="task-actions" style={{ display: 'flex', gap: '5px', flexShrink: 0 }}>
                             <button

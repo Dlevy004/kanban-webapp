@@ -79,17 +79,37 @@
     flex-wrap: wrap;
 }
 
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
 .profile-input-with-help {
     position: relative;
 }
 
-.profile-input-with-help .input {
+.password-toggle-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    z-index: 10;
+}
+
+.password-wrapper .input {
     padding-right: 35px;
+}
+
+.profile-input-with-help .input {
+    padding-right: 70px;
 }
 
 .help-wrapper {
     position: absolute;
-    right: 20px;
+    right: 45px; 
     top: 50%;
     transform: translateY(-50%);
     
@@ -133,7 +153,14 @@
   display: none;
 }
 
-:root[data-theme='dark'] .help-wrapper .darkMode-icon {
+:root[data-theme='dark'] .help-wrapper .darkMode-icon,
+:root[data-theme='dark'] .password-wrapper .darkMode-icon,
+:root[data-theme='dark'] .profile-input-with-help .darkMode-icon {
   display: block;
-  transition: all 0.4s ease-in-out;
+}
+
+:root[data-theme='dark'] .help-wrapper .lightMode,
+:root[data-theme='dark'] .password-wrapper .lightMode,
+:root[data-theme='dark'] .profile-input-with-help .lightMode {
+    display: none;
 }

@@ -4,6 +4,7 @@ import Column from '../components/Column';
 import { DragDropContext } from '@hello-pangea/dnd';
 import './BoardPage.css';
 import TaskModal from '../components/TaskModal';
+import confetti from 'canvas-confetti';
 
 function BoardPage() {
     const { id } = useParams();
@@ -45,6 +46,58 @@ function BoardPage() {
             fetchBoardData();
         }
     }, [id]);
+
+    const triggerConfetti = () => {
+        const duration = 1.5 * 1000;
+        const animationEnd = Date.now() + duration;
+        const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+        const randomInRange = (min, max) => Math.random() * (max - min) + min;
+
+        const interval = setInterval(function() {
+            const timeLeft = animationEnd - Date.now();
+
+            if (timeLeft <= 0) {
+                return clearInterval(interval);
+            }
+
+            const particleCount = 50 * (timeLeft / duration);
+            confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
+            confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
+        }, 250);
+    };
+
+    const handleToggleTaskCompletion = async (taskId, columnId, newStatus) => {
+        const updatedColumns = columns.map(col => {
+            if (col._id === columnId) {
+                return {
+                    ...col,
+                    tasks: col.tasks.map(task => 
+                        task._id === taskId ? { ...task, isCompleted: newStatus } : task
+                    )
+                };
+            }
+            return col;
+        });
+        setColumns(updatedColumns);
+
+        if (newStatus === true) {
+            triggerConfetti();
+        }
+
+        try {
+            await fetch(`/api/tasks/${taskId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+                body: JSON.stringify({ isCompleted: newStatus })
+            });
+        } catch (error) {
+            console.error("Error updating task status:", error);
+        }
+    };
 
     const handleAddColumn = async () => {
         const title = prompt("Name the new column");
@@ -93,22 +146,19 @@ function BoardPage() {
                 },
                 body: JSON.stringify({
                     title: title,
-
                     column: columnId,
                     columnId: columnId,
-
                     boardId: id,
-
                     description: "",
                     dueDate: null,
                     assigneeId: null,
-                    order: 0
+                    order: 0,
+                    isCompleted: false
                 })
             });
 
             if (response.ok) {
                 const newTask = await response.json();
-
                 const taskObj = newTask.task ? newTask.task : newTask;
 
                 const updatedColumns = columns.map(col => {
@@ -137,8 +187,6 @@ function BoardPage() {
 
         const startColumn = columns.find(col => col._id === source.droppableId);
         const finishColumn = columns.find(col => col._id === destination.droppableId);
-
-        const newColumns = [...columns];
 
         if (startColumn === finishColumn) {
             const newTaskIds = Array.from(startColumn.tasks);
@@ -344,6 +392,7 @@ function BoardPage() {
                         onDeleteTask={handleDeleteTask}
                         onUpdateTask={handleUpdateTaskTitle}
                         onTaskClick={openTaskModal}
+                        onToggleTaskCompletion={handleToggleTaskCompletion}
                     />
                 ))}
 
