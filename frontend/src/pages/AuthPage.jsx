@@ -247,7 +247,6 @@ function AuthPage() {
                             
                             <img 
                                 className="password-toggle-icon icon"
-                                style={{ right: '45px' }}
                                 src={showRegPassword 
                                     ? "./public/images/visibility_24dp_000000.svg" 
                                     : "./public/images/visibility_off_24dp_000000.svg"}
@@ -256,7 +255,6 @@ function AuthPage() {
                             />
                              <img 
                                 className="password-toggle-icon darkMode-icon icon hide"
-                                style={{ right: '45px' }}
                                 src={showRegPassword 
                                     ? "./public/images/visibility_24dp_F9FCFF.svg" 
                                     : "./public/images/visibility_off_24dp_F9FCFF.svg"}
@@ -264,7 +262,7 @@ function AuthPage() {
                                 onClick={() => setShowRegPassword(!showRegPassword)}
                             />
 
-                            <div className="help-wrapper">
+                            <div className="help-wrapper" style={{ right: '50px' }}>
                                 <img className="helpIcon" src="./public/images/help_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Segítség ikon" />
                                 <img className="darkMode-icon helpIcon hide" src="./public/images/help_24dp_F9FCFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Segítség ikon" />
                                 <div className="tip">
